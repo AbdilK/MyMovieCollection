@@ -55,13 +55,9 @@ public class EditMovieController implements Initializable {
             ImdbBox.setText(movie.getArtist());
             PersonalBox.setText(movie.getDuration());
             MoviePathBox.setText(movie.getMoviePath());
-            String movies = movie.getGenre();
-            comboCategory.getSelectionModel().select(movies);
+            
         }
-        AllGenres = tm.getCategorys();
-        for (String genre : AllGenres) {
-            comboCategory.getItems().add(genre);
-        }
+        
     }
 // This method allows us to pick the path of the while whilst we are editing or creating a movie.
     @FXML
@@ -87,28 +83,25 @@ public class EditMovieController implements Initializable {
     private void clickSaveEditsMovie(ActionEvent event) throws IOException // This saves that data that you put in the EditMovie window
     {
         if (!isEditing) {
-            if (!"".equals(TitleBox.getText()) && !"".equals(ImdbBox.getText()) && comboCategory.getSelectionModel().getSelectedItem() != null
+            if (!"".equals(PersonalBox.getText()) && !"".equals(ImdbBox.getText())
                     && !"".equals(PersonalBox.getText()) && !"".equals(MoviePathBox.getText())) {
                 int movieId = tm.nextAvailableMovieID();
                 String title = TitleBox.getText();
-                String artist = ImdbBox.getText();
-                String genre = comboCategory.getSelectionModel().getSelectedItem();
-                String duration = PersonalBox.getText();                           
+                int ratingImdb = ImdbBox.getText();
+                int ratingPersonal = PersonalBox.getText();                 
                 String moviePath = MoviePathBox.getText();
-                tm.createMovie(movieId, title, artist, genre, duration, moviePath);
+                tm.createMovie(movieId, title, ratingImdb, ratingPersonal, moviePath);;
                 MainWController.refreshTableMovies();
                 ((Node) (event.getSource())).getScene().getWindow().hide();
             }
         } else {
-            if (!"".equals(TitleBox.getText()) && !"".equals(ImdbBox.getText()) && comboCategory.getSelectionModel().getSelectedItem() != null
-                    && !"".equals(PersonalBox.getText()) && !"".equals(MoviePathBox.getText())) {
+            if (!"".equals(PersonalBox.getText()) && !"".equals(ImdbBox.getText()) && !"".equals(PersonalBox.getText()) && !"".equals(MoviePathBox.getText())) {
                 int movieId = MovieNewID;
                 String title = TitleBox.getText();
-                int ratingImdb =
-                //String genre = comboCategory.getSelectionModel().getSelectedItem();
-               
+                int ratingImdb = ImdbBox.getText();
+                int ratingPersonal = PersonalBox.getText();                 
                 String moviePath = MoviePathBox.getText();
-                Movies editMovie = new Movies(movieId, title, ratingImdb, moviePath);
+                Movies editMovie = new Movies(movieId, title, ratingImdb, ratingPersonal, moviePath);;
                 tm.updateMovie(editMovie);
                 MainWController.refreshTableMovies();
                 ((Node) (event.getSource())).getScene().getWindow().hide();
