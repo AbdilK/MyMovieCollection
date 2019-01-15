@@ -48,3 +48,4 @@ build/built-jar.properties
 dist/run824440144/web-files/error.png
 dist/run824440144/web-files/get_java.png
 dist/run824440144/web-files/javafx-chrome.png
+*.properties

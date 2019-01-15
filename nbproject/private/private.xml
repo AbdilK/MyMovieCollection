@@ -3,8 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Abdil-K/Desktop/MyMovieCollection/src/MyMovieCollection/GUI/model/CollectionModel.java</file>
-            <file>file:/C:/Users/Abdil-K/Desktop/MyMovieCollection/src/MyMovieCollection/GUI/controller/NewMovieController.java</file>
+            <file>file:/C:/Users/Abdil-K/Documents/GitHub/MyMovieCollection/src/MyMovieCollection/DAL/CategoryDAO.java</file>
+            <file>file:/C:/Users/Abdil-K/Documents/GitHub/MyMovieCollection/src/MyMovieCollection/BE/Category.java</file>
+            <file>file:/C:/Users/Abdil-K/Documents/GitHub/MyMovieCollection/src/MyMovieCollection/DAL/MovieDAO.java</file>
+            <file>file:/C:/Users/Abdil-K/Documents/GitHub/MyMovieCollection/src/MyMovieCollection/GUI/model/CollectionModel.java</file>
+            <file>file:/C:/Users/Abdil-K/Documents/GitHub/MyMovieCollection/src/MyMovieCollection/BLL/CollectionManager.java</file>
+            <file>file:/C:/Users/Abdil-K/Documents/GitHub/MyMovieCollection/src/MyMovieCollection/BE/Movies.java</file>
+            <file>file:/C:/Users/Abdil-K/Documents/GitHub/MyMovieCollection/src/MyMovieCollection/DAL/CatMovieDAO.java</file>
+            <file>file:/C:/Users/Abdil-K/Documents/GitHub/MyMovieCollection/src/MyMovieCollection/GUI/view/NewMovie.fxml</file>
+            <file>file:/C:/Users/Abdil-K/Documents/GitHub/MyMovieCollection/src/MyMovieCollection/GUI/controller/EditMovieController.java</file>
+            <file>file:/C:/Users/Abdil-K/Documents/GitHub/MyMovieCollection/src/MyMovieCollection/BLL/BLLLogicFacade.java</file>
+            <file>file:/C:/Users/Abdil-K/Documents/GitHub/MyMovieCollection/src/MyMovieCollection/GUI/controller/MainWindowController.java</file>
+            <file>file:/C:/Users/Abdil-K/Documents/GitHub/MyMovieCollection/src/MyMovieCollection/BLL/UserRatings.java</file>
+            <file>file:/C:/Users/Abdil-K/Documents/GitHub/MyMovieCollection/src/MyMovieCollection/GUI/controller/NewMovieController.java</file>
         </group>
     </open-files>
 </project-private>
