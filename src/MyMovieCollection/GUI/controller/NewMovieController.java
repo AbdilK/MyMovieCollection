@@ -28,13 +28,13 @@ public class NewMovieController implements Initializable {
     @FXML
     private TextField TitleBox;
     @FXML
-    private TextField ArtistBox;
+    private TextField ImdbBox;
     @FXML
-    private TextField DurationBox;
+    private TextField PersonalBox;
     @FXML
-    private TextField FilePathBox;
+    private TextField MoviePathBox;
     @FXML
-    private ComboBox<String> comboGenre;
+    private ComboBox<String> comboCategory;
     private MainWindowController MainWController;
     private boolean isEditing = false;
     private int MovieNewID;
@@ -53,15 +53,15 @@ public class NewMovieController implements Initializable {
         movie = tm.getMovie();
         if (movie != null) {
             TitleBox.setText(movie.getTitle());
-            ArtistBox.setText(movie.getArtist());
-            DurationBox.setText(movie.getDuration());
-            FilePathBox.setText(movie.getMoviePath());
+            ImdbBox.setText(movie.getArtist());
+            PersonalBox.setText(movie.getDuration());
+            MoviePathBox.setText(movie.getMoviePath());
             String movies = movie.getGenre();
-            comboGenre.getSelectionModel().select(movies);
+            comboCategory.getSelectionModel().select(movies);
         }
         AllGenres = tm.getCategorys();
         for (String genre : AllGenres) {
-            comboGenre.getItems().add(genre);
+            comboCategory.getItems().add(genre);
         }
     }
 // This method allows us to pick the path of the while whilst we are editing or creating a movie.
@@ -76,7 +76,7 @@ public class NewMovieController implements Initializable {
         {
             TitleBox.setText(Path[0].getName());
             String filePath = "./src/MyMovieCollection/movies/";
-            FilePathBox.setText(filePath);
+            MoviePathBox.setText(filePath);
         }
     }
 // This closes the EditMovie window
@@ -88,32 +88,32 @@ public class NewMovieController implements Initializable {
     }
 // This saves that data that you put in the EditMovie window
     
-    
-    /** @FXML
+  /*  
+    @FXML
     private void clickSaveMovie(ActionEvent event) throws IOException 
     {
         if (!isEditing) {
-            if (!"".equals(DurationBox.getText()) && !"".equals(ArtistBox.getText()) && comboGenre.getSelectionModel().getSelectedItem() != null
-                    && !"".equals(DurationBox.getText()) && !"".equals(FilePathBox.getText())) {
+            if (!"".equals(PersonalBox.getText()) && !"".equals(ImdbBox.getText()) && comboCategory.getSelectionModel().getSelectedItem() != null
+                    && !"".equals(PersonalBox.getText()) && !"".equals(MoviePathBox.getText())) {
                 int movieId = tm.nextAvailableMovieID();
                 String title = TitleBox.getText();
-                String artist = ArtistBox.getText();
-                String genre = comboGenre.getSelectionModel().getSelectedItem();
-                String duration = DurationBox.getText();                           
-                String moviePath = FilePathBox.getText();
-                tm.createMovie(movieId, title, artist, genre, duration, moviePath);;
+                String ratingImdb = ImdbBox.getText();
+                String ratingPersonal = PersonalBox.getText();                 
+                String genre = comboCategory.getSelectionModel().getSelectedItem();
+                String moviePath = MoviePathBox.getText();
+                tm.createMovie(movieId, title, ratingImdb, ratingPersonal, moviePath);;
                 MainWController.refreshTableMovies();
                 ((Node) (event.getSource())).getScene().getWindow().hide();
             }
         } else {
-            if (!"".equals(DurationBox.getText()) && !"".equals(ArtistBox.getText()) && comboGenre.getSelectionModel().getSelectedItem() != null
-                    && !"".equals(DurationBox.getText()) && !"".equals(FilePathBox.getText())) {
+            if (!"".equals(PersonalBox.getText()) && !"".equals(ImdbBox.getText()) && comboCategory.getSelectionModel().getSelectedItem() != null
+                    && !"".equals(PersonalBox.getText()) && !"".equals(MoviePathBox.getText())) {
                 int movieId = MovieNewID;
                 String title = TitleBox.getText();
-                String artist = ArtistBox.getText();
-                String genre = comboGenre.getSelectionModel().getSelectedItem();
-                String duration = DurationBox.getText();
-                String moviePath = FilePathBox.getText();
+                String artist = ImdbBox.getText();
+                String genre = comboCategory.getSelectionModel().getSelectedItem();
+                String duration = PersonalBox.getText();
+                String moviePath = MoviePathBox.getText();
                 Movies editMovie = new Movies(movieId, artist, title, genre, duration, moviePath);
                 tm.updateMovie(editMovie);
                 MainWController.refreshTableMovies();
