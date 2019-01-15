@@ -22,7 +22,7 @@ public class CategoryWindowController implements Initializable
     private MainWindowController MainWController;
     private boolean isEditing = false;
     private int CategoryNewID;
-    private CollectionModel tm;
+    private CollectionModel cm;
     private Category category;
     @FXML
     private TextField txtNameCategory;
@@ -35,8 +35,8 @@ public class CategoryWindowController implements Initializable
     public void initialize(URL url, ResourceBundle rb)
     {
         MainWController = new MainWindowController();
-        tm = CollectionModel.getInstance();
-        category = tm.getCategory();
+        cm = CollectionModel.getInstance();
+        category = cm.getCategory();
         if (category != null)
         {
             NameCategory.setText(category.getCategoryName());
@@ -57,8 +57,8 @@ public class CategoryWindowController implements Initializable
         {
             if (!txtNameCategory.getText().isEmpty())
             {
-                Category category = new Category(tm.nextAvailableCategoryID(), txtNameCategory.getText());
-                tm.createCategory(category);
+                Category category = new Category(cm.nextAvailableCategoryID(), txtNameCategory.getText());
+                cm.createCategory(category);
                 MainWController.refreshTableCategory();
                 ((Node) (event.getSource())).getScene().getWindow().hide();
             }
@@ -67,7 +67,7 @@ public class CategoryWindowController implements Initializable
             if (!"".equals(NameCategory.getText()))
             {
                 Category category = new Category(CategoryNewID, NameCategory.getText());
-                tm.updateCategory(category);
+                cm.updateCategory(category);
                 MainWController.refreshTableCategory();
                 ((Node) (event.getSource())).getScene().getWindow().hide();
                 isEditing = false;

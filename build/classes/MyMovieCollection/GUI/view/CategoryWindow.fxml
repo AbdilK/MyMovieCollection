@@ -13,14 +13,14 @@
       <Pane layoutY="1.0" prefHeight="239.0" prefWidth="401.0">
          <children>
             <Line endX="1.0" layoutX="400.0" layoutY="71.0" startX="-400.0" />
-            <Label layoutX="25.0" layoutY="27.0" text="Create new playlist or rename existing playlist">
+            <Label layoutX="25.0" layoutY="27.0" text="Create new category or rename existing category">
                <font>
                   <Font size="18.0" />
                </font></Label>
             <Label layoutX="76.0" layoutY="93.0" text="Please enter your desired playlist name below:" />
-            <TextField fx:id="txtNamePlaylist" layoutY="117.0" prefHeight="31.0" prefWidth="400.0" />
-            <Button fx:id="btnCancel" layoutX="172.0" layoutY="190.0" mnemonicParsing="false" onAction="#clickCancelPlaylist" style="-fx-background-color: green;" text="Cancel" />
-            <Button fx:id="btnSave" layoutX="177.0" layoutY="158.0" mnemonicParsing="false" onAction="#clickSavePlaylist" style="-fx-background-color: green;" text="Save" />
+            <TextField fx:id="txtNameCategory" layoutY="117.0" prefHeight="31.0" prefWidth="400.0" />
+            <Button fx:id="btnCancel" layoutX="172.0" layoutY="190.0" mnemonicParsing="false" onAction="#clickCancelCategory" style="-fx-background-color: red;" text="Cancel" />
+            <Button fx:id="btnSave" layoutX="177.0" layoutY="158.0" mnemonicParsing="false" onAction="#clickSaveCategory" style="-fx-background-color: red;" text="Save" />
          </children>
       </Pane>
    </children>

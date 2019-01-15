@@ -17,7 +17,7 @@ public class DBConnectionProvider
 {
     //Login details with EASV database server ip, db name, user and password.
     private static final String SERVER_NAME = "10.176.111.31";
-    private static final String DATABASE_NAME = "Exam404";
+    private static final String DATABASE_NAME = "mymoviecollection2018";
     private static final String USER = "CS2018A_5";
     private static final String PASSWORD = "CS2018A_5";
            

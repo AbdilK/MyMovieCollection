@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="MovieCollection.jar" size="386399675" download="eager" />
+    <jar href="MovieCollection.jar" size="386399677" download="eager" />
     <jar href="lib\jfoenix.jar" size="2414497" download="eager" />
     <jar href="lib\sqljdbc42.jar" size="653996" download="eager" />
     <jar href="lib\tritonus-utils.jar" size="102301" download="eager" />
