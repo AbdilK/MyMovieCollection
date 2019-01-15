@@ -27,6 +27,8 @@ public interface BLLLogicFacade
 
     public void deleteMovie(Movies movie);
 
+    public void setRatingPersonal(int id, int ratingPersonal);
+    
     public List<Movies> getAllMovies();
 
     public void updateMovie(Movies movie);
@@ -46,4 +48,6 @@ public interface BLLLogicFacade
     public void deleteCategoryFromCategoryMovies(int id);
 
     public void reCreateCategoryMovies(Movies chosen, Movies toSwapWith);
+    
+    
 }

@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import MyMovieCollection.BE.Movies;
+import MyMovieCollection.DAL.exception.DALException;
 
 public class MovieDAO
 {
@@ -163,4 +164,20 @@ public class MovieDAO
         }
         return null;
     }
+    
+    public void setRatingPersonal(int id, int ratingPersonal) throws DALException
+    {
+        try (Connection con = db.getConnection())
+        {
+            String sqlCmd = "UPDATE Movie SET Movie.ratingPersonal = ? WHERE id = ?";
+            PreparedStatement ppst = con.prepareStatement(sqlCmd);
+            ppst.setInt(1, ratingPersonal);
+            ppst.setInt(2, id);
+            ppst.executeUpdate();
+        } catch (SQLException ex)
+        {
+            throw new DALException();
+        }
+    }
+    
 }
