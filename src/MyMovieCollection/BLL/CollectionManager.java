@@ -252,4 +252,6 @@ public class CollectionManager implements BLLLogicFacade
             Logger.getLogger(CollectionManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    
 }
