@@ -21,7 +21,7 @@
             <TextField fx:id="PersonalBox" layoutX="104.0" layoutY="165.0" />
             <TextField fx:id="MoviePathBox" layoutX="104.0" layoutY="208.0" prefHeight="25.0" prefWidth="257.0" />
             <Button fx:id="btn_Choose" layoutX="386.0" layoutY="208.0" mnemonicParsing="false" onAction="#clickChooseMovie" style="-fx-background-color: red" text="Choose" />
-            <Button fx:id="btn_Save" layoutX="411.0" layoutY="243.0" mnemonicParsing="false" style="-fx-background-color: red" text="Save" />
+            <Button fx:id="btn_Save" layoutX="411.0" layoutY="243.0" mnemonicParsing="false" onAction="#clickSaveMovie" style="-fx-background-color: red" text="Save" />
             <Button fx:id="btn_Cancel" layoutX="350.0" layoutY="243.0" mnemonicParsing="false" onAction="#clickCancelNewMovie" style="-fx-background-color: red" text="Cancel" />
             <Line endX="206.00006103515625" layoutX="251.0" layoutY="60.0" startX="-252.0" />
             <Label layoutX="71.0" layoutY="14.0" prefHeight="32.0" prefWidth="347.0" text="Add a new movie to public library">
