@@ -34,6 +34,7 @@ import MyMovieCollection.BE.Category;
 import MyMovieCollection.BE.Movies;
 import MyMovieCollection.GUI.model.CollectionModel;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 
 /*
@@ -116,6 +117,13 @@ public class MainWindowController implements Initializable
         tm = CollectionModel.getInstance();
         setMoviesTable();
         setCategoryTable();
+        try
+        {
+            dblClickPlay();
+        } catch (IOException ex)
+        {
+            Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     // The method underneath gets all movies from our database and loads it into our movie library table, with the given string.
     public void setMoviesTable() 
@@ -258,7 +266,7 @@ public class MainWindowController implements Initializable
         {
             Movies movie = tblViewLibrary.getSelectionModel().getSelectedItem();
 
-            moviesAsObservable.add(movie);
+           // moviesAsObservable.add(movie);
             ViewMoviesOnCategory.getItems().clear();
             ViewMoviesOnCategory.getItems().addAll(moviesAsObservable);
 
@@ -295,31 +303,31 @@ public class MainWindowController implements Initializable
     }
     
     
-    public void contextMenuAction(ImageView imageView, Movies movie)
+    /*public void contextMenuAction(ImageView imageView, Movies movie)
     {
      
         playMovie.setOnAction((ActionEvent event) ->
         {
             tm.setLastView(movie.getMovieId());
-            PlayCustomPlayer(imageView);
+            PlayCustomPlayer();
             contextMenu.hide();
         });
    
-    }
-     private void PlayCustomPlayer(ImageView imageView)
+    }*/
+     private void PlayCustomPlayer()
     {
-        FXMLLoader fxmlLoader;
+        
         try
         {
+
+            FXMLLoader fxmlLoader;
             fxmlLoader = new FXMLLoader(getClass().getResource("/MyMovieCollection/GUI/view/MediaPlayerWindow.fxml"));
             Parent root;
             root = fxmlLoader.load();
 
             MediaPlayerWindowController controller;
             controller = fxmlLoader.getController();
-            controller.setImageView(imageView);
-            controller.setImageView(imageView);
-            controller.MediaSetup(tm);
+            controller.MediaSetup(tm, ViewMoviesOnCategory.getSelectionModel().getSelectedItem().getMoviePath());
 
             Stage stage = new Stage();
             stage.initModality(Modality.WINDOW_MODAL);
@@ -447,34 +455,30 @@ public class MainWindowController implements Initializable
         }
     }
 
-/*
+
     @FXML
-    private void dblClickPlay(MouseEvent event) throws IOException
+    private void dblClickPlay() throws IOException
     {
-        if (event.getClickCount() == 2)
+            
+        try
         {
-            try
-            {
-                if (!isPlaying)
+            List<Movies> check = ViewMoviesOnCategory.getItems();
+            ViewMoviesOnCategory.setOnMouseClicked(event ->{
+                if(event.getClickCount() == 2 && !check.isEmpty())
                 {
-                    isPlaying = true;
-                    playSelectedMovie();
-                    mediaPlayer.setMute(muted);
-
-                } else
-                {
-                    isPlaying = true;
-                    playSelectedMovie();
-                    mediaPlayer.setMute(muted);
-
+                    PlayCustomPlayer();
+                    System.out.println("test");
                 }
-            } catch (UnsupportedAudioFileException ex)
-            {
-                Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            
+        });
+            PlayCustomPlayer();
+        } catch (Exception ex)
+        {
+
         }
+        
     }
-*/
+
     @FXML
     private void ExitCollection(MouseEvent event)
     {
