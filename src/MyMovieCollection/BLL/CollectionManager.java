@@ -88,11 +88,11 @@ public class CollectionManager implements BLLLogicFacade
     }
     
     @Override
-    public void createMovie(int movieId, String title, int ratingImdb, String moviePath)
+    public void createMovie(int movieId, String title, int ratingImdb, int ratingPersonal, String moviePath)
     {
         try
         {
-            MovieDAO.createMovie(movieId, title, ratingImdb, moviePath);
+            MovieDAO.createMovie(movieId, title, ratingImdb, ratingPersonal, moviePath);
         } catch (SQLException ex)
         {
             Logger.getLogger(CollectionManager.class.getName()).log(Level.SEVERE, null, ex);

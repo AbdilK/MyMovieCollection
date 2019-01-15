@@ -87,8 +87,8 @@ public class CollectionModel {
         moviecollection.updateCategory(category);
     }
 
-    public void createMovie(int movieId, String title, int ratingImdb, String moviePath) {
-        moviecollection.createMovie(movieId, title, ratingImdb, moviePath);
+    public void createMovie(int movieId, String title, int ratingImdb, int ratingPersonal, String moviePath) {
+        moviecollection.createMovie(movieId, title, ratingImdb, ratingPersonal, moviePath);
     }
 
     public void deleteMovie(Movies movie) {

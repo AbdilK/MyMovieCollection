@@ -67,11 +67,11 @@ public class MainWindowController implements Initializable
     @FXML
     private TableColumn<Movies, String> tblViewLibraryColumnTitle;
     @FXML
-    private TableColumn<Movies, String> tblViewLibraryColumnArtist;
+    private TableColumn<Movies, String> tblViewLibraryColumnRatingImdb;
     @FXML
-    private TableColumn<Movies, String> tblViewLibraryColumnGenre;
+    private TableColumn<Movies, String> tblViewLibraryColumnRatingPersonal;
     @FXML
-    private TableColumn<Movies, String> tblViewLibraryColumnDuration;
+    private TableColumn<Movies, String> tblViewLibraryColumnMoviePath;
     private ProgressBar progressBar;
     private TableColumn<Category, String> categoryNameCol;
     private TableColumn<Category, Integer> categoryMoviesCol;
@@ -118,13 +118,13 @@ public class MainWindowController implements Initializable
 
         
         moviesAsObservable = FXCollections.observableArrayList(tm.getMoviesAsObservable());
-        tblViewLibraryColumnTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
-        tblViewLibraryColumnArtist.setCellValueFactory(new PropertyValueFactory<>("artist"));
-        tblViewLibraryColumnGenre.setCellValueFactory(new PropertyValueFactory<>("genre"));
-        tblViewLibraryColumnDuration.setCellValueFactory(new PropertyValueFactory<>("duration"));
+        tblViewLibraryColumnTitle.setCellValueFactory(new PropertyValueFactory<>("Title"));
+        tblViewLibraryColumnRatingImdb.setCellValueFactory(new PropertyValueFactory<>("RatingImdb"));
+        tblViewLibraryColumnRatingPersonal.setCellValueFactory(new PropertyValueFactory<>("RatingPersonal"));
+        tblViewLibraryColumnMoviePath.setCellValueFactory(new PropertyValueFactory<>("MoviePath"));
         tblViewLibrary.getColumns().clear();
         tblViewLibrary.setItems(moviesAsObservable);
-        tblViewLibrary.getColumns().addAll(tblViewLibraryColumnTitle, tblViewLibraryColumnArtist, tblViewLibraryColumnGenre, tblViewLibraryColumnDuration);
+        tblViewLibrary.getColumns().addAll(tblViewLibraryColumnTitle, tblViewLibraryColumnRatingImdb, tblViewLibraryColumnRatingPersonal, tblViewLibraryColumnMoviePath);
 
     }
    // The method underneath gets all categorys from our database and loads it into our category library table, with the given string.

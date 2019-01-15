@@ -24,14 +24,18 @@ public class Movies
     private String readDuration;
     private int CategoryUniqueID;
     private int ratingImdb;
-    private int rating;
+    private int imdbR;
+    private int ratingPersonal;
+    private int imdbP;
 
-    public Movies(int movieId, String title, int ratingImdb, String moviePath)
+    public Movies(int movieId, String title, int ratingImdb, int ratingPersonal, String moviePath)
     {
         this.movieId = movieId;
         this.title = title;
+        this.ratingImdb = ratingImdb;
+        this.ratingPersonal = ratingPersonal;
         this.moviePath = moviePath;
-        //readDuration = readableDuration(this.duration);
+     
     }
 
     public Movies()
@@ -81,9 +85,20 @@ public class Movies
     
     public void setRatingImdb(int ratingImdb)
     {
-        this.rating = ratingImdb;
+        this.imdbR = ratingImdb;
     }
 
+     public int getRatingPersonal()
+    {
+        return ratingImdb;
+    }
+    
+    public void setRatingPersonal(int ratingPersonal)
+    {
+        this.imdbP = ratingPersonal;
+    }
+
+    
     public String getGenre()
     {
         return genre;

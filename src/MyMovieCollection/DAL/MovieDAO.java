@@ -26,19 +26,20 @@ public class MovieDAO
         db = new DBConnectionProvider();
     }
     ////this code makes it, so you can create a Movie in the mainwindow
-    public Movies createMovie(int movieId, String title, int ratingImdb, String moviePath) throws SQLException
+    public Movies createMovie(int movieId, String title, int ratingImdb, int ratingPersonal, String moviePath) throws SQLException
     {
         {
             try (Connection con = db.getConnection())
             {
-                String sql = "INSERT INTO Movie(movieId, title, ratingImdb, moviePath) VALUES(?,?,?,?,?)";
+                String sql = "INSERT INTO Movie(movieId, title, ratingImdb, ratingPersonal, moviePath) VALUES(?,?,?,?,?)";
                 PreparedStatement ppst = con.prepareStatement(sql);
                 ppst.setInt(1, movieId);
                 ppst.setString(2, title);
                 ppst.setInt(3, ratingImdb);
-                ppst.setString(4, moviePath);
+                ppst.setInt(4, ratingPersonal);
+                ppst.setString(5, moviePath);
                 ppst.execute();
-                Movies movie = new Movies(movieId, title, ratingImdb, moviePath);
+                Movies movie = new Movies(movieId, title, ratingImdb, ratingPersonal, moviePath);
                 return movie;
             }
         }
@@ -79,10 +80,11 @@ public class MovieDAO
                 int movieId = rs.getInt("movieId");
                 String title = rs.getString("title");
                 int ratingImdb = rs.getInt("ratingImdb");
+                int ratingPersonal = rs.getInt("ratingPersonal");
                 String moviePath = rs.getString("moviePath");
                 
                 
-                Movies movie = new Movies(movieId, title, ratingImdb, moviePath);
+                Movies movie = new Movies(movieId, title, ratingImdb, ratingPersonal, moviePath);
                 movies.add(movie);
             }
         } catch (SQLException ex)
@@ -98,12 +100,13 @@ public class MovieDAO
         try
         {
             Connection con = db.getConnection();
-            String sql = "UPDATE Movie SET title=?, ratingImdb=?, moviePath=? WHERE movieId=?";
+            String sql = "UPDATE Movie SET title=?, ratingImdb=?, ratingPersonal=?, moviePath=? WHERE movieId=?";
             PreparedStatement ppst = con.prepareStatement(sql);
             ppst.setString(1, movie.getTitle());
             ppst.setInt(2, movie.getRatingImdb());
-            ppst.setString(5, movie.getMoviePath());
-            ppst.setInt(6, movie.getMovieId());
+            ppst.setInt(3, movie.getRatingPersonal());
+            ppst.setString(4, movie.getMoviePath());
+            ppst.setInt(5, movie.getMovieId());
             ppst.execute();
         } catch (SQLServerException ex)
         {
@@ -128,8 +131,9 @@ public class MovieDAO
                 int movieId = rs.getInt("movieId");
                 String title = rs.getString("title");
                 int ratingImdb = rs.getInt("ratingImdb");
+                int ratingPersonal = rs.getInt("ratingPersonal");
                 String moviePath = rs.getString("moviePath");
-                Movies movie = new Movies(movieId, title, ratingImdb, moviePath);
+                Movies movie = new Movies(movieId, title, ratingImdb, ratingPersonal, moviePath);
                 movies.add(movie);
             }
         } catch (SQLException ex)

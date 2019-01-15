@@ -32,7 +32,7 @@ public class CatMovieDAO
         try
         {
             Connection con = db.getConnection();
-            String sql = "SELECT Movie.movieId, title, ratingImdb, moviePath FROM Movie " +
+            String sql = "SELECT Movie.movieId, title, ratingImdb, ratingPersonal, moviePath FROM Movie " +
                 "JOIN CatMovie ON CatMovie.MovieID = Movie.movieId " +
                 "JOIN Category ON CatMovie.CategoryId = Category.CategoryID WHERE Category.CategoryID = ?";
             PreparedStatement ppst = con.prepareCall(sql);
@@ -43,9 +43,10 @@ public class CatMovieDAO
                 int movieId = rs.getInt("movieId");
                 String title = rs.getString("title");
                 int ratingImdb = rs.getInt("ratingImdb");
+                int ratingPersonal = rs.getInt("ratingPersonal");
                 String moviePath = rs.getString("moviePath");
                 int categoryUniqueID = rs.getInt("movieId");
-                Movies movie = new Movies(movieId, title, ratingImdb, moviePath);
+                Movies movie = new Movies(movieId, title, ratingImdb, ratingPersonal, moviePath);
                 movie.setCategoryUniqueID(categoryUniqueID);
                 movies.add(movie);
                
