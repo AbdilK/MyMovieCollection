@@ -23,7 +23,7 @@ public interface BLLLogicFacade
 
     public void updateCategory(Category p);
 
-    public void createMovie(int movieId, String title, int ratingImdb, int ratingPersonal, String category, String moviepath);
+    public void createMovie(int movieId, String title, int ratingImdb, int ratingPersonal, String moviepath);
 
     public void deleteMovie(Movies movie);
 
