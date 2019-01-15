@@ -32,6 +32,12 @@ public class MovieDAO
         {
             try (Connection con = db.getConnection())
             {
+                if(title.contains("."))
+                {
+                    title = title.split("\\.")[0];
+
+                }
+                           
                 String sql = "INSERT INTO Movie(movieId, title, ratingImdb, ratingPersonal, moviePath) VALUES(?,?,?,?,?)";
                 PreparedStatement ppst = con.prepareStatement(sql);
                 ppst.setInt(1, movieId);
@@ -83,7 +89,8 @@ public class MovieDAO
                 int ratingImdb = rs.getInt("ratingImdb");
                 int ratingPersonal = rs.getInt("ratingPersonal");
                 String moviePath = rs.getString("moviePath");
-                
+
+     
                 
                 Movies movie = new Movies(movieId, title, ratingImdb, ratingPersonal, moviePath);
                 movies.add(movie);
