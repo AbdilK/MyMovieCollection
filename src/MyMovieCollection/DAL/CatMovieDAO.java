@@ -46,6 +46,11 @@ public class CatMovieDAO
                 int ratingPersonal = rs.getInt("ratingPersonal");
                 String moviePath = rs.getString("moviePath");
                 int categoryUniqueID = rs.getInt("movieId");
+                if(title.contains("."))
+                {
+                    title = title.split("\\.")[0];
+
+                }
                 Movies movie = new Movies(movieId, title, ratingImdb, ratingPersonal, moviePath);
                 movie.setCategoryUniqueID(categoryUniqueID);
                 movies.add(movie);
@@ -61,14 +66,14 @@ public class CatMovieDAO
     // when we select a movie and want to insert it into our categorymovies
     public void addMovieToCategory(Movies movie, Category category) throws SQLException 
     {
-        try
+        try(Connection con = db.getConnection())
         {
-            Connection con = db.getConnection();
+            
             String sql = "INSERT INTO CatMovie (MovieID, CategoryId) VALUES (?,?)";
             PreparedStatement ppst = con.prepareCall(sql);
             ppst.setInt(1, movie.getMovieId());
             ppst.setInt(2, category.getCategoryId());
-            ppst.execute();
+            ppst.executeUpdate();
         } catch (SQLServerException ex)
         {
             Logger.getLogger(MovieDAO.class.getName()).log(Level.SEVERE, null, ex);
