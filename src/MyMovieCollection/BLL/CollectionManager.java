@@ -18,6 +18,7 @@ import MyMovieCollection.BLL.exception.BLLException;
 import MyMovieCollection.DAL.CategoryDAO;
 import MyMovieCollection.DAL.MovieDAO;
 import MyMovieCollection.DAL.CatMovieDAO;
+import MyMovieCollection.DAL.exception.DALException;
 import javafx.scene.image.ImageView;
 
 public class CollectionManager implements BLLLogicFacade
@@ -228,6 +229,18 @@ public class CollectionManager implements BLLLogicFacade
         {
             Logger.getLogger(CollectionManager.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public void setLastView(int id) throws BLLException
+    {
+        //try
+        {
+            cm.setLastView(id);
+        }
+        //catch (DALException ex)
+        //{
+        //    throw new BLLException();
+        //}
     }
 
     @Override

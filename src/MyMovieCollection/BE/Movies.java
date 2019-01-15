@@ -152,9 +152,7 @@ public class Movies
     @Override
     public String toString()
     {
-        String movies = this.title
-                + " | " + this.artist;
-
+        String movies = this.title;
         return movies;
     }
 }

@@ -69,7 +69,17 @@ public class CollectionModel {
         olCategorys.addAll(getAllCategorys());
         return olCategorys;
     }
-
+    public void setLastView(int id)
+    {
+        try
+        {
+            cm.setLastView(id);
+        }
+        catch (BLLException ex)
+        {
+            System.out.println(ex);
+        }
+    }
     public void createCategory(Category category) {
         moviecollection.createCategory(category);
     }

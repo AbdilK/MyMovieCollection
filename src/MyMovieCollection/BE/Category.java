@@ -24,19 +24,12 @@ public class Category {
 
     public Category(int catId, String catName) {
         
-        this.CategoryName = CategoryName;
-        this.CategoryId = CategoryId;
+        this.CategoryId = catId;
+        this.CategoryName = catName;
         Categorymovies = new ArrayList<>();
     }
 
-    public String getCategoryName() {
-        return CategoryName;
-    }
-
-    public void setCategoryName(String catName) {
-        this.CategoryName = catName;
-    }
-    public int getCategoryId() 
+      public int getCategoryId() 
     {
         return CategoryId;
     }
@@ -45,6 +38,15 @@ public class Category {
     {
         this.CategoryId = catId;
     }
+    
+    public String getCategoryName() {
+        return CategoryName;
+    }
+
+    public void setCategoryName(String catName) {
+        this.CategoryName = catName;
+    }
+  
    
     public int getMovieAmountPL()
     {

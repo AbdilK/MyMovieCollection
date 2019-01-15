@@ -33,6 +33,8 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import MyMovieCollection.BE.Category;
 import MyMovieCollection.BE.Movies;
 import MyMovieCollection.GUI.model.CollectionModel;
+import javafx.scene.image.ImageView;
+import javafx.stage.Modality;
 
 /*
  * @author Abdil-K, Bjarne666, Hassuni8, KerimTopci
@@ -49,9 +51,12 @@ public class MainWindowController implements Initializable
     private TableView<Category> tblViewCategorys;
     @FXML
     private TableView<Movies> tblViewLibrary;
-  
-    
-    
+   @FXML
+    private AnchorPane anchorPane;
+    ContextMenu contextMenu;
+    MenuItem playMovie;
+    MenuItem editData;
+    MenuItem deleteMovie;
     private Button exitBtn;
     private CollectionModel tm;
     private String moviePath;
@@ -289,6 +294,47 @@ public class MainWindowController implements Initializable
         tblViewCategorys.setItems(tm.getCategorysAsObservable());
     }
     
+    
+    public void contextMenuAction(ImageView imageView, Movies movie)
+    {
+     
+        playMovie.setOnAction((ActionEvent event) ->
+        {
+            tm.setLastView(movie.getMovieId());
+            PlayCustomPlayer(imageView);
+            contextMenu.hide();
+        });
+   
+    }
+     private void PlayCustomPlayer(ImageView imageView)
+    {
+        FXMLLoader fxmlLoader;
+        try
+        {
+            fxmlLoader = new FXMLLoader(getClass().getResource("/MyMovieCollection/GUI/view/MediaPlayerWindow.fxml"));
+            Parent root;
+            root = fxmlLoader.load();
+
+            MediaPlayerWindowController controller;
+            controller = fxmlLoader.getController();
+            controller.setImageView(imageView);
+            controller.setImageView(imageView);
+            controller.MediaSetup(tm);
+
+            Stage stage = new Stage();
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(anchorPane.getScene().getWindow());
+            stage.setMinHeight(700);
+            stage.setMinWidth(825);
+            stage.setScene(new Scene(root));
+            stage.show();
+        }
+
+        catch (IOException ex)
+        {
+            Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     // This will bind a chosen button to open up our NewMovie window
     public void openMovieWindow(String fxmlPath, int id, boolean isEditing)
     {
@@ -308,6 +354,7 @@ public class MainWindowController implements Initializable
             Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
     // This will bind a chosen button to open up our Category window
 
     public void openCategoryWindow(String fxmlPath, int id, boolean isEditing)
