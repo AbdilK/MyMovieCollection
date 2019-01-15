@@ -84,7 +84,7 @@ public class NewMovieController implements Initializable {
     }
 // This saves that data that you put in the EditMovie window
     
-  /*
+  
     @FXML
     private void clickSaveMovie(ActionEvent event) throws IOException 
     {
@@ -93,8 +93,8 @@ public class NewMovieController implements Initializable {
                     && !"".equals(PersonalBox.getText()) && !"".equals(MoviePathBox.getText())) {
                 int movieId = tm.nextAvailableMovieID();
                 String title = TitleBox.getText();
-                int ratingImdb = ImdbBox.getText();
-                int ratingPersonal = PersonalBox.getText();                 
+                int ratingImdb = Integer.parseInt(ImdbBox.getText());
+                int ratingPersonal = Integer.parseInt(PersonalBox.getText());                
                 String moviePath = MoviePathBox.getText();
                 tm.createMovie(movieId, title, ratingImdb, ratingPersonal, moviePath);;
                 MainWController.refreshTableMovies();
@@ -104,8 +104,8 @@ public class NewMovieController implements Initializable {
             if (!"".equals(PersonalBox.getText()) && !"".equals(ImdbBox.getText()) && !"".equals(PersonalBox.getText()) && !"".equals(MoviePathBox.getText())) {
                 int movieId = MovieNewID;
                 String title = TitleBox.getText();
-                int ratingImdb = ImdbBox.getText();
-                int ratingPersonal = PersonalBox.getText();                 
+                int ratingImdb = Integer.parseInt(ImdbBox.getText());
+                int ratingPersonal = Integer.parseInt(PersonalBox.getText());
                 String moviePath = MoviePathBox.getText();
                 Movies editMovie = new Movies(movieId, title, ratingImdb, ratingPersonal, moviePath);;
                 tm.updateMovie(editMovie);
@@ -115,7 +115,7 @@ public class NewMovieController implements Initializable {
             }
         }
     }
-*/
+
     public void setController(MainWindowController controller, boolean isEditing, int movieID) // This method allows us to get connection with our MainWindowController and will check whether we are creating or editing
     {
         this.MainWController = controller;
