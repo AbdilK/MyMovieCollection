@@ -50,8 +50,8 @@ public class MediaPlayerWindowController implements Initializable
     @FXML
     private Label currentVolume;
     @FXML
-    private MediaView view;
-    private ImageView movieView;
+    private MediaView movieView;
+    private ImageView imageView;
     @FXML
     private SplitPane splitPane;
     @FXML
@@ -91,25 +91,25 @@ public class MediaPlayerWindowController implements Initializable
 
     }    
     
-    public void MediaSetup(CollectionModel cm)
+    public void MediaSetup(CollectionModel cm, String moviePath)
     {
         boolPlaying = false;
 
-        DoubleProperty width = view.fitWidthProperty();
-        DoubleProperty height = view.fitHeightProperty();
-        width.bind(Bindings.selectDouble(view.sceneProperty(), "width"));
-        height.bind(Bindings.selectDouble(view.sceneProperty(), "height"));
-        view.setPreserveRatio(false); 
+        DoubleProperty width = movieView.fitWidthProperty();
+        DoubleProperty height = movieView.fitHeightProperty();
+        width.bind(Bindings.selectDouble(movieView.sceneProperty(), "width"));
+        height.bind(Bindings.selectDouble(movieView.sceneProperty(), "height"));
+        movieView.setPreserveRatio(false); 
 
-        String path = cm.getMovieData(movieView).getMoviePath();
+        String path = moviePath;
 
         movieMedia = new Media(new File(path).toURI().toString());
 
         mp = new MediaPlayer(movieMedia);
-        mp.setAutoPlay(false);
+        mp.setAutoPlay(true);
         mp.setVolume(1);
 
-        view.setMediaPlayer(mp);
+        movieView.setMediaPlayer(mp);
 
         mp.setOnReady(() ->
         {
@@ -149,7 +149,7 @@ public class MediaPlayerWindowController implements Initializable
 
     public void setImageView(ImageView movieView)
     {
-        this.movieView = movieView;
+        this.imageView = movieView;
     }
     
     @FXML
