@@ -24,19 +24,17 @@ public class Movies
     private String readDuration;
     private int CategoryUniqueID;
     private double ratingImdb;
-    private String lastViewDate;
     private double imdbR;
     private double ratingPersonal;
     private double imdbP;
 
-    public Movies(int movieId, String title, double ratingImdb, double ratingPersonal, String moviePath, String lastViewDate)
+    public Movies(int movieId, String title, double ratingImdb, double ratingPersonal, String moviePath)
     {
         this.movieId = movieId;
         this.title = title;
         this.ratingImdb = ratingImdb;
         this.ratingPersonal = ratingPersonal;
         this.moviePath = moviePath;
-        this.lastViewDate = lastViewDate;
      
     }
 
@@ -50,14 +48,6 @@ public class Movies
         return readDuration;
     }
 
-    public void setLastViewDate(String lastViewDate) {
-        this.lastViewDate = lastViewDate;
-    }
-    
-    public String getLastViewDate() {
-        return lastViewDate;
-    }
-    
     public int getCategoryUniqueID()
     {
         return CategoryUniqueID;
