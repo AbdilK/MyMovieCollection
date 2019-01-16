@@ -89,8 +89,9 @@ public class EditMovieController implements Initializable {
                 String title = TitleBox.getText();
                 double ratingImdb = Double.parseDouble(ImdbBox.getText());
                 double ratingPersonal = Double.parseDouble(PersonalBox.getText());                
-                String moviePath = MoviePathBox.getText();
-                tm.createMovie(movieId, title, ratingImdb, ratingPersonal, moviePath);;
+               
+                String lastViewDate = MoviePathBox.getText();
+                tm.createMovie(movieId, title, ratingImdb, ratingPersonal,lastViewDate);;
                 MainWController.refreshTableMovies();
                 ((Node) (event.getSource())).getScene().getWindow().hide();
             }
@@ -101,7 +102,7 @@ public class EditMovieController implements Initializable {
                 double ratingImdb = Double.parseDouble(ImdbBox.getText());
                 double ratingPersonal = Double.parseDouble(PersonalBox.getText());                
                 String moviePath = MoviePathBox.getText();
-                Movies editMovie = new Movies(movieId, title, ratingImdb, ratingPersonal, moviePath);;
+                Movies editMovie = new Movies(movieId, title, ratingImdb, ratingPersonal, moviePath), lastViewDate;;
                 tm.updateMovie(editMovie);
                 MainWController.refreshTableMovies();
                 ((Node) (event.getSource())).getScene().getWindow().hide();

@@ -27,7 +27,7 @@ public class MovieDAO
         db = new DBConnectionProvider();
     }
     ////this code makes it, so you can create a Movie in the mainwindow
-    public Movies createMovie(int movieId, String title, double ratingImdb, double ratingPersonal, String moviePath) throws SQLException
+    public Movies createMovie(int movieId, String title, double ratingImdb, double ratingPersonal, String moviePath, String lastViewDate) throws SQLException
     {
         {
             try (Connection con = db.getConnection())
@@ -38,17 +38,31 @@ public class MovieDAO
 
                 }
                            
-                String sql = "INSERT INTO Movie(movieId, title, ratingImdb, ratingPersonal, moviePath) VALUES(?,?,?,?,?)";
+                String sql = "INSERT INTO Movie(movieId, title, ratingImdb, ratingPersonal, moviePath) VALUES(?,?,?,?,?,?)";
                 PreparedStatement ppst = con.prepareStatement(sql);
                 ppst.setInt(1, movieId);
                 ppst.setString(2, title);
                 ppst.setDouble(3, ratingImdb);
                 ppst.setDouble(4, ratingPersonal);
                 ppst.setString(5, moviePath);
+                ppst.setString(6, lastViewDate);
                 ppst.execute();
-                Movies movie = new Movies(movieId, title, ratingImdb, ratingPersonal, moviePath);
+                Movies movie = new Movies(movieId, title, ratingImdb, ratingPersonal, moviePath, lastViewDate);
                 return movie;
             }
+        }
+    }
+    
+    public void SendLastViewDate(Movies movie) throws IOException {
+        String a = "UPDATE Movies SET lastView = ? WHERE Title = ?;";
+        try (Connection con = db.getConnection()) {
+            PreparedStatement pstmt = con.prepareStatement(a);
+            pstmt.setString(1, movie.getLastViewDate());
+            pstmt.setString(2, movie.getTitle());
+            pstmt.execute();
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
     }
     //this code makes, do you can delete a movie from your mp3 player.
@@ -89,10 +103,11 @@ public class MovieDAO
                 double ratingImdb = rs.getInt("ratingImdb");
                 double ratingPersonal = rs.getInt("ratingPersonal");
                 String moviePath = rs.getString("moviePath");
+                String lastViewDate = rs.getString("lastViewDate");
 
      
                 
-                Movies movie = new Movies(movieId, title, ratingImdb, ratingPersonal, moviePath);
+                Movies movie = new Movies(movieId, title, ratingImdb, ratingPersonal, moviePath, lastViewDate);
                 movies.add(movie);
             }
         } catch (SQLException ex)
@@ -141,7 +156,8 @@ public class MovieDAO
                 double ratingImdb = rs.getInt("ratingImdb");
                 double ratingPersonal = rs.getInt("ratingPersonal");
                 String moviePath = rs.getString("moviePath");
-                Movies movie = new Movies(movieId, title, ratingImdb, ratingPersonal, moviePath);
+                String lastViewDate = rs.getString("lastViewDate");
+                Movies movie = new Movies(movieId, title, ratingImdb, ratingPersonal, moviePath, lastViewDate);
                 movies.add(movie);
             }
         } catch (SQLException ex)

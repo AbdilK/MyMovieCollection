@@ -24,17 +24,22 @@ import java.util.Optional;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.ImageView;
+import MyMovieCollection.BE.VLCPlayer;
+import java.util.ArrayList;
 
 public class BLLManager implements BLLLogicFacade
 {
-
+    private List<Movies> allMovies;
     private final MovieDAO MovieDAO;
     private final CategoryDAO CategoryDAO;
     private final CatMovieDAO CategoryMoviesDAO;
     private BLLManager BLM;
+    private VLCPlayer vlc;
 
     public BLLManager() throws IOException
     {
+        allMovies = new ArrayList();
+        vlc = new VLCPlayer();
         MovieDAO = new MovieDAO();
         CategoryDAO = new CategoryDAO();
         CategoryMoviesDAO = new CatMovieDAO();
@@ -90,13 +95,12 @@ public class BLLManager implements BLLLogicFacade
             Logger.getLogger(BLLManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
     @Override
-    public void createMovie(int movieId, String title, double ratingImdb, double ratingPersonal, String moviePath)
+    public void createMovie(int movieId, String title, double ratingImdb, double ratingPersonal, String moviePath, String lastViewDate)
     {
         try
         {
-            MovieDAO.createMovie(movieId, title, ratingImdb, ratingPersonal, moviePath);
+            MovieDAO.createMovie(movieId, title, ratingImdb, ratingPersonal, moviePath, lastViewDate);
         } catch (SQLException ex)
         {
             Logger.getLogger(BLLManager.class.getName()).log(Level.SEVERE, null, ex);
@@ -261,38 +265,50 @@ public class BLLManager implements BLLLogicFacade
 
     public void findDullMovies() throws BLLException
     {
+        long year = (365 * 24 * 60 * 60 * 1000);
+        Date expDate = new Date(System.currentTimeMillis() - (year * 2));
+        for (Movies movie : getAllMovies())
+        {
+            /* if (movie.getLastViewDate() != null)*/
+            {
+                if (/*movie.getLastViewDate().before(expDate) && */movie.getRatingPersonal() < 6 && movie.getRatingPersonal() != -1)
+                {
+                    Alert alert = new Alert(Alert.AlertType.WARNING,
+                            "It has been over 2 years since you last watched " + movie.getTitle() + ","
+                            + " and you gave it the rating of " + movie.getRatingPersonal()
+                            + " , do you want to delete it?",
+                            ButtonType.YES, ButtonType.NO);
+
+                    Optional<ButtonType> result = alert.showAndWait();
+
+                    if (result.get() == ButtonType.YES)
+                    {
+                        //BLM.deleteMovie(movie.getMovieId());
+                    }
+
+                }
+            }
+
+        }
+    }
+
+    public void playMovie(Movies selectedItem)
+    {
+        vlc.runVLC(selectedItem.getMoviePath());
+
         try
         {
-            long year = (365 * 24 * 60 * 60 * 1000);
-
-            Date expDate = new Date(System.currentTimeMillis() - (year * 2));
-
-            for (Movies movie : getAllMovies())
-            {
-                /* if (movie.getLastViewDate() != null)*/
-                {
-                    if (/*movie.getLastViewDate().before(expDate) && */movie.getRatingPersonal() < 6 && movie.getRatingPersonal() != -1)
-                    {
-                        Alert alert = new Alert(Alert.AlertType.WARNING,
-                                "It has been over 2 years since you last watched " + movie.getTitle() + ","
-                                + " and you gave it the rating of " + movie.getRatingPersonal()
-                                + " , do you want to delete it?",
-                                ButtonType.YES, ButtonType.NO);
-
-                        Optional<ButtonType> result = alert.showAndWait();
-
-                        if (result.get() == ButtonType.YES)
-                        {
-                            //BLM.deleteMovie(movie.getMovieId());
-                        }
-
-                    }
-                }
-
-            }
-        } catch (DALException ex)
+            MovieDAO.SendLastViewDate(selectedItem);
+        } catch (IOException ex)
         {
-            throw new BLLException();
+            Logger.getLogger(BLLManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        for (Movies m : allMovies)
+        {
+            if (m.getTitle() == selectedItem.getTitle())
+            {
+                m.setLastViewDate(selectedItem.getLastViewDate());
+            }
         }
     }
 
@@ -307,4 +323,6 @@ public class BLLManager implements BLLLogicFacade
         }
     }
 
-}
+    
+
+}  

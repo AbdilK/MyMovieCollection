@@ -51,7 +51,7 @@ public class CatMovieDAO
                     title = title.split("\\.")[0];
 
                 }
-                Movies movie = new Movies(movieId, title, ratingImdb, ratingPersonal, moviePath);
+                Movies movie = new Movies(movieId, title, ratingImdb, ratingPersonal, moviePath, lastViewDate);
                 movie.setCategoryUniqueID(categoryUniqueID);
                 movies.add(movie);
                

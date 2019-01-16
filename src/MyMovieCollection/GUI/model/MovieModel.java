@@ -100,8 +100,8 @@ public class MovieModel {
         BLLManager.updateCategory(category);
     }
 
-    public void createMovie(int movieId, String title, double ratingImdb, double ratingPersonal, String moviePath) {
-        BLLManager.createMovie(movieId, title, ratingImdb, ratingPersonal, moviePath);
+    public void createMovie(int movieId, String title, double ratingImdb, double ratingPersonal, String moviePath, String lastViewDate) {
+        BLLManager.createMovie(movieId, title, ratingImdb, ratingPersonal, moviePath, lastViewDate);
     }
 
     public void deleteMovie(Movies movie) {
