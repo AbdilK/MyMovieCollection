@@ -29,9 +29,9 @@ public class CatMovieDAO
     public List<Movies> getCategoryMovies(Category CatMovie) throws SQLException 
     {
         List<Movies> movies = new ArrayList<>();
-        try
+        try (Connection con = db.getConnection())
         {
-            Connection con = db.getConnection();
+            
             String sql = "SELECT Movie.movieId, title, ratingImdb, ratingPersonal, moviePath FROM Movie " +
                 "JOIN CatMovie ON CatMovie.MovieID = Movie.movieId " +
                 "JOIN Category ON CatMovie.CategoryId = Category.CategoryID WHERE Category.CategoryID = ?";
@@ -82,9 +82,9 @@ public class CatMovieDAO
     // when we delete movie, we also want to delete every trace of it from categoryMovies, which is done by deleting movie id.
     public void deleteMovieFromCategoryMovies(int id) throws SQLException  
     {
-        try
+        try (Connection con = db.getConnection())
         {
-            Connection con = db.getConnection();
+            
             String sql = "DELETE FROM CatMovie WHERE MovieID=?";                  
             PreparedStatement ppst = con.prepareCall(sql);
             ppst.setInt(1, id);
@@ -97,9 +97,9 @@ public class CatMovieDAO
     // when we delete a category, we want to delete every record from categoryMovies, which is having the deleted category id.
     public void deleteCategoryFromCategoryMovies(int id) throws SQLException 
     {
-        try
+        try (Connection con = db.getConnection()) 
         {
-            Connection con = db.getConnection();
+            
             String sql = "DELETE FROM CatMovie WHERE CategoryId=?";
             PreparedStatement ppst = con.prepareCall(sql);
             ppst.setInt(1, id);
@@ -112,9 +112,9 @@ public class CatMovieDAO
     // This method switches the positions of two movies in the category
     public void reCreateCategoryMovies(Movies selected, Movies replace) throws SQLException 
     {
-        try
+        try (Connection con = db.getConnection())
         {
-            Connection con = db.getConnection();
+            
             int selectedID = selected.getMovieId();   
             int replaceID = replace.getMovieId();   
             String sql = "UPDATE CatMovie SET MovieID = ? WHERE ID = ?";    
