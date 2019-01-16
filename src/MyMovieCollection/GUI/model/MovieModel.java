@@ -70,6 +70,11 @@ public class MovieModel {
         return olCategorys;
     }
     
+    public List<Movies> searchMovie(String query) {
+        List<Movies> movie = BLLManager.searchMovie(query);
+        return movie;
+    }
+    
     /*
     public void setLastViewDate(int id)
     {
@@ -130,10 +135,7 @@ public class MovieModel {
         BLLManager.updateMovie(movie);
     }
 
-    public List<Movies> searchMovie(String query) {
-        List<Movies> s = BLLManager.searchMovie(query);
-        return s;
-    }
+    
 
     public Integer nextAvailableMovieID() {
         return BLLManager.nextAvailableMovieID();

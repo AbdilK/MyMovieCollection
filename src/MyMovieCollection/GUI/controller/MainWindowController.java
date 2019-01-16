@@ -68,6 +68,7 @@ public class MainWindowController implements Initializable
     private Duration movieDuration;
     private ObservableList moviesAsObservable;
     private ObservableList<Category> categorysAsObservable;
+   
 
     private ObservableList searchedMoviesAsObservable;
     @FXML
@@ -125,6 +126,9 @@ public class MainWindowController implements Initializable
             Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    
+    
     // The method underneath gets all movies from our database and loads it into our movie library table, with the given string.
     public void setMoviesTable() 
     {
