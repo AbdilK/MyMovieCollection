@@ -19,12 +19,15 @@ import MyMovieCollection.DAL.CategoryDAO;
 import MyMovieCollection.DAL.MovieDAO;
 import MyMovieCollection.DAL.CatMovieDAO;
 import MyMovieCollection.DAL.exception.DALException;
+import java.sql.Date;
+import java.util.Optional;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.ImageView;
 
 public class BLLManager implements BLLLogicFacade
 {
 
-    
     private final MovieDAO MovieDAO;
     private final CategoryDAO CategoryDAO;
     private final CatMovieDAO CategoryMoviesDAO;
@@ -87,7 +90,7 @@ public class BLLManager implements BLLLogicFacade
             Logger.getLogger(BLLManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     @Override
     public void createMovie(int movieId, String title, double ratingImdb, double ratingPersonal, String moviePath)
     {
@@ -99,7 +102,6 @@ public class BLLManager implements BLLLogicFacade
             Logger.getLogger(BLLManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
 
     @Override
     public void deleteMovie(Movies movie)
@@ -152,14 +154,14 @@ public class BLLManager implements BLLLogicFacade
         }
         return null;
     }
-    
-     public Movies getMovieData(ImageView imageView) throws BLLException
+
+    public Movies getMovieData(ImageView imageView) throws BLLException
     {
         Movies movieObject = null;
 
         for (Movies movie : getAllMovies())
         {
-            
+
             if (Integer.parseInt(imageView.getId()) == movie.getMovieId())
             {
                 movieObject = movie;
@@ -168,6 +170,7 @@ public class BLLManager implements BLLLogicFacade
 
         return movieObject;
     }
+
     @Override
     public Integer nextAvailableMovieID()
     {
@@ -230,7 +233,8 @@ public class BLLManager implements BLLLogicFacade
             Logger.getLogger(BLLManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-   /*
+
+    /*
     public void setLastViewDate(int id) throws BLLException
     {
         try
@@ -242,7 +246,7 @@ public class BLLManager implements BLLLogicFacade
             throw new BLLException();
         }
     }
-*/
+     */
     @Override
     public void deleteCategoryFromCategoryMovies(int id)
     {
@@ -252,6 +256,43 @@ public class BLLManager implements BLLLogicFacade
         } catch (SQLException ex)
         {
             Logger.getLogger(BLLManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void findDullMovies() throws BLLException
+    {
+        try
+        {
+            long year = (365 * 24 * 60 * 60 * 1000);
+
+            Date expDate = new Date(System.currentTimeMillis() - (year * 2));
+
+            for (Movies movie : getAllMovies())
+            {
+                /* if (movie.getLastViewDate() != null)*/
+                {
+                    if (/*movie.getLastViewDate().before(expDate) && */movie.getRatingPersonal() < 6 && movie.getRatingPersonal() != -1)
+                    {
+                        Alert alert = new Alert(Alert.AlertType.WARNING,
+                                "It has been over 2 years since you last watched " + movie.getTitle() + ","
+                                + " and you gave it the rating of " + movie.getRatingPersonal()
+                                + " , do you want to delete it?",
+                                ButtonType.YES, ButtonType.NO);
+
+                        Optional<ButtonType> result = alert.showAndWait();
+
+                        if (result.get() == ButtonType.YES)
+                        {
+                            //BLM.deleteMovie(movie.getMovieId());
+                        }
+
+                    }
+                }
+
+            }
+        } catch (DALException ex)
+        {
+            throw new BLLException();
         }
     }
 
@@ -266,5 +307,4 @@ public class BLLManager implements BLLLogicFacade
         }
     }
 
-    
 }

@@ -302,6 +302,28 @@ public class MainWindowController implements Initializable
         tblViewCategorys.setItems(tm.getCategorysAsObservable());
     }
     
+    @FXML
+    private void dblClickPlay() throws IOException
+    {
+            
+        try
+        {
+            List<Movies> check = ViewMoviesOnCategory.getItems();
+            ViewMoviesOnCategory.setOnMouseClicked(event ->{
+                if(event.getClickCount() == 2 && !check.isEmpty())
+                {
+                    PlayCustomPlayer();
+                    System.out.println("test");
+                }
+            
+        });
+            PlayCustomPlayer();
+        } catch (Exception ex)
+        {
+
+        }
+        
+    }
     
      private void PlayCustomPlayer()
     {           
@@ -442,29 +464,6 @@ public class MainWindowController implements Initializable
         }
     }
 
-
-    @FXML
-    private void dblClickPlay() throws IOException
-    {
-            
-        try
-        {
-            List<Movies> check = ViewMoviesOnCategory.getItems();
-            ViewMoviesOnCategory.setOnMouseClicked(event ->{
-                if(event.getClickCount() == 2 && !check.isEmpty())
-                {
-                    PlayCustomPlayer();
-                    System.out.println("test");
-                }
-            
-        });
-            PlayCustomPlayer();
-        } catch (Exception ex)
-        {
-
-        }
-        
-    }
 
     @FXML
     private void ExitCollection(MouseEvent event)

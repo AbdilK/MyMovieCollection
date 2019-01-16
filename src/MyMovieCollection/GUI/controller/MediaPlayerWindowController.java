@@ -83,9 +83,9 @@ public class MediaPlayerWindowController implements Initializable
     {
         setControls();
 
-        sliderVolume.setValue(100);
+        //sliderVolume.setValue(100);
 
-        sliderVolume.getParent().getParent().toFront();
+        //sliderVolume.getParent().getParent().toFront();
 
         setupMovieSlider();
 
@@ -101,7 +101,8 @@ public class MediaPlayerWindowController implements Initializable
         height.bind(Bindings.selectDouble(movieView.sceneProperty(), "height"));
         movieView.setPreserveRatio(false); 
 
-        String path = moviePath;
+     
+        String path = moviePath + ".mp4";
 
         movieMedia = new Media(new File(path).toURI().toString());
 
