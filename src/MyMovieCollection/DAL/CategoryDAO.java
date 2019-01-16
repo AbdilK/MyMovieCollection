@@ -32,9 +32,9 @@ public class CategoryDAO
 // This method creats a playlist in and stores it in our database
     public void createCategory(Category cat) throws SQLException
     {
-        try
+        try (Connection con = db.getConnection())
         {
-            Connection con = db.getConnection();
+            
             String sql = "INSERT INTO Category VALUES (?,?)";
             PreparedStatement ppst = con.prepareCall(sql);
             ppst.setInt(1, cat.getCategoryId());
@@ -48,9 +48,9 @@ public class CategoryDAO
 // This method deletes the selected playlist from our database
     public void deleteCategory(Category categoryToDelete) throws SQLException
     {
-        try
+        try (Connection con = db.getConnection())
         {
-            Connection con = db.getConnection();
+            
             String sql = "DELETE FROM Category WHERE CategoryID=?";
             PreparedStatement ppst = con.prepareCall(sql);
             ppst.setInt(1, categoryToDelete.getCategoryId());
@@ -81,9 +81,9 @@ public class CategoryDAO
 // This method allows us to update our playlist and stores the new and updated information in the database
     public void updateCategory(Category cat) throws SQLException
     {
-        try
+        try (Connection con = db.getConnection())
         {
-            Connection con = db.getConnection();
+            
             String sql = "UPDATE Category SET CategoryName=? WHERE CategoryID=?";
             PreparedStatement ppst = con.prepareCall(sql);
             ppst.setString(1, cat.getCategoryName());
@@ -97,9 +97,9 @@ public class CategoryDAO
 // This method finds the next available ID and gives it to the playlist
     public Integer nextAvailableCategoryID() throws SQLException
     {
-        try
+        try (Connection con = db.getConnection())
         {
-            Connection con = db.getConnection();
+            
             String sql = "SELECT MAX(CategoryID) FROM Category";
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);

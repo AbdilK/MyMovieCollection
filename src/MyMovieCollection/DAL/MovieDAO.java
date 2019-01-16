@@ -54,9 +54,9 @@ public class MovieDAO
     //this code makes, do you can delete a movie from your mp3 player.
     public void deleteMovie(Movies movie) throws SQLException
     {
-        try
+        try (Connection con = db.getConnection())
         {
-            Connection con = db.getConnection();
+            
             //String sql = "DELETE Movies , PlaylistSongs FROM Movies INNER JOIN PlaylistSongs WHERE Movies.movieId= PlaylistSongs.SongID AND Movies.movieId = ?";
             String sql = "DELETE FROM Movie WHERE movieId = ?";
             PreparedStatement ppst = con.prepareStatement(sql);
@@ -105,9 +105,9 @@ public class MovieDAO
     public void updateMovie(Movies movie) throws SQLException
     {
         
-        try
+        try (Connection con = db.getConnection())
         {
-            Connection con = db.getConnection();
+            
             String sql = "UPDATE Movie SET title=?, ratingImdb=?, ratingPersonal=?, moviePath=? WHERE movieId=?";
             PreparedStatement ppst = con.prepareStatement(sql);
             ppst.setString(1, movie.getTitle());
@@ -125,10 +125,10 @@ public class MovieDAO
     public List<Movies> searchMovie(String query) throws SQLException
     {
         List<Movies> movies = new ArrayList<>();
-        try
+        try (Connection con = db.getConnection())
         {
            
-            Connection con = db.getConnection();
+            
             String sql = "SELECT * FROM Movie WHERE title like?";
             PreparedStatement ppst = con.prepareStatement(sql);
             ppst.setString(1, "%" + query + "%");
@@ -153,9 +153,9 @@ public class MovieDAO
     //this code allows you to switch to the next movie, who is available. 
     public Integer nextAvailableMovieID() throws SQLException 
     {
-        try
+        try (Connection con = db.getConnection())
         {
-            Connection con = db.getConnection();
+            
             String sql = "SELECT MAX(movieId) FROM Movie";
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
