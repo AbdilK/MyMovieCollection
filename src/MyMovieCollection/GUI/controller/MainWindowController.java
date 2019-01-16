@@ -150,7 +150,7 @@ public class MainWindowController implements Initializable
         categoryMoviesCol.setCellValueFactory(new PropertyValueFactory<>("CategoryId"));
         categoryNameCol.setCellValueFactory(new PropertyValueFactory<>("CategoryName"));
         tblViewCategorys.setItems(tm.getCategorysAsObservable());
-        tblViewCategorys.getColumns().addAll(categoryNameCol, categoryMoviesCol);
+        tblViewCategorys.getColumns().addAll(categoryMoviesCol, categoryNameCol);
 
     }
     // This removes a movie from a chosen category, but does not delete the movie from our database.
