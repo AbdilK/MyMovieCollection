@@ -14,7 +14,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import MyMovieCollection.BE.Category;
 import MyMovieCollection.BE.Movies;
-import MyMovieCollection.BLL.CollectionManager;
+import MyMovieCollection.BLL.BLLManager;
 import MyMovieCollection.BLL.BLLLogicFacade;
 import MyMovieCollection.BLL.exception.BLLException;
 import javafx.scene.image.ImageView;
@@ -24,33 +24,33 @@ import javafx.scene.image.ImageView;
  */
 
 
-public class CollectionModel {
+public class MovieModel {
 
-    public final BLLLogicFacade moviecollection;
-    public CollectionManager cm;
+    public final BLLLogicFacade BLLManager;
+    public BLLManager cm;
     public ObservableList olMovies;
     public ObservableList olCategorys;
     private Category category;
     private Movies movie;
     private List<String> AllCategorys;
-    public static CollectionModel instance;
+    public static MovieModel instance;
     
 
-    public CollectionModel() throws IOException {
+    public MovieModel() throws IOException {
         AllCategorys = new ArrayList();
         addNewCategory();
         olMovies = FXCollections.observableArrayList();
         olCategorys = FXCollections.observableArrayList();
-        moviecollection = new CollectionManager();
+        BLLManager = new BLLManager();
     }
 
-    public static CollectionModel getInstance() // IF there is an existing Model we are returning instance of it, otherwise we are creating and returning new one.
+    public static MovieModel getInstance() // IF there is an existing Model we are returning instance of it, otherwise we are creating and returning new one.
     {
         if (instance == null) {
             try {
-                instance = new CollectionModel();
+                instance = new MovieModel();
             } catch (IOException ex) {
-                Logger.getLogger(CollectionModel.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(MovieModel.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         return instance;
@@ -81,28 +81,28 @@ public class CollectionModel {
         }
     }
     public void createCategory(Category category) {
-        moviecollection.createCategory(category);
+        BLLManager.createCategory(category);
     }
 
     public void deleteCategory(Category categoryToDelete) {
-        moviecollection.deleteCategory(categoryToDelete);
+        BLLManager.deleteCategory(categoryToDelete);
     }
 
     public List<Category> getAllCategorys() {
-        List<Category> p = moviecollection.getAllCategorys();
+        List<Category> p = BLLManager.getAllCategorys();
         return p;
     }
 
     public void updateCategory(Category category) {
-        moviecollection.updateCategory(category);
+        BLLManager.updateCategory(category);
     }
 
-    public void createMovie(int movieId, String title, int ratingImdb, int ratingPersonal, String moviePath) {
-        moviecollection.createMovie(movieId, title, ratingImdb, ratingPersonal, moviePath);
+    public void createMovie(int movieId, String title, double ratingImdb, double ratingPersonal, String moviePath) {
+        BLLManager.createMovie(movieId, title, ratingImdb, ratingPersonal, moviePath);
     }
 
     public void deleteMovie(Movies movie) {
-        moviecollection.deleteMovie(movie);
+        BLLManager.deleteMovie(movie);
     }
 
     public Movies getMovieData(ImageView view)
@@ -119,45 +119,45 @@ public class CollectionModel {
         return data;
     }
     public List<Movies> getAllMovies() {
-        List<Movies> movie = moviecollection.getAllMovies();
+        List<Movies> movie = BLLManager.getAllMovies();
         return movie;
     }
 
     public void updateMovie(Movies movie) {
-        moviecollection.updateMovie(movie);
+        BLLManager.updateMovie(movie);
     }
 
     public List<Movies> searchMovie(String query) {
-        List<Movies> s = moviecollection.searchMovie(query);
+        List<Movies> s = BLLManager.searchMovie(query);
         return s;
     }
 
     public Integer nextAvailableMovieID() {
-        return moviecollection.nextAvailableMovieID();
+        return BLLManager.nextAvailableMovieID();
     }
 
     public Integer nextAvailableCategoryID() {
-        return moviecollection.nextAvailableCategoryID();
+        return BLLManager.nextAvailableCategoryID();
     }
 
     public List<Movies> getCategoryMovies(Category category) {
-        return moviecollection.getCategoryMovies(category);
+        return BLLManager.getCategoryMovies(category);
     }
 
     public void addMovieToCategory(Movies movie, Category category) {
-        moviecollection.addMovieToCategory(movie, category);
+        BLLManager.addMovieToCategory(movie, category);
     }
 
     public void deleteMovieFromCategoryMovies(int id) {
-        moviecollection.deleteMovieFromCategoryMovies(id);
+        BLLManager.deleteMovieFromCategoryMovies(id);
     }
 
     public void deleteCategoryFromCategoryMovies(int id) {
-        moviecollection.deleteCategoryFromCategoryMovies(id);
+        BLLManager.deleteCategoryFromCategoryMovies(id);
     }
 
     public void reCreateCategoryMovies(Movies chosen, Movies toSwapWith) {
-        moviecollection.reCreateCategoryMovies(chosen, toSwapWith);
+        BLLManager.reCreateCategoryMovies(chosen, toSwapWith);
     }
 
     public Category getCategory() {
