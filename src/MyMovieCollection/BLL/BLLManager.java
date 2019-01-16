@@ -263,7 +263,7 @@ public class BLLManager implements BLLLogicFacade
 
     public void findDullMovies() throws BLLException
     {
-        try
+        
         {
             long year = (365 * 24 * 60 * 60 * 1000);
 
@@ -271,9 +271,8 @@ public class BLLManager implements BLLLogicFacade
 
             for (Movies movie : getAllMovies())
             {
-                /* if (movie.getLastViewDate() != null)*/
-                {
-                    if (/*movie.getLastViewDate().before(expDate) && */movie.getRatingPersonal() < 6 && movie.getRatingPersonal() != -1)
+                
+                    if (movie.getRatingPersonal() < 6 && movie.getRatingPersonal() != -1)
                     {
                         Alert alert = new Alert(Alert.AlertType.WARNING,
                                 "It has been over 2 years since you last watched " + movie.getTitle() + ","
@@ -289,13 +288,10 @@ public class BLLManager implements BLLLogicFacade
                         }
 
                     }
-                }
+                
 
             }
-        } catch (DALException ex)
-        {
-            throw new BLLException();
-        }
+        } 
     }
     
     

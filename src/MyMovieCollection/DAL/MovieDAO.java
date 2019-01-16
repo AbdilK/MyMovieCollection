@@ -187,4 +187,18 @@ public class MovieDAO
         }
     }
     
+    public void setRatingImdb(double id, double ratingImdb) throws DALException
+    {
+        try (Connection con = db.getConnection())
+        {
+            String sqlCmd = "UPDATE Movie SET Movie.ratingImdb = ? WHERE id = ?";
+            PreparedStatement ppst = con.prepareStatement(sqlCmd);
+            ppst.setDouble(1, ratingImdb);
+            ppst.setDouble(2, id);
+            ppst.executeUpdate();
+        } catch (SQLException ex)
+        {
+            throw new DALException();
+        }
+    }
 }
