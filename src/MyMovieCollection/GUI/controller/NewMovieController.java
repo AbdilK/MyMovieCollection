@@ -15,16 +15,16 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javax.swing.JFrame;
 import MyMovieCollection.BE.Movies;
-import MyMovieCollection.GUI.model.CollectionModel;
+import MyMovieCollection.GUI.model.MovieModel;
 
-/*
+/*/*
  * @author Abdil-K, Bjarne666, Hassuni8, KerimTopci
  */
 
 
 public class NewMovieController implements Initializable {
 
-    private CollectionModel tm;
+    private MovieModel mm;
     @FXML
     private TextField TitleBox;
     @FXML
@@ -49,11 +49,12 @@ public class NewMovieController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        tm = CollectionModel.getInstance();
-        movie = tm.getMovie();
+        mm = MovieModel.getInstance();
+        movie = mm.getMovie();
         if (movie != null) {
             TitleBox.setText(movie.getTitle());
-            ImdbBox.setText(movie.getArtist());
+            Double.getParseDouble(ImdbBox.setText(movie.getRatingImdb));
+            //ImdbBox.setText(movie.getRatingImdb());
             PersonalBox.setText(movie.getDuration());
             MoviePathBox.setText(movie.getMoviePath());
            
@@ -91,12 +92,12 @@ public class NewMovieController implements Initializable {
         if (!isEditing) {
             if (!"".equals(PersonalBox.getText()) && !"".equals(ImdbBox.getText())
                     && !"".equals(PersonalBox.getText()) && !"".equals(MoviePathBox.getText())) {
-                int movieId = tm.nextAvailableMovieID();
+                int movieId = mm.nextAvailableMovieID();
                 String title = TitleBox.getText();
-                int ratingImdb = Integer.parseInt(ImdbBox.getText());
-                int ratingPersonal = Integer.parseInt(PersonalBox.getText());                
+                double ratingImdb = Double.parseDouble(ImdbBox.getText());
+                double ratingPersonal = Double.parseDouble(PersonalBox.getText());                
                 String moviePath = MoviePathBox.getText();
-                tm.createMovie(movieId, title, ratingImdb, ratingPersonal, moviePath);;
+                mm.createMovie(movieId, title, ratingImdb, ratingPersonal, moviePath);;
                 MainWController.refreshTableMovies();
                 ((Node) (event.getSource())).getScene().getWindow().hide();
             }
@@ -104,11 +105,11 @@ public class NewMovieController implements Initializable {
             if (!"".equals(PersonalBox.getText()) && !"".equals(ImdbBox.getText()) && !"".equals(PersonalBox.getText()) && !"".equals(MoviePathBox.getText())) {
                 int movieId = MovieNewID;
                 String title = TitleBox.getText();
-                int ratingImdb = Integer.parseInt(ImdbBox.getText());
-                int ratingPersonal = Integer.parseInt(PersonalBox.getText());
+                double ratingImdb = Double.parseDouble(ImdbBox.getText());
+                double ratingPersonal = Double.parseDouble(PersonalBox.getText());
                 String moviePath = MoviePathBox.getText();
                 Movies editMovie = new Movies(movieId, title, ratingImdb, ratingPersonal, moviePath);;
-                tm.updateMovie(editMovie);
+                mm.updateMovie(editMovie);
                 MainWController.refreshTableMovies();
                 ((Node) (event.getSource())).getScene().getWindow().hide();
                 isEditing = false;
