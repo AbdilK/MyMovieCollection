@@ -312,12 +312,12 @@ public class MainWindowController implements Initializable
             ViewMoviesOnCategory.setOnMouseClicked(event ->{
                 if(event.getClickCount() == 2 && !check.isEmpty())
                 {
-                    PlayCustomPlayer();
+                   // PlayCustomPlayer();
                     System.out.println("test");
                 }
             
         });
-            PlayCustomPlayer();
+           // PlayCustomPlayer();
         } catch (Exception ex)
         {
 
@@ -325,7 +325,7 @@ public class MainWindowController implements Initializable
         
     }
     
-     private void PlayCustomPlayer()
+    /* private void PlayCustomPlayer()
     {           
         try
         {
@@ -352,6 +352,7 @@ public class MainWindowController implements Initializable
             Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+*/
     // This will bind a chosen button to open up our NewMovie window
     public void openMovieWindow(String fxmlPath, int id, boolean isEditing)
     {
