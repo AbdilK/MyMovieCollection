@@ -21,16 +21,16 @@ import MyMovieCollection.DAL.CatMovieDAO;
 import MyMovieCollection.DAL.exception.DALException;
 import javafx.scene.image.ImageView;
 
-public class CollectionManager implements BLLLogicFacade
+public class BLLManager implements BLLLogicFacade
 {
 
-    private static CollectionManager instance;
+    private static BLLManager instance;
     private final MovieDAO MovieDAO;
     private final CategoryDAO CategoryDAO;
     private final CatMovieDAO CategoryMoviesDAO;
-    private CollectionManager cm;
+    private BLLManager cm;
 
-    public CollectionManager() throws IOException
+    public BLLManager() throws IOException
     {
         MovieDAO = new MovieDAO();
         CategoryDAO = new CategoryDAO();
@@ -45,7 +45,7 @@ public class CollectionManager implements BLLLogicFacade
             CategoryDAO.createCategory(category);
         } catch (SQLException ex)
         {
-            Logger.getLogger(CollectionManager.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BLLManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -57,7 +57,7 @@ public class CollectionManager implements BLLLogicFacade
             CategoryDAO.deleteCategory(categoryToDelete);
         } catch (SQLException ex)
         {
-            Logger.getLogger(CollectionManager.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BLLManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -84,19 +84,19 @@ public class CollectionManager implements BLLLogicFacade
             CategoryDAO.updateCategory(category);
         } catch (SQLException ex)
         {
-            Logger.getLogger(CollectionManager.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BLLManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
     @Override
-    public void createMovie(int movieId, String title, int ratingImdb, int ratingPersonal, String moviePath)
+    public void createMovie(int movieId, String title, double ratingImdb, double ratingPersonal, String moviePath)
     {
         try
         {
             MovieDAO.createMovie(movieId, title, ratingImdb, ratingPersonal, moviePath);
         } catch (SQLException ex)
         {
-            Logger.getLogger(CollectionManager.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BLLManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -109,7 +109,7 @@ public class CollectionManager implements BLLLogicFacade
             MovieDAO.deleteMovie(movie);
         } catch (SQLException ex)
         {
-            Logger.getLogger(CollectionManager.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BLLManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -122,7 +122,7 @@ public class CollectionManager implements BLLLogicFacade
             return allmovies = MovieDAO.getAllMovies();
         } catch (SQLException ex)
         {
-            Logger.getLogger(CollectionManager.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BLLManager.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
@@ -135,7 +135,7 @@ public class CollectionManager implements BLLLogicFacade
             MovieDAO.updateMovie(movie);
         } catch (SQLException ex)
         {
-            Logger.getLogger(CollectionManager.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BLLManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -148,7 +148,7 @@ public class CollectionManager implements BLLLogicFacade
             return searchResult = MovieDAO.searchMovie(query);
         } catch (SQLException ex)
         {
-            Logger.getLogger(CollectionManager.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BLLManager.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
@@ -176,7 +176,7 @@ public class CollectionManager implements BLLLogicFacade
             return MovieDAO.nextAvailableMovieID();
         } catch (SQLException ex)
         {
-            Logger.getLogger(CollectionManager.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BLLManager.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
@@ -189,7 +189,7 @@ public class CollectionManager implements BLLLogicFacade
             return CategoryDAO.nextAvailableCategoryID();
         } catch (SQLException ex)
         {
-            Logger.getLogger(CollectionManager.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BLLManager.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
@@ -202,7 +202,7 @@ public class CollectionManager implements BLLLogicFacade
             return CategoryMoviesDAO.getCategoryMovies(category);
         } catch (SQLException ex)
         {
-            Logger.getLogger(CollectionManager.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BLLManager.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
@@ -215,7 +215,7 @@ public class CollectionManager implements BLLLogicFacade
             CategoryMoviesDAO.addMovieToCategory(movie, category);
         } catch (SQLException ex)
         {
-            Logger.getLogger(CollectionManager.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BLLManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -227,7 +227,7 @@ public class CollectionManager implements BLLLogicFacade
             CategoryMoviesDAO.deleteMovieFromCategoryMovies(id);
         } catch (SQLException ex)
         {
-            Logger.getLogger(CollectionManager.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BLLManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -251,7 +251,7 @@ public class CollectionManager implements BLLLogicFacade
             CategoryMoviesDAO.deleteCategoryFromCategoryMovies(id);
         } catch (SQLException ex)
         {
-            Logger.getLogger(CollectionManager.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BLLManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -262,7 +262,7 @@ public class CollectionManager implements BLLLogicFacade
             CategoryMoviesDAO.reCreateCategoryMovies(selected, replace);
         } catch (SQLException ex)
         {
-            Logger.getLogger(CollectionManager.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BLLManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
