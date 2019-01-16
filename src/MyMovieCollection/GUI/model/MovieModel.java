@@ -27,7 +27,7 @@ import javafx.scene.image.ImageView;
 public class MovieModel {
 
     public final BLLLogicFacade BLLManager;
-    public BLLManager cm;
+    public BLLManager BLM;
     public ObservableList olMovies;
     public ObservableList olCategorys;
     private Category category;
@@ -69,17 +69,20 @@ public class MovieModel {
         olCategorys.addAll(getAllCategorys());
         return olCategorys;
     }
-    public void setLastView(int id)
+    
+    /*
+    public void setLastViewDate(int id)
     {
         try
         {
-            cm.setLastView(id);
+            BLM.setLastViewDate(id);
         }
         catch (BLLException ex)
         {
             System.out.println(ex);
         }
     }
+*/
     public void createCategory(Category category) {
         BLLManager.createCategory(category);
     }
@@ -110,7 +113,7 @@ public class MovieModel {
         Movies data = null;
         try
         {
-            data = cm.getMovieData(view);
+            data = BLM.getMovieData(view);
         }
         catch (BLLException ex)
         {
