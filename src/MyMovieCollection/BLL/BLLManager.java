@@ -24,11 +24,11 @@ import javafx.scene.image.ImageView;
 public class BLLManager implements BLLLogicFacade
 {
 
-    private static BLLManager instance;
+    
     private final MovieDAO MovieDAO;
     private final CategoryDAO CategoryDAO;
     private final CatMovieDAO CategoryMoviesDAO;
-    private BLLManager cm;
+    private BLLManager BLM;
 
     public BLLManager() throws IOException
     {
@@ -230,19 +230,19 @@ public class BLLManager implements BLLLogicFacade
             Logger.getLogger(BLLManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public void setLastView(int id) throws BLLException
+   /*
+    public void setLastViewDate(int id) throws BLLException
     {
-        //try
+        try
         {
-            cm.setLastView(id);
+            BLM.setLastViewDate(id);
         }
-        //catch (DALException ex)
-        //{
-        //    throw new BLLException();
-        //}
+        catch (DALException ex)
+        {
+            throw new BLLException();
+        }
     }
-
+*/
     @Override
     public void deleteCategoryFromCategoryMovies(int id)
     {

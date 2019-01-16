@@ -117,12 +117,12 @@ public class MainWindowController implements Initializable
         tm = MovieModel.getInstance();
         setMoviesTable();
         setCategoryTable();
-        //try
+        try
         {
-            //dblClickPlay();
-        } //catch (IOException ex)
+            dblClickPlay();
+        } catch (IOException ex)
         {
-            //Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     // The method underneath gets all movies from our database and loads it into our movie library table, with the given string.
@@ -303,23 +303,10 @@ public class MainWindowController implements Initializable
     }
     
     
-    /*public void contextMenuAction(ImageView imageView, Movies movie)
-    {
-     
-        playMovie.setOnAction((ActionEvent event) ->
-        {
-            tm.setLastView(movie.getMovieId());
-            PlayCustomPlayer();
-            contextMenu.hide();
-        });
-   
-    }*/
      private void PlayCustomPlayer()
-    {
-        
+    {           
         try
         {
-
             FXMLLoader fxmlLoader;
             fxmlLoader = new FXMLLoader(getClass().getResource("/MyMovieCollection/GUI/view/MediaPlayerWindow.fxml"));
             Parent root;
@@ -455,7 +442,7 @@ public class MainWindowController implements Initializable
         }
     }
 
-/*
+
     @FXML
     private void dblClickPlay() throws IOException
     {
@@ -478,7 +465,7 @@ public class MainWindowController implements Initializable
         }
         
     }
-*/
+
     @FXML
     private void ExitCollection(MouseEvent event)
     {
