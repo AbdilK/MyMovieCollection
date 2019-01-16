@@ -9,9 +9,9 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import MyMovieCollection.BE.Category;
-import MyMovieCollection.GUI.model.CollectionModel;
+import MyMovieCollection.GUI.model.MovieModel;
 
-/*
+/*/*
  * @author Abdil-K, Bjarne666, Hassuni8, KerimTopci
  */
 
@@ -22,7 +22,7 @@ public class CategoryWindowController implements Initializable
     private MainWindowController MainWController;
     private boolean isEditing = false;
     private int CategoryNewID;
-    private CollectionModel cm;
+    private MovieModel cm;
     private Category category;
     @FXML
     private TextField txtNameCategory;
@@ -35,7 +35,7 @@ public class CategoryWindowController implements Initializable
     public void initialize(URL url, ResourceBundle rb)
     {
         MainWController = new MainWindowController();
-        cm = CollectionModel.getInstance();
+        cm = MovieModel.getInstance();
         category = cm.getCategory();
         if (category != null)
         {

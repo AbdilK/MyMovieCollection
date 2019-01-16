@@ -15,7 +15,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javax.swing.JFrame;
 import MyMovieCollection.BE.Movies;
-import MyMovieCollection.GUI.model.CollectionModel;
+import MyMovieCollection.GUI.model.MovieModel;
 
 /*
  * @author Abdil-K, Bjarne666, Hassuni8, KerimTopci
@@ -23,7 +23,7 @@ import MyMovieCollection.GUI.model.CollectionModel;
 
 public class EditMovieController implements Initializable {
 
-    private CollectionModel tm;
+    private MovieModel tm;
     @FXML
     private TextField TitleBox;
     @FXML
@@ -48,12 +48,12 @@ public class EditMovieController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        tm = CollectionModel.getInstance();
+        tm = MovieModel.getInstance();
         movie = tm.getMovie();
         if (movie != null) {
             TitleBox.setText(movie.getTitle());
-            ImdbBox.setText(movie.getArtist());
-            PersonalBox.setText(movie.getDuration());
+            ImdbBox.setText(movie.get());
+            PersonalBox.setText(movie.get());
             MoviePathBox.setText(movie.getMoviePath());
             
         }

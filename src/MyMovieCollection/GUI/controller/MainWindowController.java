@@ -32,7 +32,7 @@ import javafx.fxml.Initializable;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import MyMovieCollection.BE.Category;
 import MyMovieCollection.BE.Movies;
-import MyMovieCollection.GUI.model.CollectionModel;
+import MyMovieCollection.GUI.model.MovieModel;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
@@ -59,7 +59,7 @@ public class MainWindowController implements Initializable
     MenuItem editData;
     MenuItem deleteMovie;
     private Button exitBtn;
-    private CollectionModel tm;
+    private MovieModel tm;
     private String moviePath;
     private Media mp;
     private int Length;
@@ -114,15 +114,15 @@ public class MainWindowController implements Initializable
         categorysAsObservable = FXCollections.observableArrayList();
         searchedMoviesAsObservable = FXCollections.observableArrayList();
       
-        tm = CollectionModel.getInstance();
+        tm = MovieModel.getInstance();
         setMoviesTable();
         setCategoryTable();
-        try
+        //try
         {
-            dblClickPlay();
-        } catch (IOException ex)
+            //dblClickPlay();
+        } //catch (IOException ex)
         {
-            Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     // The method underneath gets all movies from our database and loads it into our movie library table, with the given string.
@@ -180,7 +180,7 @@ public class MainWindowController implements Initializable
         Movies ToDeleteMovie = tblViewLibrary.getSelectionModel().getSelectedItem();
         if (ToDeleteMovie != null)
         {
-            String name = ToDeleteMovie.getTitle() + " " + ToDeleteMovie.getArtist();
+            String name = ToDeleteMovie.getTitle();
             Alert alert = new Alert(AlertType.CONFIRMATION, "Click YES to delete the chosen movie " + name + " from the database.\nClick NO to cancel your current action", ButtonType.YES, ButtonType.NO);
             alert.showAndWait();
             if (alert.getResult() == ButtonType.OK)
@@ -455,7 +455,7 @@ public class MainWindowController implements Initializable
         }
     }
 
-
+/*
     @FXML
     private void dblClickPlay() throws IOException
     {
@@ -478,7 +478,7 @@ public class MainWindowController implements Initializable
         }
         
     }
-
+*/
     @FXML
     private void ExitCollection(MouseEvent event)
     {

@@ -30,7 +30,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import MyMovieCollection.GUI.model.CollectionModel;
+import MyMovieCollection.GUI.model.MovieModel;
 
 /**
  * FXML Controller class
@@ -91,7 +91,7 @@ public class MediaPlayerWindowController implements Initializable
 
     }    
     
-    public void MediaSetup(CollectionModel cm, String moviePath)
+    public void MediaSetup(MovieModel cm, String moviePath)
     {
         boolPlaying = false;
 
