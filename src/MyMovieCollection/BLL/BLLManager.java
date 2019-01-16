@@ -20,6 +20,7 @@ import MyMovieCollection.DAL.MovieDAO;
 import MyMovieCollection.DAL.CatMovieDAO;
 import MyMovieCollection.DAL.exception.DALException;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Optional;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -259,37 +260,28 @@ public class BLLManager implements BLLLogicFacade
         }
     }
 
-    public void findDullMovies() throws BLLException
+    
+    public List<Movies> findDullMovies()
     {
         
+        try
         {
-            long year = (365 * 24 * 60 * 60 * 1000);
-
-            Date expDate = new Date(System.currentTimeMillis() - (year * 2));
-
-            for (Movies movie : getAllMovies())
+            List<Movies> movies = MovieDAO.getAllMovies();
+            List<Movies> moviesUnderSix = new ArrayList();
+            for(int i = 0;i<movies.size();i++)
             {
-                
-                    if (movie.getRatingPersonal() < 6 && movie.getRatingPersonal() != -1)
-                    {
-                        Alert alert = new Alert(Alert.AlertType.WARNING,
-                                "It has been over 2 years since you last watched " + movie.getTitle() + ","
-                                + " and you gave it the rating of " + movie.getRatingPersonal()
-                                + " , do you want to delete it?",
-                                ButtonType.YES, ButtonType.NO);
-
-                        Optional<ButtonType> result = alert.showAndWait();
-
-                        if (result.get() == ButtonType.YES)
-                        {
-                            //BLM.deleteMovie(movie.getMovieId());
-                        }
-
-                    }
-                
-
+                if(movies.get(i).getRatingPersonal() <= 6.0)
+                {
+                    moviesUnderSix.add(movies.get(i));
+                }
             }
-        } 
+         return moviesUnderSix;
+        }
+        catch (SQLException ex)
+        {
+            Logger.getLogger(BLLManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     public void reCreateCategoryMovies(Movies selected, Movies replace)

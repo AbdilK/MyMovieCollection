@@ -69,9 +69,10 @@ public class NewMovieController implements Initializable {
         Path[0].getName();
         if (Path.length > 0) 
         {
+            
             TitleBox.setText(Path[0].getName());
-            String filePath = "./src/MyMovieCollection/movies/";
-            MoviePathBox.setText(filePath + movie.getTitle());
+            String filePath = "./src/MyMovieCollection/movies/" + Path[0].getName();
+            MoviePathBox.setText(filePath);
         }
     }
 // This closes the EditMovie window

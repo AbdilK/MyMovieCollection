@@ -33,6 +33,8 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import MyMovieCollection.BE.Category;
 import MyMovieCollection.BE.Movies;
 import MyMovieCollection.GUI.model.MovieModel;
+import java.util.ArrayList;
+import java.util.Optional;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
@@ -107,6 +109,7 @@ public class MainWindowController implements Initializable
     @FXML
     private ListView<Movies> ViewMoviesOnCategory;
     // This initializes our observables, progressbar, volumenSlider and such.
+    private List<Movies> dullMovies = new ArrayList();
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
@@ -115,8 +118,9 @@ public class MainWindowController implements Initializable
         searchedMoviesAsObservable = FXCollections.observableArrayList();
       
         tm = MovieModel.getInstance();
-        setMoviesTable();
-        setCategoryTable();
+
+        
+        
         try
         {
             dblClickPlay();
@@ -124,6 +128,10 @@ public class MainWindowController implements Initializable
         {
             Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        dullMovies = tm.findDullMovies();
+        askIfDeleteMovie();
+                setMoviesTable();
+        setCategoryTable();
     }
     // The method underneath gets all movies from our database and loads it into our movie library table, with the given string.
     public void setMoviesTable() 
@@ -132,13 +140,34 @@ public class MainWindowController implements Initializable
         
         moviesAsObservable = FXCollections.observableArrayList(tm.getMoviesAsObservable());
         tblViewLibraryColumnTitle.setCellValueFactory(new PropertyValueFactory<>("Title"));
-        tblViewLibraryColumnRatingImdb.setCellValueFactory(new PropertyValueFactory<>("RatingImdb"));
-        tblViewLibraryColumnRatingPersonal.setCellValueFactory(new PropertyValueFactory<>("RatingPersonal"));
+        tblViewLibraryColumnRatingImdb.setCellValueFactory(new PropertyValueFactory<>("ratingImdb"));
+        tblViewLibraryColumnRatingPersonal.setCellValueFactory(new PropertyValueFactory<>("ratingPersonal"));
         tblViewLibraryColumnMoviePath.setCellValueFactory(new PropertyValueFactory<>("MoviePath"));
         tblViewLibrary.getColumns().clear();
-        tblViewLibrary.setItems(moviesAsObservable);
         tblViewLibrary.getColumns().addAll(tblViewLibraryColumnTitle, tblViewLibraryColumnRatingImdb, tblViewLibraryColumnRatingPersonal, tblViewLibraryColumnMoviePath);
+        tblViewLibrary.setItems(moviesAsObservable);
+        
 
+    }
+    
+    public void askIfDeleteMovie()
+    {
+        if(!dullMovies.isEmpty())
+        {
+            Optional<ButtonType> btnType;
+            Movies movieBelow = dullMovies.get(0);
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setHeaderText(movieBelow.getTitle());
+            alert.setContentText(movieBelow.getTitle() + " has 6 or less stars");
+            btnType = alert.showAndWait();
+            
+            if(btnType.get() == ButtonType.OK)
+            {
+                dullMovies.remove(movieBelow);
+                tm.deleteMovie(movieBelow);
+            }
+            askIfDeleteMovie();
+        }
     }
    // The method underneath gets all categorys from our database and loads it into our category library table, with the given string.
     private void setCategoryTable() 
@@ -340,7 +369,6 @@ public class MainWindowController implements Initializable
 
             Stage stage = new Stage();
             stage.initModality(Modality.WINDOW_MODAL);
-            stage.initOwner(anchorPane.getScene().getWindow());
             stage.setMinHeight(700);
             stage.setMinWidth(825);
             stage.setScene(new Scene(root));
@@ -496,4 +524,6 @@ public class MainWindowController implements Initializable
             return minutes + ":" + seconds;
         }
     }
+    
+    
 }

@@ -86,8 +86,8 @@ public class MovieDAO
             {
                 int movieId = rs.getInt("movieId");
                 String title = rs.getString("title");
-                double ratingImdb = rs.getInt("ratingImdb");
-                double ratingPersonal = rs.getInt("ratingPersonal");
+                double ratingImdb = rs.getDouble("ratingImdb");
+                double ratingPersonal = rs.getDouble("ratingPersonal");
                 String moviePath = rs.getString("moviePath");
 
      

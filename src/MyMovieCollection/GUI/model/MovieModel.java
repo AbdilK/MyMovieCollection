@@ -62,6 +62,11 @@ public class MovieModel {
         olMovies.addAll(getAllMovies());
         return olMovies;
     }
+    
+    public List<Movies> findDullMovies()
+    {
+       return BLLManager.findDullMovies();
+    }
 
     public ObservableList getCategorysAsObservable() // We are getting all categorys and returning it as ObservableList
     {

@@ -90,7 +90,7 @@ public class Movies
 
      public double getRatingPersonal()
     {
-        return ratingImdb;
+        return ratingPersonal;
     }
     
     public void setRatingPersonal(double ratingPersonal)

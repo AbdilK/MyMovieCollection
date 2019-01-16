@@ -27,7 +27,7 @@ public interface BLLLogicFacade
 
     public void deleteMovie(Movies movie);
 
-    
+    public List<Movies> findDullMovies();
     
     public List<Movies> getAllMovies();
 
