@@ -27,7 +27,7 @@ public class MovieDAO
         db = new DBConnectionProvider();
     }
     ////this code makes it, so you can create a Movie in the mainwindow
-    public Movies createMovie(int movieId, String title, int ratingImdb, int ratingPersonal, String moviePath) throws SQLException
+    public Movies createMovie(int movieId, String title, double ratingImdb, double ratingPersonal, String moviePath) throws SQLException
     {
         {
             try (Connection con = db.getConnection())
@@ -42,8 +42,8 @@ public class MovieDAO
                 PreparedStatement ppst = con.prepareStatement(sql);
                 ppst.setInt(1, movieId);
                 ppst.setString(2, title);
-                ppst.setInt(3, ratingImdb);
-                ppst.setInt(4, ratingPersonal);
+                ppst.setDouble(3, ratingImdb);
+                ppst.setDouble(4, ratingPersonal);
                 ppst.setString(5, moviePath);
                 ppst.execute();
                 Movies movie = new Movies(movieId, title, ratingImdb, ratingPersonal, moviePath);
@@ -86,8 +86,8 @@ public class MovieDAO
             {
                 int movieId = rs.getInt("movieId");
                 String title = rs.getString("title");
-                int ratingImdb = rs.getInt("ratingImdb");
-                int ratingPersonal = rs.getInt("ratingPersonal");
+                double ratingImdb = rs.getInt("ratingImdb");
+                double ratingPersonal = rs.getInt("ratingPersonal");
                 String moviePath = rs.getString("moviePath");
 
      
@@ -111,8 +111,8 @@ public class MovieDAO
             String sql = "UPDATE Movie SET title=?, ratingImdb=?, ratingPersonal=?, moviePath=? WHERE movieId=?";
             PreparedStatement ppst = con.prepareStatement(sql);
             ppst.setString(1, movie.getTitle());
-            ppst.setInt(2, movie.getRatingImdb());
-            ppst.setInt(3, movie.getRatingPersonal());
+            ppst.setDouble(2, movie.getRatingImdb());
+            ppst.setDouble(3, movie.getRatingPersonal());
             ppst.setString(4, movie.getMoviePath());
             ppst.setInt(5, movie.getMovieId());
             ppst.execute();
@@ -138,8 +138,8 @@ public class MovieDAO
             {
                 int movieId = rs.getInt("movieId");
                 String title = rs.getString("title");
-                int ratingImdb = rs.getInt("ratingImdb");
-                int ratingPersonal = rs.getInt("ratingPersonal");
+                double ratingImdb = rs.getInt("ratingImdb");
+                double ratingPersonal = rs.getInt("ratingPersonal");
                 String moviePath = rs.getString("moviePath");
                 Movies movie = new Movies(movieId, title, ratingImdb, ratingPersonal, moviePath);
                 movies.add(movie);
@@ -172,14 +172,14 @@ public class MovieDAO
         return null;
     }
     
-    public void setRatingPersonal(int id, int ratingPersonal) throws DALException
+    public void setRatingPersonal(double id, double ratingPersonal) throws DALException
     {
         try (Connection con = db.getConnection())
         {
             String sqlCmd = "UPDATE Movie SET Movie.ratingPersonal = ? WHERE id = ?";
             PreparedStatement ppst = con.prepareStatement(sqlCmd);
-            ppst.setInt(1, ratingPersonal);
-            ppst.setInt(2, id);
+            ppst.setDouble(1, ratingPersonal);
+            ppst.setDouble(2, id);
             ppst.executeUpdate();
         } catch (SQLException ex)
         {

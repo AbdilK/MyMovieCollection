@@ -23,12 +23,12 @@ public class Movies
     private String moviePath;
     private String readDuration;
     private int CategoryUniqueID;
-    private int ratingImdb;
-    private int imdbR;
-    private int ratingPersonal;
-    private int imdbP;
+    private double ratingImdb;
+    private double imdbR;
+    private double ratingPersonal;
+    private double imdbP;
 
-    public Movies(int movieId, String title, int ratingImdb, int ratingPersonal, String moviePath)
+    public Movies(int movieId, String title, double ratingImdb, double ratingPersonal, String moviePath)
     {
         this.movieId = movieId;
         this.title = title;
@@ -78,56 +78,27 @@ public class Movies
         this.title = title;
     }
     
-    public int getRatingImdb()
+    public double getRatingImdb()
     {
         return ratingImdb;
     }
     
-    public void setRatingImdb(int ratingImdb)
+    public void setRatingImdb(double ratingImdb)
     {
         this.imdbR = ratingImdb;
     }
 
-     public int getRatingPersonal()
+     public double getRatingPersonal()
     {
         return ratingImdb;
     }
     
-    public void setRatingPersonal(int ratingPersonal)
+    public void setRatingPersonal(double ratingPersonal)
     {
         this.imdbP = ratingPersonal;
     }
 
-    
-    public String getGenre()
-    {
-        return genre;
-    }
-
-    public void setGenre(String genre)
-    {
-        this.genre = genre;
-    }
-
-    public String getArtist()
-    {
-        return artist;
-    }
-
-    public void setArtist(String artist)
-    {
-        this.artist = artist;
-    }
-
-    public String getDuration()
-    {
-        return duration;
-    }
-
-    public void setDuration(String duration)
-    {
-        this.duration = duration;
-    }
+     
 
     public int getLocationID()
     {

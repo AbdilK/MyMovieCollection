@@ -42,8 +42,8 @@ public class CatMovieDAO
             {
                 int movieId = rs.getInt("movieId");
                 String title = rs.getString("title");
-                int ratingImdb = rs.getInt("ratingImdb");
-                int ratingPersonal = rs.getInt("ratingPersonal");
+                double ratingImdb = rs.getInt("ratingImdb");
+                double ratingPersonal = rs.getInt("ratingPersonal");
                 String moviePath = rs.getString("moviePath");
                 int categoryUniqueID = rs.getInt("movieId");
                 if(title.contains("."))
