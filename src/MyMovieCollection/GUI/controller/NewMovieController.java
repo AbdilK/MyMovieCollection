@@ -63,10 +63,16 @@ public class NewMovieController implements Initializable {
     @FXML
     private void clickChooseMovie(ActionEvent event) throws IOException 
     {
+        
+        
+        
         FileDialog fileD = new FileDialog(new JFrame());
+        fileD.setFile("*.mp4");
         fileD.setVisible(true);
+        
         File[] Path = fileD.getFiles();
         Path[0].getName();
+        
         if (Path.length > 0) 
         {
             TitleBox.setText(Path[0].getName());

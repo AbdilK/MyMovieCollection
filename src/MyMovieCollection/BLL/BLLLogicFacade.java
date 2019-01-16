@@ -27,8 +27,6 @@ public interface BLLLogicFacade
 
     public void deleteMovie(Movies movie);
 
-    
-    
     public List<Movies> getAllMovies();
 
     public void updateMovie(Movies movie);
