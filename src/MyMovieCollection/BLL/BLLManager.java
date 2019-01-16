@@ -25,10 +25,11 @@ import java.util.Optional;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.ImageView;
+import MyMovieCollection.BLL.VLCPlayer;
 
 public class BLLManager implements BLLLogicFacade
 {
-
+    private VLCPlayer vlc;
     private final MovieDAO MovieDAO;
     private final CategoryDAO CategoryDAO;
     private final CatMovieDAO CategoryMoviesDAO;
@@ -39,6 +40,7 @@ public class BLLManager implements BLLLogicFacade
         MovieDAO = new MovieDAO();
         CategoryDAO = new CategoryDAO();
         CategoryMoviesDAO = new CatMovieDAO();
+        vlc = new VLCPlayer();
     }
 
     @Override
@@ -283,6 +285,8 @@ public class BLLManager implements BLLLogicFacade
         }
         return null;
     }
+    
+    
 
     public void reCreateCategoryMovies(Movies selected, Movies replace)
     {
