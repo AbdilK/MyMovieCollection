@@ -52,8 +52,8 @@ public class EditMovieController implements Initializable {
         movie = tm.getMovie();
         if (movie != null) {
             TitleBox.setText(movie.getTitle());
-            ImdbBox.setText(movie.get());
-            PersonalBox.setText(movie.get());
+            ImdbBox.setText(movie.getRatingImdb()+"");
+            PersonalBox.setText(movie.getRatingPersonal()+"");
             MoviePathBox.setText(movie.getMoviePath());
             
         }
@@ -78,7 +78,7 @@ public class EditMovieController implements Initializable {
         isEditing = false;
         ((Node) (event.getSource())).getScene().getWindow().hide();
     }
-/*
+
     @FXML
     private void clickSaveEditsMovie(ActionEvent event) throws IOException // This saves that data that you put in the EditMovie window
     {
@@ -87,8 +87,8 @@ public class EditMovieController implements Initializable {
                     && !"".equals(PersonalBox.getText()) && !"".equals(MoviePathBox.getText())) {
                 int movieId = tm.nextAvailableMovieID();
                 String title = TitleBox.getText();
-                int ratingImdb = ImdbBox.getText();
-                int ratingPersonal = PersonalBox.getText();                 
+                double ratingImdb = Double.parseDouble(ImdbBox.getText());
+                double ratingPersonal = Double.parseDouble(PersonalBox.getText());                
                 String moviePath = MoviePathBox.getText();
                 tm.createMovie(movieId, title, ratingImdb, ratingPersonal, moviePath);;
                 MainWController.refreshTableMovies();
@@ -98,8 +98,8 @@ public class EditMovieController implements Initializable {
             if (!"".equals(PersonalBox.getText()) && !"".equals(ImdbBox.getText()) && !"".equals(PersonalBox.getText()) && !"".equals(MoviePathBox.getText())) {
                 int movieId = MovieNewID;
                 String title = TitleBox.getText();
-                int ratingImdb = ImdbBox.getText();
-                int ratingPersonal = PersonalBox.getText();                 
+                double ratingImdb = Double.parseDouble(ImdbBox.getText());
+                double ratingPersonal = Double.parseDouble(PersonalBox.getText());                
                 String moviePath = MoviePathBox.getText();
                 Movies editMovie = new Movies(movieId, title, ratingImdb, ratingPersonal, moviePath);;
                 tm.updateMovie(editMovie);
@@ -109,7 +109,7 @@ public class EditMovieController implements Initializable {
             }
         }
     }
-    */
+    
     public void setController(MainWindowController controller, boolean isEditing, int movieID) // This method allows us to get connection with our MainWindowController and will check whether we are creating or editing
     {
         this.MainWController = controller;

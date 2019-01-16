@@ -50,15 +50,13 @@ public class NewMovieController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         mm = MovieModel.getInstance();
-        movie = mm.getMovie();
+        movie = mm.getMovie();  
         if (movie != null) {
             TitleBox.setText(movie.getTitle());
-            Double.getParseDouble(ImdbBox.setText(movie.getRatingImdb));
-            //ImdbBox.setText(movie.getRatingImdb());
-            PersonalBox.setText(movie.getDuration());
+            ImdbBox.setText(movie.getRatingImdb()+"");
+            PersonalBox.setText(movie.getRatingPersonal()+"");
             MoviePathBox.setText(movie.getMoviePath());
            
-        
         }
     }
 // This method allows us to pick the path of the while whilst we are editing or creating a movie.
