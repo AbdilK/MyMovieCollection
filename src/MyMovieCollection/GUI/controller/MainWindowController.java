@@ -351,7 +351,6 @@ public class MainWindowController implements Initializable
                 if(event.getClickCount() == 2 && !check.isEmpty())
                 {
                     PlayCustomPlayer();
-                    System.out.println("test");
                 }
             
         });
