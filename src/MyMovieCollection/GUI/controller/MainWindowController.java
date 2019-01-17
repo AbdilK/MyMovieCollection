@@ -165,7 +165,7 @@ public class MainWindowController implements Initializable
     }
     
     /**
-     *
+     * den her metode gør at den spørger os om vi er sikker på at slette filmen. 
      */
     public void askIfDeleteMovie()
     {

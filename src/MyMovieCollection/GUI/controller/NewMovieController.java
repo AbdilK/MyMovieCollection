@@ -62,7 +62,7 @@ public class NewMovieController implements Initializable {
            
         }
     }
-// This method allows us to pick the path of the while whilst we are editing or creating a movie.
+// den her metode kan man vækge hvilken film man skal vælge.
     @FXML
     private void clickChooseMovie(ActionEvent event) throws IOException 
     {
@@ -78,14 +78,14 @@ public class NewMovieController implements Initializable {
             MoviePathBox.setText(filePath);
         }
     }
-// This closes the EditMovie window
+// den her metode lukker selve vinduet ned  
     @FXML
     private void clickCancelNewMovie(ActionEvent event) 
     {
         isEditing = false;
         ((Node) (event.getSource())).getScene().getWindow().hide();
     }
-// This saves that data that you put in the EditMovie window
+// den her methode gemmer dataen man har puttet ind i editmovie vindue 
     
   
     @FXML

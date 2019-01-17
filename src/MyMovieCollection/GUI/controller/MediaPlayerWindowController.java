@@ -67,7 +67,7 @@ public class MediaPlayerWindowController implements Initializable
     }    
     
     /**
-     *
+     * den her metode gør at vi får vores mediaplayer til at vise frem når vi vælger en film. 
      * @param cm
      * @param moviePath
      */
@@ -97,7 +97,10 @@ public class MediaPlayerWindowController implements Initializable
             mp.pause();
         });
     }
-    
+    /**
+     * den her methode eller kode gør at vi får vores icon frem i vores playwindow
+     * 
+     */
     private void setIcon()
     {
         playPlay = new Image(getClass().getResourceAsStream("/MyMovieCollection/icons/play-play.png"));
@@ -121,14 +124,19 @@ public class MediaPlayerWindowController implements Initializable
     }
 
     /**
-     *
+     * 
      * @param movieView
      */
     public void setImageView(ImageView movieView)
     {
         this.imageView = movieView;
     }
-   
+    
+   /**
+     * den her metode gør at vi kan afspille og sætte filmen på pause.
+     * 
+     */
+    
     @FXML
     private void playPauseMovie(ActionEvent event)
     {
@@ -146,6 +154,11 @@ public class MediaPlayerWindowController implements Initializable
         }
     }
     
+    /**
+     * den her metode gør at vi kan stoppe filmen med vores stop knap.
+     * 
+     */
+    
     @FXML
     private void stopMovie(ActionEvent event)
     {
@@ -154,6 +167,11 @@ public class MediaPlayerWindowController implements Initializable
         btnPlayPause.setGraphic(new ImageView(playPlay));
     }
 
+    /**
+     * den her metode gør vi kan mute selve lyden, når man ser filmen. 
+     * 
+     */
+    
     @FXML
     private void muteSound(ActionEvent event)
     {
@@ -173,7 +191,12 @@ public class MediaPlayerWindowController implements Initializable
             muteMedia = !muteMedia;
         }
     }
-
+    
+    /**
+     * den her metode gør at vi kan lukke selve vinduet ned, når vi trykker på knappen. 
+     * actionevent er at knappen er i brug.
+     */
+    
     @FXML
     private void MediaClose(ActionEvent event)
     {
