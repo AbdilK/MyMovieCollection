@@ -11,15 +11,30 @@ package MyMovieCollection.DAL.exception;
  */
 public class DALException extends Exception
 {
+
+    /**
+     *
+     */
     public DALException()
     {
         // Constructor from the class we inherit from. (Exception)
         super();
     }
+
+    /**
+     *
+     * @param message
+     */
     public DALException(String message)
     {
         super(message);
     }
+
+    /**
+     *
+     * @param message
+     * @param ex
+     */
     public DALException(String message, Exception ex) {
         super(message, ex);
     }

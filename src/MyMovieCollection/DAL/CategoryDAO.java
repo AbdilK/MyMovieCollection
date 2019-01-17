@@ -18,18 +18,33 @@ import MyMovieCollection.BE.Category;
  * @author Abdil-K, Bjarne666, Hassuni8, KerimTopci
  */
 
+/**
+ *
+ * @author Hassuni
+ */
+
+
 public class CategoryDAO
 {
     private DBConnectionProvider db;
     private final CatMovieDAO DankCategory;
 
-
+    /**
+     *
+     * @throws IOException
+     */
     public CategoryDAO() throws IOException
     {
         db = new DBConnectionProvider();
         DankCategory = new CatMovieDAO();
     }
 // This method creats a playlist in and stores it in our database
+
+    /**
+     *
+     * @param cat
+     * @throws SQLException
+     */
     public void createCategory(Category cat) throws SQLException
     {
         try (Connection con = db.getConnection())
@@ -46,6 +61,12 @@ public class CategoryDAO
         }
     }
 // This method deletes the selected playlist from our database
+
+    /**
+     *
+     * @param categoryToDelete
+     * @throws SQLException
+     */
     public void deleteCategory(Category categoryToDelete) throws SQLException
     {
         try (Connection con = db.getConnection())
@@ -61,6 +82,12 @@ public class CategoryDAO
         }
     }
 // This method gets all the playlists that have been stored from our databse, and loads them when you run the program
+
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     public List<Category> getAllCategorys() throws SQLException {
         List<Category> p = new ArrayList<>();
         try (Connection con = db.getConnection()){
@@ -79,6 +106,12 @@ public class CategoryDAO
         return p;
     }
 // This method allows us to update our playlist and stores the new and updated information in the database
+
+    /**
+     *
+     * @param cat
+     * @throws SQLException
+     */
     public void updateCategory(Category cat) throws SQLException
     {
         try (Connection con = db.getConnection())
@@ -95,6 +128,12 @@ public class CategoryDAO
         }
     }
 // This method finds the next available ID and gives it to the playlist
+
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     public Integer nextAvailableCategoryID() throws SQLException
     {
         try (Connection con = db.getConnection())

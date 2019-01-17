@@ -18,7 +18,7 @@ import MyMovieCollection.GUI.model.MovieModel;
 
 public class CategoryWindowController implements Initializable
 {
-    private TextField NameCategory;
+    
     private MainWindowController MainWController;
     private boolean isEditing = false;
     private int CategoryNewID;
@@ -39,7 +39,7 @@ public class CategoryWindowController implements Initializable
         category = cm.getCategory();
         if (category != null)
         {
-            NameCategory.setText(category.getCategoryName());
+            txtNameCategory.setText(category.getCategoryName());
         }
     }
 // This will close the category window
@@ -64,9 +64,9 @@ public class CategoryWindowController implements Initializable
             }
         } else
         {
-            if (!"".equals(NameCategory.getText()))
+            if (!"".equals(txtNameCategory.getText()))
             {
-                Category category = new Category(CategoryNewID, NameCategory.getText());
+                Category category = new Category(CategoryNewID, txtNameCategory.getText());
                 cm.updateCategory(category);
                 MainWController.refreshTableCategory();
                 ((Node) (event.getSource())).getScene().getWindow().hide();

@@ -11,11 +11,19 @@ package MyMovieCollection.BLL.exception;
  */
 public class BLLException extends Exception
 {
+
+    /**
+     *
+     * @param message
+     */
     public BLLException(String message)
     {
         super(message);
     }
 
+    /**
+     *
+     */
     public BLLException() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

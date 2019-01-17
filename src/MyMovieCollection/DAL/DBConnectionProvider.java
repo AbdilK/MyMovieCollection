@@ -24,6 +24,10 @@ public class DBConnectionProvider
     private final SQLServerDataSource db;
 
     //tries to establish a connection to EASV database | Requires Tryllehat if outside EASV school. 
+
+    /**
+     *
+     */
     public DBConnectionProvider() 
     {
         db = new SQLServerDataSource();
@@ -33,6 +37,11 @@ public class DBConnectionProvider
         db.setPassword(PASSWORD);
     }
 
+    /**
+     *
+     * @return
+     * @throws SQLServerException
+     */
     public Connection getConnection() throws SQLServerException
     {
         Connection con = db.getConnection();

@@ -43,6 +43,12 @@ import javafx.stage.Modality;
  * @author Abdil-K, Bjarne666, Hassuni8, KerimTopci
  */
 
+/**
+ *
+ * @author Hassuni
+ */
+
+
 public class MainWindowController implements Initializable
 {
 
@@ -138,6 +144,10 @@ public class MainWindowController implements Initializable
     
     
     // The method underneath gets all movies from our database and loads it into our movie library table, with the given string.
+
+    /**
+     *
+     */
     public void setMoviesTable() 
     {
 
@@ -154,6 +164,9 @@ public class MainWindowController implements Initializable
 
     }
     
+    /**
+     *
+     */
     public void askIfDeleteMovie()
     {
         if(!dullMovies.isEmpty())
@@ -328,12 +341,18 @@ public class MainWindowController implements Initializable
         }
     }
     
+    /**
+     *
+     */
     public void refreshTableMovies()
     {
         tblViewLibrary.getItems().clear();
         tblViewLibrary.setItems(tm.getMoviesAsObservable());
     }
 
+    /**
+     *
+     */
     public void refreshTableCategory()
     {
         tblViewCategorys.getItems().clear();
@@ -389,6 +408,13 @@ public class MainWindowController implements Initializable
         }
     }
     // This will bind a chosen button to open up our NewMovie window
+
+    /**
+     *
+     * @param fxmlPath
+     * @param id
+     * @param isEditing
+     */
     public void openMovieWindow(String fxmlPath, int id, boolean isEditing)
     {
         try
@@ -410,6 +436,13 @@ public class MainWindowController implements Initializable
     
     // This will bind a chosen button to open up our Category window
 
+    /**
+     *
+     * @param fxmlPath
+     * @param id
+     * @param isEditing
+     */
+
     public void openCategoryWindow(String fxmlPath, int id, boolean isEditing)
     {
         try
@@ -430,6 +463,12 @@ public class MainWindowController implements Initializable
     }
     // This will bind a chosen button to open up our EditMovie window
 
+    /**
+     *
+     * @param fxmlPath
+     * @param id
+     * @param isEditing
+     */
     public void openEditWindow(String fxmlPath, int id, boolean isEditing)
     {
         try

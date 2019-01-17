@@ -18,15 +18,34 @@ import java.util.logging.Logger;
 import MyMovieCollection.BE.Movies;
 import MyMovieCollection.DAL.exception.DALException;
 
+/**
+ *
+ * @author Hassuni
+ */
 public class MovieDAO
 {
     private final DBConnectionProvider db;
 
+    /**
+     *
+     * @throws IOException
+     */
     public MovieDAO() throws IOException
     {
         db = new DBConnectionProvider();
     }
     ////this code makes it, so you can create a Movie in the mainwindow
+
+    /**
+     *
+     * @param movieId
+     * @param title
+     * @param ratingImdb
+     * @param ratingPersonal
+     * @param moviePath
+     * @return
+     * @throws SQLException
+     */
     public Movies createMovie(int movieId, String title, double ratingImdb, double ratingPersonal, String moviePath) throws SQLException
     {
         {
@@ -52,6 +71,11 @@ public class MovieDAO
         }
     }
     
+    /**
+     *
+     * @param movie
+     * @throws SQLException
+     */
     public void deleteMovie(Movies movie) throws SQLException
     {
         try (Connection con = db.getConnection())
@@ -74,6 +98,12 @@ public class MovieDAO
         }
     }
     //this code makes, you will get all movies in one list 
+
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     public List<Movies> getAllMovies() throws SQLException
     {
         List<Movies> movies = new ArrayList<>();
@@ -101,6 +131,12 @@ public class MovieDAO
         return movies;
     }
     //this code makes changes to the mp3 files title, artist EtX.
+
+    /**
+     *
+     * @param movie
+     * @throws SQLException
+     */
     public void updateMovie(Movies movie) throws SQLException
     {
         
@@ -121,6 +157,13 @@ public class MovieDAO
         }
     }
     //this code allows, so you can search for your songs in the filter 
+
+    /**
+     *
+     * @param query
+     * @return
+     * @throws SQLException
+     */
     public List<Movies> searchMovie(String query) throws SQLException
     {
         List<Movies> movies = new ArrayList<>();
@@ -150,6 +193,12 @@ public class MovieDAO
         return movies;
     }
     //this code allows you to switch to the next movie, who is available. 
+
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     public Integer nextAvailableMovieID() throws SQLException 
     {
         try (Connection con = db.getConnection())
@@ -171,6 +220,12 @@ public class MovieDAO
         return null;
     }
     
+    /**
+     *
+     * @param id
+     * @param ratingPersonal
+     * @throws DALException
+     */
     public void setRatingPersonal(double id, double ratingPersonal) throws DALException
     {
         try (Connection con = db.getConnection())
@@ -186,6 +241,12 @@ public class MovieDAO
         }
     }
     
+    /**
+     *
+     * @param id
+     * @param ratingImdb
+     * @throws DALException
+     */
     public void setRatingImdb(double id, double ratingImdb) throws DALException
     {
         try (Connection con = db.getConnection())

@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="grey" minHeight="554.0" minWidth="992.0" prefHeight="576.0" prefWidth="1033.0" styleClass="AnchorPane" stylesheets="@style.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MyMovieCollection.GUI.controller.MainWindowController">
+<AnchorPane id="AnchorPane" fx:id="grey" minHeight="554.0" minWidth="992.0" prefHeight="576.0" prefWidth="1033.0" styleClass="AnchorPane" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MyMovieCollection.GUI.controller.MainWindowController">
 
    <children>
       <TableView fx:id="tblViewCategorys" layoutX="14.0" layoutY="29.0" minHeight="400.0" minWidth="200.0" onMouseClicked="#clickCategory" prefHeight="489.0" prefWidth="220.0" stylesheets="@style.css">
@@ -73,7 +73,7 @@
             <String fx:value="RedButton" />
             <String fx:value="CreateMovieText" />
          </styleClass></Button>
-      <Button cancelButton="true" layoutX="934.0" layoutY="526.0" mnemonicParsing="false" stylesheets="@style.css" text="Close">
+      <Button cancelButton="true" layoutX="934.0" layoutY="526.0" mnemonicParsing="false" onAction="#ExitCollection" stylesheets="@style.css" text="Close">
          <styleClass>
             <String fx:value="RedButton" />
             <String fx:value="CreateMovieText" />

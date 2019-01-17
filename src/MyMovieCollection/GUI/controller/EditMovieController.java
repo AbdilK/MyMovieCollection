@@ -21,6 +21,12 @@ import MyMovieCollection.GUI.model.MovieModel;
  * @author Abdil-K, Bjarne666, Hassuni8, KerimTopci
  */
 
+/**
+ *
+ * @author Hassuni
+ */
+
+
 public class EditMovieController implements Initializable {
 
     private MovieModel tm;
@@ -107,6 +113,12 @@ public class EditMovieController implements Initializable {
         }
     }
     
+    /**
+     *
+     * @param controller
+     * @param isEditing
+     * @param movieID
+     */
     public void setController(MainWindowController controller, boolean isEditing, int movieID) // This method allows us to get connection with our MainWindowController and will check whether we are creating or editing
     {
         this.MainWController = controller;

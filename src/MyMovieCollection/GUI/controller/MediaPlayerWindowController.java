@@ -73,6 +73,8 @@ public class MediaPlayerWindowController implements Initializable
 
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
    @Override
     public void initialize(URL url, ResourceBundle rb)
@@ -85,6 +87,11 @@ public class MediaPlayerWindowController implements Initializable
 
     }    
     
+    /**
+     *
+     * @param cm
+     * @param moviePath
+     */
     public void MediaSetup(MovieModel cm, String moviePath)
     {
         boolPlaying = false;
@@ -133,6 +140,10 @@ public class MediaPlayerWindowController implements Initializable
         btnMute.setText("");
     }
 
+    /**
+     *
+     * @param movieView
+     */
     public void setImageView(ImageView movieView)
     {
         this.imageView = movieView;
@@ -188,6 +199,10 @@ public class MediaPlayerWindowController implements Initializable
         mp.seek(mp.getStartTime());
         resetPlayButton();
     }
+
+    /**
+     *
+     */
     public void stopMovieEnterily()
     {
         mp.stop();

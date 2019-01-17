@@ -11,6 +11,12 @@ import MyMovieCollection.BE.Movies;
 /*
  * @author Abdil-K, Bjarne666, Hassuni8, KerimTopci
  */
+
+/**
+ *
+ * @author Hassuni
+ */
+
 public class MyMovieCollection extends Application
 {
     
