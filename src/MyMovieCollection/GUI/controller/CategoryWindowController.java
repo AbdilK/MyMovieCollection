@@ -15,10 +15,6 @@ import MyMovieCollection.GUI.model.MovieModel;
  * @author Abdil-K, Bjarne666, Hassuni8, KerimTopci
  */
 
-/**
- *
- * @author Hassuni
- */
 public class CategoryWindowController implements Initializable
 {
     
@@ -33,7 +29,11 @@ public class CategoryWindowController implements Initializable
     private Button btnCancel;
     @FXML
     private Button btnSave;
-
+/**
+ * denne metode Initialiserer controller klassen
+ * @param url
+ * @param rb 
+ */
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
@@ -45,14 +45,20 @@ public class CategoryWindowController implements Initializable
             txtNameCategory.setText(category.getCategoryName());
         }
     }
-// This will close the category window
+/** 
+ * denne metode vil lukke category vinduet.
+ * @param event 
+ */
     @FXML
     private void clickCancelCategory (ActionEvent event) 
     {
         isEditing = false;
         ((Node) (event.getSource())).getScene().getWindow().hide();
     }
-// This saves the new data you put in the category window
+/** 
+ * denne metode gemmer de nye data du har puttet ind i category vinduet
+ * @param event 
+ */
     @FXML
     private void clickSaveCategory(ActionEvent event) 
     {
@@ -79,12 +85,12 @@ public class CategoryWindowController implements Initializable
     }
 
     /**
-     *
+     * denne metode tillader os at få forbindelse med vores MainWindowController og vil checke om vi tilføjer eller redigere en film
      * @param controller
      * @param isEditing
      * @param categoryID
      */
-    public void setController(MainWindowController controller, boolean isEditing, int categoryID) // This method allows us to get connection with our MainWindowController and will check whether we are creating or editing
+    public void setController(MainWindowController controller, boolean isEditing, int categoryID)
     {
         this.MainWController = controller;
         this.isEditing = isEditing;
