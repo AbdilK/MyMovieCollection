@@ -62,7 +62,7 @@ public class NewMovieController implements Initializable {
            
         }
     }
-// den her metode kan man vækge hvilken film man skal vælge.
+// denne her metode kan man vækge hvilken film man skal vælge.
     @FXML
     private void clickChooseMovie(ActionEvent event) throws IOException 
     {
@@ -78,14 +78,14 @@ public class NewMovieController implements Initializable {
             MoviePathBox.setText(filePath);
         }
     }
-// den her metode lukker selve vinduet ned  
+// denne her metode lukker selve vinduet ned  
     @FXML
     private void clickCancelNewMovie(ActionEvent event) 
     {
         isEditing = false;
         ((Node) (event.getSource())).getScene().getWindow().hide();
     }
-// den her methode gemmer dataen man har puttet ind i editmovie vindue 
+// denne her methode gemmer dataen man har puttet ind i editmovie vindue 
     
   
     @FXML
@@ -120,12 +120,12 @@ public class NewMovieController implements Initializable {
     }
 
     /**
-     *
-     * @param controller
-     * @param isEditing
-     * @param movieID
+     * denne methode giver os muligheden at få forbindelse til MainWindowController og vil tjekke om vi creater eller ændre noget.
+     * @param controller 
+     * @param isEditing: at den ændre på noget. 
+     * @param movieID: selve filmens id. 
      */
-    public void setController(MainWindowController controller, boolean isEditing, int movieID) // This method allows us to get connection with our MainWindowController and will check whether we are creating or editing
+    public void setController(MainWindowController controller, boolean isEditing, int movieID) 
     {
         this.MainWController = controller;
         this.isEditing = isEditing;

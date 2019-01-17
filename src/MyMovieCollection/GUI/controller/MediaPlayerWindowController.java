@@ -56,7 +56,7 @@ public class MediaPlayerWindowController implements Initializable
     
 
     /**
-     * Initializes the controller class.
+     * denne metode Initialiserer controller klassen.
      * @param url
      * @param rb
      */
@@ -67,7 +67,7 @@ public class MediaPlayerWindowController implements Initializable
     }    
     
     /**
-     * den her metode gør at vi får vores mediaplayer til at vise frem når vi vælger en film. 
+     * denne her metode gør at vi får vores mediaplayer til at vise frem, når vi vælger en film. 
      * @param cm
      * @param moviePath
      */
@@ -98,7 +98,7 @@ public class MediaPlayerWindowController implements Initializable
         });
     }
     /**
-     * den her methode eller kode gør at vi får vores icon frem i vores playwindow
+     * denne her methode eller kode gør at vi får vores icon frem i vores playwindow
      * 
      */
     private void setIcon()
@@ -133,7 +133,7 @@ public class MediaPlayerWindowController implements Initializable
     }
     
    /**
-     * den her metode gør at vi kan afspille og sætte filmen på pause.
+     * denne her metode gør at vi kan afspille og sætte filmen på pause.
      * 
      */
     
@@ -155,7 +155,7 @@ public class MediaPlayerWindowController implements Initializable
     }
     
     /**
-     * den her metode gør at vi kan stoppe filmen med vores stop knap.
+     * denne her metode gør at vi kan stoppe filmen med vores stop knap.
      * 
      */
     
@@ -168,7 +168,7 @@ public class MediaPlayerWindowController implements Initializable
     }
 
     /**
-     * den her metode gør vi kan mute selve lyden, når man ser filmen. 
+     * denne her metode gør vi kan mute selve lyden, når man ser filmen. 
      * 
      */
     
@@ -193,7 +193,7 @@ public class MediaPlayerWindowController implements Initializable
     }
     
     /**
-     * den her metode gør at vi kan lukke selve vinduet ned, når vi trykker på knappen. 
+     * denne her metode gør at vi kan lukke selve vinduet ned, når vi trykker på knappen. 
      * actionevent er at knappen er i brug.
      */
     
