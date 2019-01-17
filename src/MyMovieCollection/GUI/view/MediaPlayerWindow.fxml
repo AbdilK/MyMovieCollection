@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -14,10 +14,11 @@
       <Label fx:id="timeElapsed" layoutX="494.0" layoutY="401.0" prefHeight="17.0" prefWidth="38.0" />
       <Label fx:id="currentVolume" layoutX="411.0" layoutY="425.0" onMouseClicked="#muteSound" prefHeight="17.0" prefWidth="28.0" />
       <MediaView fx:id="movieView" fitHeight="350.0" fitWidth="500.0" />
-      <JFXButton fx:id="jfxPlayPause" layoutX="14.0" layoutY="421.0"  text="PlayPause" />
-      <JFXButton fx:id="jfxStop" layoutX="71.0" layoutY="421.0" text="Stop" />
-      <JFXButton fx:id="jfxFull" layoutX="552.0" layoutY="409.0" text="Fullscreen" />
-      <JFXButton fx:id="jfxMute" layoutX="442.0" layoutY="421.0" text="Mute" />
-      <HBox layoutY="376.0" prefHeight="76.0" prefWidth="642.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <HBox layoutY="380.0" prefHeight="29.0" prefWidth="642.0" AnchorPane.bottomAnchor="-4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Button fx:id="btnPlayPause" mnemonicParsing="false" onAction="#playPauseMovie" text="Play" />
+            <Button fx:id="btnStop" mnemonicParsing="false" onAction="#stopMovie" text="Stop" />
+            <Button fx:id="btnMute" mnemonicParsing="false" text="Mute" />
+         </children></HBox>
    </children>
 </AnchorPane>
