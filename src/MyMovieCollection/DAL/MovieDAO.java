@@ -128,10 +128,10 @@ public class MovieDAO
         {
            
             
-            String sql = "SELECT * FROM Movie WHERE title like?";
+            String sql = "SELECT * FROM Movie WHERE title LIKE ?";
             PreparedStatement ppst = con.prepareStatement(sql);
+          
             ppst.setString(1, "%" + query + "%");
-            ppst.setString(2, "%" + query + "%");
             ResultSet rs = ppst.executeQuery();
             while (rs.next())
             {
