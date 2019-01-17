@@ -51,22 +51,21 @@ public class MovieDAO
             }
         }
     }
-    //this code makes, do you can delete a movie from your mp3 player.
+    
     public void deleteMovie(Movies movie) throws SQLException
     {
         try (Connection con = db.getConnection())
         {
             
-            //String sql = "DELETE Movies , PlaylistSongs FROM Movies INNER JOIN PlaylistSongs WHERE Movies.movieId= PlaylistSongs.SongID AND Movies.movieId = ?";
-            String sql = "DELETE FROM Movie WHERE movieId = ?";
-            PreparedStatement ppst = con.prepareStatement(sql);
+           
+            String sqll = "DELETE FROM CatMovie WHERE CatMovie.MovieID = ?";
+            PreparedStatement ppst = con.prepareStatement(sqll);
             ppst.setInt(1, movie.getMovieId());
             ppst.execute();
-            //ppst.setInt(2, song.getsongId());
-            String sqll = "DELETE FROM CatMovie WHERE CatMovie.MovieID = ?"; 
-            PreparedStatement ppstt = con.prepareStatement(sqll);
+            String sql = "DELETE FROM Movie WHERE movieId = ?";
+            PreparedStatement ppstt = con.prepareStatement(sql);
             ppstt.setInt(1, movie.getMovieId());
-            //ppstt.setInt(2, movie.getMovieId());
+            
            
             ppstt.execute();
         } catch (SQLServerException ex)
@@ -138,8 +137,8 @@ public class MovieDAO
             {
                 int movieId = rs.getInt("movieId");
                 String title = rs.getString("title");
-                double ratingImdb = rs.getInt("ratingImdb");
-                double ratingPersonal = rs.getInt("ratingPersonal");
+                double ratingImdb = rs.getDouble("ratingImdb");
+                double ratingPersonal = rs.getDouble("ratingPersonal");
                 String moviePath = rs.getString("moviePath");
                 Movies movie = new Movies(movieId, title, ratingImdb, ratingPersonal, moviePath);
                 movies.add(movie);

@@ -162,7 +162,7 @@ public class MainWindowController implements Initializable
             Movies movieBelow = dullMovies.get(0);
             Alert alert = new Alert(AlertType.WARNING);
             alert.setHeaderText(movieBelow.getTitle());
-            alert.setContentText(movieBelow.getTitle() + " has 6 or less stars");
+            alert.setContentText(movieBelow.getTitle() + " has 6 or less rating and has been removed");
             btnType = alert.showAndWait();
             
             if(btnType.get() == ButtonType.OK)
