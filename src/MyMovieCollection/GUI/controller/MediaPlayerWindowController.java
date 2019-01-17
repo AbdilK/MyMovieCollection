@@ -102,7 +102,7 @@ public class MediaPlayerWindowController implements Initializable
         movieView.setPreserveRatio(false); 
 
      
-        String path = moviePath + ".mp4";
+        String path = moviePath;
 
         movieMedia = new Media(new File(path).toURI().toString());
 
