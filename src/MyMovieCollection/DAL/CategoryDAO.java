@@ -38,11 +38,11 @@ public class CategoryDAO
         db = new DBConnectionProvider();
         DankCategory = new CatMovieDAO();
     }
-// This method creats a playlist in and stores it in our database
+
 
     /**
-     *
-     * @param cat
+     * Denne metode gør at vi kan lave en kategori og gemme det i vores database
+     * @param cat filmens kategori
      * @throws SQLException
      */
     public void createCategory(Category cat) throws SQLException
@@ -60,11 +60,11 @@ public class CategoryDAO
             Logger.getLogger(MovieDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-// This method deletes the selected playlist from our database
+
 
     /**
-     *
-     * @param categoryToDelete
+     * Denne metode gør at vi kan slette den valgte kategori fra vores database
+     * @param categoryToDelete kategorien der skal slettes
      * @throws SQLException
      */
     public void deleteCategory(Category categoryToDelete) throws SQLException
@@ -81,11 +81,10 @@ public class CategoryDAO
             Logger.getLogger(MovieDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-// This method gets all the playlists that have been stored from our databse, and loads them when you run the program
 
     /**
-     *
-     * @return
+     * Denne metode får alle kategorierne der er i vores database, og loader dem når du kører programmet
+     * @return returnerer category listen
      * @throws SQLException
      */
     public List<Category> getAllCategorys() throws SQLException {
@@ -108,8 +107,8 @@ public class CategoryDAO
 // This method allows us to update our playlist and stores the new and updated information in the database
 
     /**
-     *
-     * @param cat
+     * Denne metode gør at vi kan opdatere vores playlist og gemme de nye informationer i vores database
+     * @param cat kategorien der er opdateret
      * @throws SQLException
      */
     public void updateCategory(Category cat) throws SQLException
@@ -130,8 +129,8 @@ public class CategoryDAO
 // This method finds the next available ID and gives it to the playlist
 
     /**
-     *
-     * @return
+     * Denne metode finder den næste ledige ID og giver den til playlisten
+     * @return returnerer id + 1 således, at den får en større værdi end den forrige
      * @throws SQLException
      */
     public Integer nextAvailableCategoryID() throws SQLException

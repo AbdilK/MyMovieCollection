@@ -285,10 +285,13 @@ public class MainWindowController implements Initializable
     }
 
     
-// This is playing our musicplayer, which gets the movie information from a movies given title and artist.
+
+    
    
     
-
+    /**
+     * Denne metode gør at vi kan søge i vores søgefelt efter film
+     */
     private void search()
     {
         String text = textFieldFilterSearch.getText();
@@ -306,7 +309,12 @@ public class MainWindowController implements Initializable
             refreshTableMovies();
         }
     }
-
+    
+    
+/**
+ * Denne metode gør at vi kan se filmene inde i kategorierne
+ * @param event 
+ */
     private void getMoviesFromCategory(MouseEvent event)
     {
         Category category = tblViewCategorys.getSelectionModel().getSelectedItem();
@@ -314,6 +322,11 @@ public class MainWindowController implements Initializable
         ViewMoviesOnCategory.setItems(obsList);
     }
 
+    
+    /**
+     * Denne metode gør at vi kan skubbe en film til en kategori, ved at trykke på pilen der fører derhen
+     * @param event eventet der kalder metoden
+     */
     @FXML
     private void clickPushMovieToCategory(ActionEvent event)
     {
@@ -336,6 +349,10 @@ public class MainWindowController implements Initializable
         }
     }
 
+    /**
+     * Denne metode gør at når vi har tastet noget ind i vores søgefelt, og trykker enter, så vil den søge efter det der er tastet ind 
+     * @param event eventet der kalder metoden når man trykker enter
+     */
     @FXML
     private void HitEnterSearch(KeyEvent event)
     {
@@ -346,7 +363,7 @@ public class MainWindowController implements Initializable
     }
     
     /**
-     *
+     *Denne metode opdaterer vores table med filmene i
      */
     public void refreshTableMovies()
     {
@@ -355,7 +372,7 @@ public class MainWindowController implements Initializable
     }
 
     /**
-     *
+     *Denne metode opdaterer vores table med vores genre i
      */
     public void refreshTableCategory()
     {
@@ -363,6 +380,11 @@ public class MainWindowController implements Initializable
         tblViewCategorys.setItems(tm.getCategorysAsObservable());
     }
     
+    
+    /**
+     *  Denne metode gør at nå vi dobbeltklikker på en film, så åbner vores custom player og afspiller filmen
+     * @throws IOException 
+     */
     @FXML
     private void dblClickPlay() throws IOException
     {
@@ -385,6 +407,9 @@ public class MainWindowController implements Initializable
         
     }
     
+    /**
+     * Denne metode åbner vores custom player, som er vores MediaPlayerWindow.fxml, og åbner i en fixed størrelse
+     */
      private void PlayCustomPlayer()
     {           
         try
@@ -493,6 +518,12 @@ public class MainWindowController implements Initializable
 
     }
 
+    
+    /**
+     * Denne metode gør at når man trykker på New inde i main window under kategorier, så åbner vores CategoryWindow.fxml og du kan derfra lave en ny kategori
+     * @param event eventet der kalder metoden
+     * @throws IOException 
+     */
     @FXML
     private void clickNewCategory(ActionEvent event) throws IOException
     {
@@ -504,6 +535,11 @@ public class MainWindowController implements Initializable
         openCategoryWindow(fxmlPath, id, isEditing);
     }
 
+    
+    /**
+     * Denne metode gør at når man trykker på New inde i main window under movies, så åbner vores NewMovie.fxml, og du kan derfra sætte en ny film ind
+     * @param event eventet der kalder metoden
+     */
     @FXML
     private void clickNewMovie(ActionEvent event)
     {
@@ -515,6 +551,11 @@ public class MainWindowController implements Initializable
         openMovieWindow(fxmlPath, id, isEditing);
     }
 
+    
+    /**
+     * Når du trykker på Edit inde i main window under movies, så åbner EditMovie.fxml og du kan ændre på navn og ratings
+     * @param event eventet der kalder metoden
+     */
     @FXML
     private void clickEditMovies(ActionEvent event)
     {
@@ -529,6 +570,10 @@ public class MainWindowController implements Initializable
         }
     }
     
+    /**
+     * Når du trykker på edit inde i main window under kategorier, så åbner CategoryWindow.fxml hvor du kan ændre på kategoriens navn
+     * @param event eventet der kalder metoden
+     */
     @FXML
     private void clickToEditCategory(ActionEvent event)
     {
@@ -544,12 +589,21 @@ public class MainWindowController implements Initializable
     }
 
 
+    /**
+     * Denne metode gør at programmet lukkker, når du trykker på close
+     * @param event eventet der kalder metoden når du trykker med musen
+     */
     @FXML
     private void ExitCollection(MouseEvent event)
     {
         System.exit(0);
     }
     
+    
+    /**
+     * 
+     * @param event eventet der kalder metoden når du trykker med musen
+     */
     @FXML
     private void clickCategory(MouseEvent event)
     {
