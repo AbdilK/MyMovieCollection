@@ -42,10 +42,7 @@ public class MediaPlayerWindowController implements Initializable
 {
     @FXML
     private AnchorPane anchorPane;
-    @FXML
-    private Slider sliderMovie;
-    @FXML
-    private Slider sliderVolume;
+    
     @FXML
     private Label timeElapsed;
     @FXML
@@ -84,11 +81,9 @@ public class MediaPlayerWindowController implements Initializable
     {
         setControls();
 
-        //sliderVolume.setValue(100);
+       
 
-        //sliderVolume.getParent().getParent().toFront();
-
-        setupMovieSlider();
+      
 
     }    
     
@@ -114,20 +109,11 @@ public class MediaPlayerWindowController implements Initializable
 
         mp = new MediaPlayer(movieMedia);
         mp.setAutoPlay(true);
-        mp.setVolume(1);
+       
 
         movieView.setMediaPlayer(mp);
 
-        mp.setOnReady(() ->
-        {
-            duration = mp.getMedia().getDuration();
-
-            mp.currentTimeProperty().addListener((Observable ov) ->
-            {
-                updateTimeSlider();
-            });
-            playMedia = true;
-        });
+        
 
         mp.setOnEndOfMedia(() ->
         {
@@ -163,68 +149,11 @@ public class MediaPlayerWindowController implements Initializable
         this.imageView = movieView;
     }
     
-    @FXML
-    private void changeVolume(MouseEvent event)
-    {
-         sliderVolume.valueProperty().addListener((ObservableValue<? extends Number> value, Number oldValue, Number newValue) ->
-        {
-            mp.setVolume(sliderVolume.getValue() / 100);
-            sliderVolume.setValue(mp.getVolume() * 100);
-            currentVolume.setText(String.format("%.0f", newValue) + "%");
-        });
-    }
+   
     
-    private void setupMovieSlider()
-    {
-        sliderMovie.valueProperty().addListener((Observable observable) ->
-        {
-            if (sliderMovie.isValueChanging())
-            {
-                mp.seek(mp.getTotalDuration().multiply(sliderMovie.getValue() / 100));
-            }
-        });
-    }
 
-    private void updateTimeSlider()
-    {
-        if (timeElapsed != null && sliderMovie != null && sliderVolume != null)
-        {
-            Platform.runLater(() ->
-            {
-                Duration currentTime = mp.getCurrentTime();
-                timeElapsed.setText(DurationCalculator(currentTime, duration));
-                sliderMovie.setDisable(duration.isUnknown());
-                if (!sliderMovie.isValueChanging() && !sliderMovie.isDisabled() && duration.greaterThan(Duration.ZERO))
-                {
-                    sliderMovie.setValue(currentTime.divide(duration).toMillis() * 100.0);
-                }
-                if (!sliderVolume.isValueChanging())
-                {
-                    sliderVolume.setValue((int) Math.round(mp.getVolume() * 100));
-                }
-            });
-        }
-    }
     
-    private void movieFullSCreen()
-    {
-        Stage stage = (Stage) anchorPane.getScene().getWindow();
-
-        if (stage.isFullScreen())
-        {
-            stage.setFullScreen(false);
-        }
-        else if (!stage.isFullScreen())
-        {
-            stage.setFullScreen(true);
-        }
-    }
     
-    @FXML
-    private void resizeToFullScreen(ActionEvent event)
-    {
-        movieFullSCreen();
-    }
 
     @FXML
     private void muteSound(MouseEvent event)
@@ -233,14 +162,14 @@ public class MediaPlayerWindowController implements Initializable
         {
             mp.setMute(true);
             btnMute.setGraphic(new ImageView(speakerMute));
-            sliderVolume.setOpacity(0.5);
+            
             muteMedia = !muteMedia;
         }
         else if (muteMedia)
         {
             mp.setMute(false);
             btnMute.setGraphic(new ImageView(speakerActive));
-            sliderVolume.setOpacity(1);
+            
 
             muteMedia = !muteMedia;
         }
@@ -281,58 +210,10 @@ public class MediaPlayerWindowController implements Initializable
     
     private void resetPlayButton()
     {
-        timeElapsed.setText(DurationCalculator(mp.getStartTime(), duration));
-        sliderMovie.setValue(0.0);
+     
+       
         btnPlayPause.setText("Play Movie");
     }
        
-    private static String DurationCalculator(Duration timeElapsed, Duration totalDuration)
-    {
-        int elapsed = (int) Math.floor(timeElapsed.toSeconds());
-        int eHour = elapsed / (60 * 60);
-        if (eHour > 0)
-        {
-            elapsed -= eHour * 60 * 60;
-        }
-        int eMinutes = elapsed / 60;
-        int eSeconds = elapsed - eHour * 60 * 60 - eMinutes * 60;
-
-        if (totalDuration.greaterThan(Duration.ZERO))
-        {
-            int duration = (int) Math.floor(totalDuration.toSeconds());
-            int dHour = duration / (60 * 60);
-            if (dHour > 0)
-            {
-                duration -= dHour * 60 * 60;
-            }
-            int dMinutes = duration / 60;
-            int dSeconds = duration - dHour * 60 * 60
-                                  - dMinutes * 60;
-            if (dHour > 0)
-            {
-                return String.format("%d:%02d:%02d/%d:%02d:%02d",
-                                     eHour, eMinutes, eSeconds,
-                                     dHour, dMinutes, dSeconds);
-            }
-            else
-            {
-                return String.format("%02d:%02d/%02d:%02d",
-                                     eMinutes, eSeconds, dMinutes,
-                                     dSeconds);
-            }
-        }
-        else
-        {
-            if (eHour > 0)
-            {
-                return String.format("%d:%02d:%02d", eHour,
-                                     eMinutes, eSeconds);
-            }
-            else
-            {
-                return String.format("%02d:%02d", eMinutes,
-                                     eSeconds);
-            }
-        }
-    }
+    
 }
