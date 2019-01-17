@@ -11,7 +11,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javax.swing.JFrame;
 import MyMovieCollection.BE.Movies;
@@ -21,10 +20,6 @@ import MyMovieCollection.GUI.model.MovieModel;
  * @author Abdil-K, Bjarne666, Hassuni8, KerimTopci
  */
 
-/**
- *
- * @author Hassuni
- */
 
 
 public class EditMovieController implements Initializable {
@@ -50,6 +45,11 @@ public class EditMovieController implements Initializable {
     @FXML
     private Button btn_Cancel;
 
+    /** 
+     * denne metode Initialiserer controller klassen
+     * @param url
+     * @param rb 
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         tm = MovieModel.getInstance();
@@ -63,8 +63,9 @@ public class EditMovieController implements Initializable {
         }
         
     }
-// This method allows us to pick the path of the while whilst we are editing or creating a movie.
-    @FXML
+/** 
+ * denne metode tillader os at vælge stien filmen tilhører, mens vi redigere eller tilføjer/laver en ny film
+ */ @FXML
     private void clickChooseMovie(ActionEvent event) throws IOException 
     {
         FileDialog fileD = new FileDialog(new JFrame());
@@ -75,16 +76,23 @@ public class EditMovieController implements Initializable {
             MoviePathBox.setText(filePath);
         }
     }
-// This closes the EditMovie window
+/** 
+ * denne metode lukker EditMovie vinduet. når vi er i EditMovie og vi gerne vil annullere. 
+ */
     @FXML
     private void clickCancelEditMovie(ActionEvent event) 
     {
         isEditing = false;
         ((Node) (event.getSource())).getScene().getWindow().hide();
     }
-
+/** 
+ * denne metode gemmer de data du putter ind i EditMovie vinduet. 
+ * f.eks. din egen personlige rating af filmen, rating fundet på imdb's hjemmeside, titlen, id... osv.
+ * @param event
+ * @throws IOException 
+ */
     @FXML
-    private void clickSaveEditsMovie(ActionEvent event) throws IOException // This saves that data that you put in the EditMovie window
+    private void clickSaveEditsMovie(ActionEvent event) throws IOException
     {
         if (!isEditing) {
             if (!"".equals(ImdbBox.getText()) && !"".equals(PersonalBox.getText()) && !"".equals(MoviePathBox.getText())) {
@@ -93,7 +101,7 @@ public class EditMovieController implements Initializable {
                 double ratingImdb = Double.parseDouble(ImdbBox.getText());
                 double ratingPersonal = Double.parseDouble(PersonalBox.getText());                
                 String moviePath = MoviePathBox.getText();
-                tm.createMovie(movieId, title, ratingImdb, ratingPersonal, moviePath);;
+                tm.createMovie(movieId, title, ratingImdb, ratingPersonal, moviePath);
                 MainWController.refreshTableMovies();
                 ((Node) (event.getSource())).getScene().getWindow().hide();
             }
@@ -104,7 +112,7 @@ public class EditMovieController implements Initializable {
                 double ratingImdb = Double.parseDouble(ImdbBox.getText());
                 double ratingPersonal = Double.parseDouble(PersonalBox.getText());                
                 String moviePath = MoviePathBox.getText();
-                Movies editMovie = new Movies(movieId, title, ratingImdb, ratingPersonal, moviePath);;
+                Movies editMovie = new Movies(movieId, title, ratingImdb, ratingPersonal, moviePath);
                 tm.updateMovie(editMovie);
                 MainWController.refreshTableMovies();
                 ((Node) (event.getSource())).getScene().getWindow().hide();
@@ -114,12 +122,12 @@ public class EditMovieController implements Initializable {
     }
     
     /**
-     *
+     * denne metode tillader os at få forbindelse med vores MainWindowController og den vil checke om vi laver en film eller redigere
      * @param controller
      * @param isEditing
      * @param movieID
      */
-    public void setController(MainWindowController controller, boolean isEditing, int movieID) // This method allows us to get connection with our MainWindowController and will check whether we are creating or editing
+    public void setController(MainWindowController controller, boolean isEditing, int movieID)
     {
         this.MainWController = controller;
         this.isEditing = isEditing;
