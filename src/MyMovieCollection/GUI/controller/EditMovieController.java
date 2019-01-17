@@ -32,8 +32,6 @@ public class EditMovieController implements Initializable {
     private TextField PersonalBox;
     @FXML
     private TextField MoviePathBox;
-    @FXML
-    private ComboBox<String> comboCategory;
     private MainWindowController MainWController;
     private boolean isEditing = false;
     private int MovieNewID;
@@ -72,7 +70,6 @@ public class EditMovieController implements Initializable {
         }
     }
 // This closes the EditMovie window
-    @FXML
     private void clickCancelEditMovie(ActionEvent event) 
     {
         isEditing = false;
@@ -83,8 +80,7 @@ public class EditMovieController implements Initializable {
     private void clickSaveEditsMovie(ActionEvent event) throws IOException // This saves that data that you put in the EditMovie window
     {
         if (!isEditing) {
-            if (!"".equals(PersonalBox.getText()) && !"".equals(ImdbBox.getText())
-                    && !"".equals(PersonalBox.getText()) && !"".equals(MoviePathBox.getText())) {
+            if (!"".equals(ImdbBox.getText()) && !"".equals(PersonalBox.getText()) && !"".equals(MoviePathBox.getText())) {
                 int movieId = tm.nextAvailableMovieID();
                 String title = TitleBox.getText();
                 double ratingImdb = Double.parseDouble(ImdbBox.getText());
@@ -95,7 +91,7 @@ public class EditMovieController implements Initializable {
                 ((Node) (event.getSource())).getScene().getWindow().hide();
             }
         } else {
-            if (!"".equals(PersonalBox.getText()) && !"".equals(ImdbBox.getText()) && !"".equals(PersonalBox.getText()) && !"".equals(MoviePathBox.getText())) {
+            if (!"".equals(ImdbBox.getText()) && !"".equals(PersonalBox.getText()) && !"".equals(MoviePathBox.getText())) {
                 int movieId = MovieNewID;
                 String title = TitleBox.getText();
                 double ratingImdb = Double.parseDouble(ImdbBox.getText());
@@ -115,5 +111,10 @@ public class EditMovieController implements Initializable {
         this.MainWController = controller;
         this.isEditing = isEditing;
         this.MovieNewID = movieID;
+    }
+
+    @FXML
+    private void ClickCancelEditMovie(ActionEvent event)
+    {
     }
 }

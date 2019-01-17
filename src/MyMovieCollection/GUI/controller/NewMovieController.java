@@ -89,7 +89,7 @@ public class NewMovieController implements Initializable {
     private void clickSaveMovie(ActionEvent event) throws IOException 
     {
         if (!isEditing) {
-            if (/*!"".equals(PersonalBox.getText()) && */!"".equals(ImdbBox.getText())
+            if (!"".equals(ImdbBox.getText())
                     && !"".equals(PersonalBox.getText()) && !"".equals(MoviePathBox.getText())) {
                 int movieId = mm.nextAvailableMovieID();
                 String title = TitleBox.getText();
@@ -101,7 +101,7 @@ public class NewMovieController implements Initializable {
                 ((Node) (event.getSource())).getScene().getWindow().hide();
             }
         } else {
-            if (/*!"".equals(PersonalBox.getText()) && */!"".equals(ImdbBox.getText()) && !"".equals(PersonalBox.getText()) && !"".equals(MoviePathBox.getText())) {
+            if (!"".equals(ImdbBox.getText()) && !"".equals(PersonalBox.getText()) && !"".equals(MoviePathBox.getText())) {
                 int movieId = MovieNewID;
                 String title = TitleBox.getText();
                 double ratingImdb = Double.parseDouble(ImdbBox.getText());
