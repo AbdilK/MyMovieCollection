@@ -41,36 +41,25 @@ import javafx.scene.control.Button;
 public class MediaPlayerWindowController implements Initializable
 {
     @FXML
-    private AnchorPane anchorPane;
-    
-    @FXML
-    private Label timeElapsed;
-    @FXML
-    private Label currentVolume;
-    @FXML
-    private MediaView movieView;
-    private ImageView imageView;
-    @FXML
-    private SplitPane splitPane;
-    @FXML
     private Button btnPlayPause;
     @FXML
     private Button btnStop;
     @FXML
     private Button btnMute;
-    private Duration duration;
+    @FXML
+    private Button btnClose;
     private Image playPause;
     private Image playPlay;
     private Image playStop;
     private Image speakerActive;
     private Image speakerMute;
+    private Image MediaClose;
     private MediaPlayer mp;
-    private boolean boolPlaying;
-    private boolean playMedia;
+    private MediaView movieView;
+    private ImageView imageView;
+    private boolean isPlaying;
     private boolean muteMedia;
     private Media movieMedia;
-    
-
     /**
      * Initializes the controller class.
      * @param url
@@ -79,12 +68,7 @@ public class MediaPlayerWindowController implements Initializable
    @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        setControls();
-
-       
-
-      
-
+        setIcons();
     }    
     
     /**
@@ -94,7 +78,7 @@ public class MediaPlayerWindowController implements Initializable
      */
     public void MediaSetup(MovieModel cm, String moviePath)
     {
-        boolPlaying = false;
+        isPlaying = false;
 
         DoubleProperty width = movieView.fitWidthProperty();
         DoubleProperty height = movieView.fitHeightProperty();
@@ -102,44 +86,22 @@ public class MediaPlayerWindowController implements Initializable
         height.bind(Bindings.selectDouble(movieView.sceneProperty(), "height"));
         movieView.setPreserveRatio(false); 
 
-     
         String path = moviePath;
 
         movieMedia = new Media(new File(path).toURI().toString());
 
         mp = new MediaPlayer(movieMedia);
         mp.setAutoPlay(true);
-       
 
         movieView.setMediaPlayer(mp);
-
-        
-
         mp.setOnEndOfMedia(() ->
         {
-            resetPlayButton();
+            //resetPlayButton();
+            btnPlayPause.setGraphic(new ImageView(playPlay));
             mp.pause();
         });
     }
     
-    private void setControls()
-    {
-        playPlay = new Image(getClass().getResourceAsStream("/MyMovieCollection/icons/play-play.png"));
-        playPause = new Image(getClass().getResourceAsStream("/MyMovieCollection/icons/play-pause.png"));
-        playStop = new Image(getClass().getResourceAsStream("/MyMovieCollection/icons/play-stop.png"));
-        speakerActive = new Image(getClass().getResourceAsStream("/MyMovieCollection/icons/speaker-active.png"));
-        speakerMute = new Image(getClass().getResourceAsStream("/MyMovieCollection/icons/speaker-mute.png"));
-
-        btnPlayPause.setGraphic(new ImageView(playPause));
-        btnPlayPause.setText("");
-
-        btnStop.setGraphic(new ImageView(playStop));
-        btnStop.setText("");
-
-        btnMute.setGraphic(new ImageView(speakerActive));
-        btnMute.setText("");
-    }
-
     /**
      *
      * @param movieView
@@ -149,16 +111,59 @@ public class MediaPlayerWindowController implements Initializable
         this.imageView = movieView;
     }
     
-   
-    
+    private void setIcons()
+    {
+        playPlay = new Image(getClass().getResourceAsStream("/MyMovieCollection/icons/play-play.png"));
+        playPause = new Image(getClass().getResourceAsStream("/MyMovieCollection/icons/play-pause.png"));
+        playStop = new Image(getClass().getResourceAsStream("/MyMovieCollection/icons/play-stop.png"));
+        speakerActive = new Image(getClass().getResourceAsStream("/MyMovieCollection/icons/speaker-active.png"));
+        speakerMute = new Image(getClass().getResourceAsStream("/MyMovieCollection/icons/speaker-mute.png"));
+        MediaClose = new Image(getClass().getResourceAsStream("/MyMovieCollection/icons/MediaClose.png"));
+
+        btnPlayPause.setGraphic(new ImageView(playPause));
+        btnPlayPause.setText("");
+
+        btnStop.setGraphic(new ImageView(playStop));
+        btnStop.setText("");
+
+        btnMute.setGraphic(new ImageView(speakerActive));
+        btnMute.setText("");
+        
+        btnClose.setGraphic(new ImageView(MediaClose));
+        btnClose.setText("");
+    }
 
     
+    @FXML
+    private void playPauseMovie(ActionEvent event)
+    {
+        if (!isPlaying)
+        {
+            mp.play();
+            btnPlayPause.setGraphic(new ImageView(playPause));
+            isPlaying = !isPlaying;
+        }
+        else if (isPlaying)
+        {
+            mp.pause();
+            btnPlayPause.setGraphic(new ImageView(playPlay));
+            isPlaying = !isPlaying;
+        }
+    }
     
+
+    @FXML
+    private void stopMovie(ActionEvent event)
+    {
+        mp.pause();
+        mp.seek(mp.getStartTime());
+        btnPlayPause.setGraphic(new ImageView(playPlay));
+    }
 
     @FXML
     private void muteSound(MouseEvent event)
     {
-        if (!muteMedia)
+          if (!muteMedia)
         {
             mp.setMute(true);
             btnMute.setGraphic(new ImageView(speakerMute));
@@ -176,44 +181,16 @@ public class MediaPlayerWindowController implements Initializable
     }
 
     @FXML
-    private void playPauseMovie(MouseEvent event)
+    private void MediaClose(ActionEvent event)
     {
-        if (!boolPlaying && playMedia)
-        {
-            mp.play();
-            btnPlayPause.setGraphic(new ImageView(playPause));
-            boolPlaying = !boolPlaying;
-        }
-        else if (boolPlaying)
-        {
-            mp.pause();
-            btnPlayPause.setGraphic(new ImageView(playPlay));
-            boolPlaying = !boolPlaying;
-        }
-    }
-
-    @FXML
-    private void stopMovie(MouseEvent event)
-    {
-        mp.pause();
-        mp.seek(mp.getStartTime());
-        resetPlayButton();
-    }
-
-    /**
-     *
-     */
-    public void stopMovieEnterily()
-    {
+        btnClose.setGraphic(new ImageView(MediaClose));
         mp.stop();
+        Stage stage = (Stage) btnClose.getScene().getWindow();
+        stage.close();
     }
     
-    private void resetPlayButton()
-    {
-     
-       
-        btnPlayPause.setText("Play Movie");
-    }
-       
+  
+   
+    
     
 }
