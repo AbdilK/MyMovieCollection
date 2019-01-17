@@ -160,17 +160,22 @@ public class MainWindowController implements Initializable
         {
             Optional<ButtonType> btnType;
             Movies movieBelow = dullMovies.get(0);
-            Alert alert = new Alert(AlertType.WARNING);
+            Alert alert = new Alert(AlertType.WARNING, movieBelow.getTitle() + " has 6 or less rating and should be removed, please confirm", ButtonType.YES, ButtonType.CLOSE);
             alert.setHeaderText(movieBelow.getTitle());
-            alert.setContentText(movieBelow.getTitle() + " has 6 or less rating and has been removed");
+            //alert.setContentText(movieBelow.getTitle() + " has 6 or less rating and has been removed");
             btnType = alert.showAndWait();
             
-            if(btnType.get() == ButtonType.OK)
+            if(btnType.get() == ButtonType.YES)
             {
                 dullMovies.remove(movieBelow);
                 tm.deleteMovie(movieBelow);
             }
             askIfDeleteMovie();
+            
+            if(btnType.get() == ButtonType.CLOSE)
+            {
+                alert.close();
+            }
         }
     }
    // The method underneath gets all categorys from our database and loads it into our category library table, with the given string.
