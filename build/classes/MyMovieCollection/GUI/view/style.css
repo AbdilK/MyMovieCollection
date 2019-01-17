@@ -9,3 +9,6 @@ and open the template in the editor.
 */
 
 .BG {-fx-background-color: #000000}
+.AnchorPane {-fx-background-color: #0000ff}
+.CreateMovieText {-fx-font-weight: bold;}
+.RedButton {-fx-background-color: #ff0000}
