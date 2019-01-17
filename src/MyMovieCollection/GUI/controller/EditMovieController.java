@@ -70,6 +70,7 @@ public class EditMovieController implements Initializable {
         }
     }
 // This closes the EditMovie window
+    @FXML
     private void clickCancelEditMovie(ActionEvent event) 
     {
         isEditing = false;

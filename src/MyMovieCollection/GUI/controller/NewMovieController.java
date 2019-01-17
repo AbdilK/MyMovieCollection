@@ -77,7 +77,7 @@ public class NewMovieController implements Initializable {
     }
 // This closes the EditMovie window
     @FXML
-    private void clickCancelNewMovie(ActionEvent event) // 
+    private void clickCancelNewMovie(ActionEvent event) 
     {
         isEditing = false;
         ((Node) (event.getSource())).getScene().getWindow().hide();
