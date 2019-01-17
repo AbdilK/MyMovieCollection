@@ -55,13 +55,13 @@ public class MediaPlayerWindowController implements Initializable
     @FXML
     private SplitPane splitPane;
     @FXML
-    private JFXButton jfxPlayPause;
+    private Button btnPlayPause;
     @FXML
-    private JFXButton jfxStop;
+    private Button btnStop;
     @FXML
-    private JFXButton jfxFull;
+    private Button jfxFull;
     @FXML
-    private JFXButton jfxMute;
+    private Button btnMute;
     private Duration duration;
     private Image playPause;
     private Image playPlay;
@@ -138,14 +138,14 @@ public class MediaPlayerWindowController implements Initializable
         speakerActive = new Image(getClass().getResourceAsStream("/MyMovieCollection/icons/speaker-active.png"));
         speakerMute = new Image(getClass().getResourceAsStream("/MyMovieCollection/icons/speaker-mute.png"));
 
-        jfxPlayPause.setGraphic(new ImageView(playPause));
-        jfxPlayPause.setText("");
+        btnPlayPause.setGraphic(new ImageView(playPause));
+        btnPlayPause.setText("");
 
-        jfxStop.setGraphic(new ImageView(playStop));
-        jfxStop.setText("");
+        btnStop.setGraphic(new ImageView(playStop));
+        btnStop.setText("");
 
-        jfxMute.setGraphic(new ImageView(speakerActive));
-        jfxMute.setText("");
+        btnMute.setGraphic(new ImageView(speakerActive));
+        btnMute.setText("");
     }
 
     public void setImageView(ImageView movieView)
@@ -222,14 +222,14 @@ public class MediaPlayerWindowController implements Initializable
         if (!muteMedia)
         {
             mp.setMute(true);
-            jfxMute.setGraphic(new ImageView(speakerMute));
+            btnMute.setGraphic(new ImageView(speakerMute));
             sliderVolume.setOpacity(0.5);
             muteMedia = !muteMedia;
         }
         else if (muteMedia)
         {
             mp.setMute(false);
-            jfxMute.setGraphic(new ImageView(speakerActive));
+            btnMute.setGraphic(new ImageView(speakerActive));
             sliderVolume.setOpacity(1);
 
             muteMedia = !muteMedia;
@@ -242,13 +242,13 @@ public class MediaPlayerWindowController implements Initializable
         if (!boolPlaying && playMedia)
         {
             mp.play();
-            jfxPlayPause.setGraphic(new ImageView(playPause));
+            btnPlayPause.setGraphic(new ImageView(playPause));
             boolPlaying = !boolPlaying;
         }
         else if (boolPlaying)
         {
             mp.pause();
-            jfxPlayPause.setGraphic(new ImageView(playPlay));
+            btnPlayPause.setGraphic(new ImageView(playPlay));
             boolPlaying = !boolPlaying;
         }
     }
@@ -269,7 +269,7 @@ public class MediaPlayerWindowController implements Initializable
     {
         timeElapsed.setText(DurationCalculator(mp.getStartTime(), duration));
         sliderMovie.setValue(0.0);
-        jfxPlayPause.setText("Play Movie");
+        btnPlayPause.setText("Play Movie");
     }
        
     private static String DurationCalculator(Duration timeElapsed, Duration totalDuration)
