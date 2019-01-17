@@ -543,7 +543,7 @@ public class MainWindowController implements Initializable
     @FXML
     private void ExitCollection(MouseEvent event)
     {
-        System.exit(1);
+        System.exit(0);
     }
     
     @FXML
