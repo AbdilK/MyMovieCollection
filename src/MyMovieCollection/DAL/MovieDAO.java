@@ -27,24 +27,25 @@ public class MovieDAO
     private final DBConnectionProvider db;
 
     /**
-     *
+     * Forbinder til vores database
      * @throws IOException
      */
     public MovieDAO() throws IOException
     {
         db = new DBConnectionProvider();
     }
-    ////this code makes it, so you can create a Movie in the mainwindow
+   
 
     /**
-     *
-     * @param movieId
-     * @param title
-     * @param ratingImdb
-     * @param ratingPersonal
-     * @param moviePath
-     * @return
-     * @throws SQLException
+     * Tilføjer en ny film til databasen med forskellige informationer i nedenstående parametre.
+     * Under try getConnection splitter vi titlen således, at vi ikke får .mp4 med i filmens titel.
+     * @param movieId ID til filmene
+     * @param title filmens titel
+     * @param ratingImdb Rating på filmene, hentet fra imdb
+     * @param ratingPersonal egen personlige rating på filmen
+     * @param moviePath stien til valgte filmen
+     * @return returnere filmens informationer
+     * @throws SQLException kaster en sql exception, hvis en fejl opstår
      */
     public Movies createMovie(int movieId, String title, double ratingImdb, double ratingPersonal, String moviePath) throws SQLException
     {
@@ -72,9 +73,9 @@ public class MovieDAO
     }
     
     /**
-     *
-     * @param movie
-     * @throws SQLException
+     * Sletter en valgt film
+     * @param movie henter filmen, som skal slettes
+     * @throws SQLException kaster en sql exception, hvis en fejl opstår
      */
     public void deleteMovie(Movies movie) throws SQLException
     {
@@ -97,12 +98,12 @@ public class MovieDAO
             Logger.getLogger(MovieDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    //this code makes, you will get all movies in one list 
+    
 
     /**
-     *
-     * @return
-     * @throws SQLException
+     * Listen returnere alle film fra databasen ind i vores main vindue
+     * @return returnere filmene
+     * @throws SQLException kaster en SQL exception hvis en fejl opstår
      */
     public List<Movies> getAllMovies() throws SQLException
     {
@@ -130,11 +131,12 @@ public class MovieDAO
         }
         return movies;
     }
-    //this code makes changes to the mp3 files title, artist EtX.
+   
 
     /**
-     *
-     * @param movie
+     * Opdaterer filmens information, såsom titel, imdb rating, personal rating og moviepath,
+     * hvis vi har ændret noget inde fra main vinduet
+     * @param movie henter filmen som skal opdateres med ny information
      * @throws SQLException
      */
     public void updateMovie(Movies movie) throws SQLException
@@ -156,13 +158,16 @@ public class MovieDAO
             Logger.getLogger(MovieDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    //this code allows, so you can search for your songs in the filter 
+    
 
     /**
-     *
-     * @param query
-     * @return
-     * @throws SQLException
+     * Tilføjer nedenstående SQL forespørgsel, og henter data fra databasen,
+     * når man bruger søgefeltet i vores main fxml.
+     * @param query Sender en forespørgsel ind til databasen med et indtastet keyword,
+     * som returnere en specific film. 
+     * 
+     * @return returnerer den film som passer til forespørgslen.
+     * @throws SQLException kaster en SQLException hvis en fejl opstår
      */
     public List<Movies> searchMovie(String query) throws SQLException
     {
@@ -192,12 +197,13 @@ public class MovieDAO
         }
         return movies;
     }
-    //this code allows you to switch to the next movie, who is available. 
+     
 
-    /**
+    /**Hvis en film er slettet, og en ny er tilføjet, så får den nye film samme ID,
+     * som den gamle der lige er blevet slettet.
      *
-     * @return
-     * @throws SQLException
+     * @return returnerer ID til den nye film.
+     * @throws SQLException kaster en SQL exception hvis en fejl opstår
      */
     public Integer nextAvailableMovieID() throws SQLException 
     {
@@ -220,11 +226,13 @@ public class MovieDAO
         return null;
     }
     
-    /**
+    /** Opdaterer filmens personal rating inde i databasen, når man enten opretter,
+     * eller redigerer filmens rating.
      *
-     * @param id
-     * @param ratingPersonal
-     * @throws DALException
+     * @param id filmens id
+     * @param ratingPersonal personal rating til den valgte film, som er en double,
+     * for at få decimal tal med.
+     * @throws DALException kaster en DALException, hvis en fejl opstår.
      */
     public void setRatingPersonal(double id, double ratingPersonal) throws DALException
     {
@@ -241,11 +249,13 @@ public class MovieDAO
         }
     }
     
-    /**
+    /** Opdaterer filmens imdb rating inde i databasen, når men enten opretter,
+     * eller redigerer filmens rating
      *
-     * @param id
-     * @param ratingImdb
-     * @throws DALException
+     * @param id filmens id
+     * @param ratingImdb imdb rating til den valgte film, som er en double
+     * for at få decimal tal med.
+     * @throws DALException kaster en DALException, hvis der opstår en fejl.
      */
     public void setRatingImdb(double id, double ratingImdb) throws DALException
     {
