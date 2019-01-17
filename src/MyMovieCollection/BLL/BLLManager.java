@@ -18,12 +18,7 @@ import MyMovieCollection.BLL.exception.BLLException;
 import MyMovieCollection.DAL.CategoryDAO;
 import MyMovieCollection.DAL.MovieDAO;
 import MyMovieCollection.DAL.CatMovieDAO;
-import MyMovieCollection.DAL.exception.DALException;
-import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Optional;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.image.ImageView;
 
 /**
@@ -313,25 +308,7 @@ public class BLLManager implements BLLLogicFacade
         }
     }
 
-    /*
-    public void setLastViewDate(int id) throws BLLException
-    {
-        try
-        {
-            BLM.setLastViewDate(id);
-        }
-        catch (DALException ex)
-        {
-            throw new BLLException();
-        }
-    }
-     */
-
-    /**
-     *
-     * @param id
-     */
-
+  
     @Override
     public void deleteCategoryFromCategoryMovies(int id)
     {
@@ -370,21 +347,5 @@ public class BLLManager implements BLLLogicFacade
         }
         return null;
     }
-    
-    /**
-     *
-     * @param selected
-     * @param replace
-     */
-    public void reCreateCategoryMovies(Movies selected, Movies replace)
-    {
-        try
-        {
-            CategoryMoviesDAO.reCreateCategoryMovies(selected, replace);
-        } catch (SQLException ex)
-        {
-            Logger.getLogger(BLLManager.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
+   
 }

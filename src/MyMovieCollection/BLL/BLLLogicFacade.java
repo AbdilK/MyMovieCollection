@@ -123,12 +123,4 @@ public interface BLLLogicFacade
      */
     public void deleteCategoryFromCategoryMovies(int id);
 
-    /**
-     *
-     * @param chosen
-     * @param toSwapWith
-     */
-    public void reCreateCategoryMovies(Movies chosen, Movies toSwapWith);
-    
-    
 }

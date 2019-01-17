@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 import MyMovieCollection.BE.*;
 
 /**
- *
+ * 
  * @author Abdil-K, Bjarne666, Hassuni8, KerimTopci
  */
 public class CatMovieDAO
@@ -22,20 +22,19 @@ public class CatMovieDAO
    DBConnectionProvider db;
 
     /**
-     *
+     * Opretter forbindelse til databasen
      * @throws IOException
      */
     public CatMovieDAO() throws IOException
     {
         db = new DBConnectionProvider();
     }
-    // returns all the movies of the category that have been selected.
-
+   
     /**
-     *
-     * @param CatMovie
-     * @return
-     * @throws SQLException
+     * Returnere alle film, som er tilføjet til en kategori
+     * @param CatMovie Film kategori, bruges til at sætte en ID for selve kategorien
+     * @return returnere filmene
+     * @throws SQLException kaster en SQL exception, når en fejl opstår
      */
     public List<Movies> getCategoryMovies(Category CatMovie) throws SQLException 
     {
@@ -74,13 +73,13 @@ public class CatMovieDAO
         return movies;
         
     }
-    // when we select a movie and want to insert it into our categorymovies
+    
 
     /**
-     *
-     * @param movie
-     * @param category
-     * @throws SQLException
+     * Tilføjer en kategori til en valgt film, og lagres i databasen
+     * @param movie den valgte film, som sættes til en kategori
+     * @param category kategorien, som en film sættes ind i
+     * @throws SQLException kaster en SQL Exception.
      */
     public void addMovieToCategory(Movies movie, Category category) throws SQLException 
     {
@@ -97,12 +96,12 @@ public class CatMovieDAO
             Logger.getLogger(MovieDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    // when we delete movie, we also want to delete every trace of it from categoryMovies, which is done by deleting movie id.
-
+    
     /**
-     *
-     * @param id
-     * @throws SQLException
+     * Når der slettes en film, så slettes filmen også filmens valgte kategorier,
+     * således, at en fejl ikke opstår. Filmen slettes fra CatMovie, ved at finde filmens  ID.
+     * @param id ID bruges til at fjerne den ønskede film.
+     * @throws SQLException Kaster en SQL Exception, hvis en fejl opstår.
      */
     public void deleteMovieFromCategoryMovies(int id) throws SQLException  
     {
@@ -118,12 +117,11 @@ public class CatMovieDAO
             Logger.getLogger(MovieDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    // when we delete a category, we want to delete every record from categoryMovies, which is having the deleted category id.
-
+    
     /**
-     *
-     * @param id
-     * @throws SQLException
+     * Hvis vi sletter en kategori, så forsvinder alle film også i kategorien, ved at finde kategoriens ID.
+     * @param id bruges til at finde kategoriens ID.
+     * @throws SQLException kaster en SQL exception, hvis en fejl opstår.
      */
     public void deleteCategoryFromCategoryMovies(int id) throws SQLException 
     {
@@ -139,35 +137,6 @@ public class CatMovieDAO
             Logger.getLogger(MovieDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    // This method switches the positions of two movies in the category
-
-    /**
-     *
-     * @param selected
-     * @param replace
-     * @throws SQLException
-     */
-    public void reCreateCategoryMovies(Movies selected, Movies replace) throws SQLException 
-    {
-        try (Connection con = db.getConnection())
-        {
-            
-            int selectedID = selected.getMovieId();   
-            int replaceID = replace.getMovieId();   
-            String sql = "UPDATE CatMovie SET MovieID = ? WHERE ID = ?";    
-            String sqll = "UPDATE CatMovie SET MovieID = ? WHERE ID = ?";
-            PreparedStatement ppst = con.prepareCall(sql);
-            ppst.setInt(1, replaceID);                       
-            ppst.setInt(2, selected.getCategoryUniqueID());     
-            PreparedStatement ppst2 = con.prepareCall(sqll);    
-            ppst2.setInt(1, selectedID);
-            ppst2.setInt(2, replace.getCategoryUniqueID());
-            ppst.execute();
-            ppst2.execute();
-        } catch (SQLServerException ex)
-        {
-            Logger.getLogger(MovieDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+   
 } 
 

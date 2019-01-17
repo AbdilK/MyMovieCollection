@@ -270,10 +270,7 @@ public class MovieModel {
      * @param chosen
      * @param toSwapWith
      */
-    public void reCreateCategoryMovies(Movies chosen, Movies toSwapWith) {
-        BLLManager.reCreateCategoryMovies(chosen, toSwapWith);
-    }
-
+    
     /**
      *
      * @return
