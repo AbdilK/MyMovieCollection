@@ -31,6 +31,7 @@ import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import MyMovieCollection.GUI.model.MovieModel;
+import javafx.scene.control.Button;
 
 /**
  * FXML Controller class
@@ -58,8 +59,6 @@ public class MediaPlayerWindowController implements Initializable
     private Button btnPlayPause;
     @FXML
     private Button btnStop;
-    @FXML
-    private Button jfxFull;
     @FXML
     private Button btnMute;
     private Duration duration;
