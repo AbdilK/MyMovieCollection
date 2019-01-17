@@ -222,9 +222,10 @@ public class MainWindowController implements Initializable
             tblViewCategorys.getSelectionModel().select(index);
         }
     }
-    // This method deletes a specific movie from our MusicLibrary and/or from our database.
-    // An alert box has been implemented to ask the user, if he/she wishes to delete the specifi movie from
-    // the database, or the MusicLibrary folder only.
+/**
+ *Denne metode sletter en film fra vores database. Der er tilføjet en alert box hvor man kan trykke Yes eller No
+ * @param event eventet der kalder metoden
+ */
     @FXML
     private void clickDeleteMovie(ActionEvent event)
     {
@@ -258,7 +259,10 @@ public class MainWindowController implements Initializable
             }
         }
     }
-//This method deletes a specific Category from our tblViewCategory table to the left.
+/**
+ * Denne metode gør at vi kan slette en specifik kategori fra vores tblViewCategorys
+ * @param event eventet der kalder metoden
+ */
     @FXML
     private void clickDeleteCategory(ActionEvent event)
     {
@@ -407,13 +411,13 @@ public class MainWindowController implements Initializable
             Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    // This will bind a chosen button to open up our NewMovie window
+    
 
     /**
-     *
-     * @param fxmlPath
-     * @param id
-     * @param isEditing
+     *Denne metode åbner vores NewMovieWindow, som giver os adgang til at tilføje film til databasen
+     * @param fxmlPath er stien til vores fxml fil
+     * @param id 
+     * @param isEditing Denne boolean tjekker om vi er igang med at edit en film, eller ved at upload en film
      */
     public void openMovieWindow(String fxmlPath, int id, boolean isEditing)
     {
@@ -434,13 +438,13 @@ public class MainWindowController implements Initializable
         }
     }
     
-    // This will bind a chosen button to open up our Category window
+   
 
     /**
-     *
-     * @param fxmlPath
+     * Denne metode åbner vores openCategoryWindow, som giver os adgang til at tilføje nye kategorier til databasen
+     * @param fxmlPath er stien til vores fxml fil
      * @param id
-     * @param isEditing
+     * @param isEditing Denne boolean tjekker om vi er igang med at edit en film, eller ved at upload en film
      */
 
     public void openCategoryWindow(String fxmlPath, int id, boolean isEditing)
@@ -461,13 +465,13 @@ public class MainWindowController implements Initializable
             Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    // This will bind a chosen button to open up our EditMovie window
+   
 
     /**
-     *
-     * @param fxmlPath
+     * Denne metode åbner vores openEditWindow, hvor vi kan redigere redigere i filmens rating
+     * @param fxmlPath er stien til vores fxml fil
      * @param id
-     * @param isEditing
+     * @param isEditing Denne boolean tjekker om vi er igang med at edit en film, eller ved at upload en film
      */
     public void openEditWindow(String fxmlPath, int id, boolean isEditing)
     {
