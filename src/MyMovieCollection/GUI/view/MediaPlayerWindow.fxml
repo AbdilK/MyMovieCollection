@@ -9,7 +9,8 @@
 
 <AnchorPane id="AnchorPane" prefHeight="452.0" prefWidth="642.0" styleClass="BG" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MyMovieCollection.GUI.controller.MediaPlayerWindowController">
    <children>
-      
+      <Slider fx:id="sliderMovie" layoutX="148.0" layoutY="402.0" prefHeight="14.0" prefWidth="338.0" />
+      <Slider fx:id="sliderVolume" layoutX="229.0" layoutY="426.0" onDragDetected="#changeVolume" prefHeight="14.0" prefWidth="176.0" />
       <Label fx:id="timeElapsed" layoutX="494.0" layoutY="401.0" prefHeight="17.0" prefWidth="38.0" />
       <Label fx:id="currentVolume" layoutX="411.0" layoutY="425.0" onMouseClicked="#muteSound" prefHeight="17.0" prefWidth="28.0" />
       <MediaView fx:id="movieView" fitHeight="350.0" fitWidth="500.0" />
