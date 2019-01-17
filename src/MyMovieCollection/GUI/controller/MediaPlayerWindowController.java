@@ -73,7 +73,7 @@ public class MediaPlayerWindowController implements Initializable
      */
     public void MediaSetup(MovieModel cm, String moviePath)
     {
-        isPlaying = false;
+        isPlaying = true;
 
         DoubleProperty width = movieView.fitWidthProperty();
         DoubleProperty height = movieView.fitHeightProperty();
