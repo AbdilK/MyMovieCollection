@@ -25,7 +25,7 @@ public class MyMovieCollection extends Application
     {
         pStage.setTitle("IMDB Movie Collection");
         pStage.centerOnScreen();
-        pStage.getIcons().add(new Image("MyMovieCollection/icons/imdbRed.png"));
+        pStage.getIcons().add(new Image("MyMovieCollection/icons/imdbYellow.png"));
         Parent root = FXMLLoader.load(getClass().getResource("GUI/view/MainWindow.fxml")); //getClassLoader added to avoid NullPointerException
         Scene scene = new Scene(root);    
         pStage.setScene(scene);

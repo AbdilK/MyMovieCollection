@@ -5,31 +5,20 @@
  */
 package MyMovieCollection.GUI.controller;
 
-import com.jfoenix.controls.JFXButton;
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.application.Platform;
-import javafx.beans.Observable;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
-import javafx.scene.control.SplitPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 import MyMovieCollection.GUI.model.MovieModel;
 import javafx.scene.control.Button;
 
@@ -40,6 +29,11 @@ import javafx.scene.control.Button;
  */
 public class MediaPlayerWindowController implements Initializable
 {
+    
+    
+    @FXML
+    private MediaView movieView;
+    private ImageView imageView;
     @FXML
     private Button btnPlayPause;
     @FXML
@@ -47,7 +41,6 @@ public class MediaPlayerWindowController implements Initializable
     @FXML
     private Button btnMute;
     @FXML
-    private Button btnClose;
     private Image playPause;
     private Image playPlay;
     private Image playStop;
@@ -55,11 +48,13 @@ public class MediaPlayerWindowController implements Initializable
     private Image speakerMute;
     private Image MediaClose;
     private MediaPlayer mp;
-    private MediaView movieView;
-    private ImageView imageView;
     private boolean isPlaying;
     private boolean muteMedia;
     private Media movieMedia;
+    @FXML
+    private Button btnClose;
+    
+
     /**
      * Initializes the controller class.
      * @param url
@@ -68,7 +63,7 @@ public class MediaPlayerWindowController implements Initializable
    @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        setIcons();
+        setIcon();
     }    
     
     /**
@@ -89,29 +84,21 @@ public class MediaPlayerWindowController implements Initializable
         String path = moviePath;
 
         movieMedia = new Media(new File(path).toURI().toString());
-
         mp = new MediaPlayer(movieMedia);
         mp.setAutoPlay(true);
+        mp.setVolume(1);
 
         movieView.setMediaPlayer(mp);
+      
+
         mp.setOnEndOfMedia(() ->
         {
-            //resetPlayButton();
             btnPlayPause.setGraphic(new ImageView(playPlay));
             mp.pause();
         });
     }
     
-    /**
-     *
-     * @param movieView
-     */
-    public void setImageView(ImageView movieView)
-    {
-        this.imageView = movieView;
-    }
-    
-    private void setIcons()
+    private void setIcon()
     {
         playPlay = new Image(getClass().getResourceAsStream("/MyMovieCollection/icons/play-play.png"));
         playPause = new Image(getClass().getResourceAsStream("/MyMovieCollection/icons/play-pause.png"));
@@ -133,7 +120,15 @@ public class MediaPlayerWindowController implements Initializable
         btnClose.setText("");
     }
 
-    
+    /**
+     *
+     * @param movieView
+     */
+    public void setImageView(ImageView movieView)
+    {
+        this.imageView = movieView;
+    }
+   
     @FXML
     private void playPauseMovie(ActionEvent event)
     {
@@ -151,7 +146,6 @@ public class MediaPlayerWindowController implements Initializable
         }
     }
     
-
     @FXML
     private void stopMovie(ActionEvent event)
     {
@@ -161,7 +155,7 @@ public class MediaPlayerWindowController implements Initializable
     }
 
     @FXML
-    private void muteSound(MouseEvent event)
+    private void muteSound(ActionEvent event)
     {
           if (!muteMedia)
         {
@@ -188,9 +182,5 @@ public class MediaPlayerWindowController implements Initializable
         Stage stage = (Stage) btnClose.getScene().getWindow();
         stage.close();
     }
-    
-  
-   
-    
     
 }
