@@ -11,5 +11,5 @@ and open the template in the editor.
 .BG {-fx-background-color: #000000}
 .AnchorPane {-fx-background-color: #ffff00}
 .CreateMovieText {-fx-font-weight: bold;}
-.RedButton {-fx-background-color: #666666}
+.GreyButton {-fx-background-color: #666666}
 .CloseRed {-fx-background-color: #ff0000}

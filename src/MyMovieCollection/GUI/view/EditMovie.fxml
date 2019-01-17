@@ -8,21 +8,21 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="272.0" prefWidth="457.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MyMovieCollection.GUI.controller.EditMovieController">
+<AnchorPane id="AnchorPane" prefHeight="272.0" prefWidth="457.0" styleClass="AnchorPane" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MyMovieCollection.GUI.controller.EditMovieController">
    <children>
-      <Pane prefHeight="276.0" prefWidth="457.0" style="-fx-background-color: grey;">
+      <Pane prefHeight="283.0" prefWidth="457.0" styleClass="AnchorPane" stylesheets="@style.css">
          <children>
-            <Label layoutX="68.0" layoutY="74.0" text="Titel:" />
-            <Label layoutX="37.0" layoutY="212.0" text="Movie path:" />
-            <Label layoutX="18.0" layoutY="169.0" text="RatingPersonal:" />
-            <Label layoutX="36.0" layoutY="118.0" text="RatingImdb:" />
-            <TextField fx:id="TitleBox" layoutX="104.0" layoutY="69.0" />
-            <TextField fx:id="ImdbBox" layoutX="104.0" layoutY="114.0" />
-            <TextField fx:id="PersonalBox" layoutX="104.0" layoutY="165.0" />
-            <TextField fx:id="MoviePathBox" layoutX="104.0" layoutY="208.0" prefHeight="25.0" prefWidth="257.0" />
-            <Button fx:id="btn_Choose" layoutX="386.0" layoutY="208.0" mnemonicParsing="false" onAction="#clickChooseMovie" style="-fx-background-color: red" text="Choose" />
-            <Button fx:id="btn_Save" layoutX="411.0" layoutY="243.0" mnemonicParsing="false" onAction="#clickSaveEditsMovie" style="-fx-background-color: red" text="Save" />
-            <Button fx:id="btn_Cancel" layoutX="350.0" layoutY="243.0" mnemonicParsing="false" onAction="#clickCancelEditMovie" style="-fx-background-color: red" text="Cancel" />
+            <Label layoutX="14.0" layoutY="74.0" text="Titel:" />
+            <Label layoutX="14.0" layoutY="213.0" text="Movie path:" />
+            <Label layoutX="14.0" layoutY="169.0" text="RatingPersonal:" />
+            <Label layoutX="14.0" layoutY="118.0" text="RatingImdb:" />
+            <TextField fx:id="TitleBox" layoutX="51.0" layoutY="69.0" />
+            <TextField fx:id="ImdbBox" layoutX="95.0" layoutY="113.0" />
+            <TextField fx:id="PersonalBox" layoutX="120.0" layoutY="164.0" />
+            <TextField fx:id="MoviePathBox" layoutX="89.0" layoutY="208.0" prefHeight="25.0" prefWidth="257.0" />
+            <Button fx:id="btn_Choose" layoutX="362.0" layoutY="208.0" mnemonicParsing="false" onAction="#clickChooseMovie" styleClass="GreyButton" stylesheets="@style.css" text="Choose" />
+            <Button fx:id="btn_Save" layoutX="394.0" layoutY="243.0" mnemonicParsing="false" onAction="#clickSaveEditsMovie" styleClass="GreyButton" stylesheets="@style.css" text="Save" />
+            <Button fx:id="btn_Cancel" layoutX="325.0" layoutY="243.0" mnemonicParsing="false" onAction="#clickCancelEditMovie" styleClass="GreyButton" stylesheets="@style.css" text="Cancel" />
             <Line endX="206.00006103515625" layoutX="251.0" layoutY="60.0" startX="-252.0" />
             <Label layoutX="71.0" layoutY="14.0" prefHeight="32.0" prefWidth="347.0" text="Edit an existing movie to public library">
                <font>
