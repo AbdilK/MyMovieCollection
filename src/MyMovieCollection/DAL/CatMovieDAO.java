@@ -21,11 +21,22 @@ public class CatMovieDAO
 {
    DBConnectionProvider db;
 
+    /**
+     *
+     * @throws IOException
+     */
     public CatMovieDAO() throws IOException
     {
         db = new DBConnectionProvider();
     }
     // returns all the movies of the category that have been selected.
+
+    /**
+     *
+     * @param CatMovie
+     * @return
+     * @throws SQLException
+     */
     public List<Movies> getCategoryMovies(Category CatMovie) throws SQLException 
     {
         List<Movies> movies = new ArrayList<>();
@@ -64,6 +75,13 @@ public class CatMovieDAO
         
     }
     // when we select a movie and want to insert it into our categorymovies
+
+    /**
+     *
+     * @param movie
+     * @param category
+     * @throws SQLException
+     */
     public void addMovieToCategory(Movies movie, Category category) throws SQLException 
     {
         try(Connection con = db.getConnection())
@@ -80,6 +98,12 @@ public class CatMovieDAO
         }
     }
     // when we delete movie, we also want to delete every trace of it from categoryMovies, which is done by deleting movie id.
+
+    /**
+     *
+     * @param id
+     * @throws SQLException
+     */
     public void deleteMovieFromCategoryMovies(int id) throws SQLException  
     {
         try (Connection con = db.getConnection())
@@ -95,6 +119,12 @@ public class CatMovieDAO
         }
     }
     // when we delete a category, we want to delete every record from categoryMovies, which is having the deleted category id.
+
+    /**
+     *
+     * @param id
+     * @throws SQLException
+     */
     public void deleteCategoryFromCategoryMovies(int id) throws SQLException 
     {
         try (Connection con = db.getConnection()) 
@@ -110,6 +140,13 @@ public class CatMovieDAO
         }
     }
     // This method switches the positions of two movies in the category
+
+    /**
+     *
+     * @param selected
+     * @param replace
+     * @throws SQLException
+     */
     public void reCreateCategoryMovies(Movies selected, Movies replace) throws SQLException 
     {
         try (Connection con = db.getConnection())

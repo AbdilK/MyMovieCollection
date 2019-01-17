@@ -28,6 +28,14 @@ public class Movies
     private double ratingPersonal;
     private double imdbP;
 
+    /**
+     *
+     * @param movieId
+     * @param title
+     * @param ratingImdb
+     * @param ratingPersonal
+     * @param moviePath
+     */
     public Movies(int movieId, String title, double ratingImdb, double ratingPersonal, String moviePath)
     {
         this.movieId = movieId;
@@ -38,83 +46,144 @@ public class Movies
      
     }
 
+    /**
+     *
+     */
     public Movies()
     {
 
     }
 
+    /**
+     *
+     * @return
+     */
     public String getReadDuration()
     {
         return readDuration;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getCategoryUniqueID()
     {
         return CategoryUniqueID;
     }
 
+    /**
+     *
+     * @param CategoryUniqueID
+     */
     public void setCategoryUniqueID(int CategoryUniqueID)
     {
         this.CategoryUniqueID = CategoryUniqueID;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getMovieId()
     {
         return movieId;
     }
 
+    /**
+     *
+     * @param movieId
+     */
     public void setMovieId(int movieId)
     {
         this.movieId = movieId;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getTitle()
     {
         return title;
     }
 
+    /**
+     *
+     * @param title
+     */
     public void setTitle(String title)
     {
         this.title = title;
     }
     
+    /**
+     *
+     * @return
+     */
     public double getRatingImdb()
     {
         return ratingImdb;
     }
     
+    /**
+     *
+     * @param ratingImdb
+     */
     public void setRatingImdb(double ratingImdb)
     {
         this.imdbR = ratingImdb;
     }
 
-     public double getRatingPersonal()
+    /**
+     *
+     * @return
+     */
+    public double getRatingPersonal()
     {
         return ratingPersonal;
     }
     
+    /**
+     *
+     * @param ratingPersonal
+     */
     public void setRatingPersonal(double ratingPersonal)
     {
         this.imdbP = ratingPersonal;
     }
 
-     
-
+    /**
+     *
+     * @return
+     */
     public int getLocationID()
     {
         return locationID;
     }
 
+    /**
+     *
+     * @param locationID
+     */
     public void setLocation(int locationID)
     {
         this.locationID = locationID;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getMoviePath()
     {
         return moviePath;
     }
 
+    /**
+     *
+     * @param moviePath
+     */
     public void setMoviePath(String moviePath)
     {
         this.moviePath = moviePath;

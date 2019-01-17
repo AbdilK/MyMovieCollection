@@ -22,6 +22,11 @@ public class Category {
     
     private ArrayList<Movies> Categorymovies;
 
+    /**
+     *
+     * @param catId
+     * @param catName
+     */
     public Category(int catId, String catName) {
         
         this.CategoryId = catId;
@@ -29,44 +34,78 @@ public class Category {
         Categorymovies = new ArrayList<>();
     }
 
-      public int getCategoryId() 
+    /**
+     *
+     * @return
+     */
+    public int getCategoryId() 
     {
         return CategoryId;
     }
 
+    /**
+     *
+     * @param catId
+     */
     public void setCategoryId(int catId)
     {
         this.CategoryId = catId;
     }
     
+    /**
+     *
+     * @return
+     */
     public String getCategoryName() {
         return CategoryName;
     }
 
+    /**
+     *
+     * @param catName
+     */
     public void setCategoryName(String catName) {
         this.CategoryName = catName;
     }
   
-   
+    /**
+     *
+     * @return
+     */
     public int getMovieAmountPL()
     {
         return movieAmountPL;
     }
 
+    /**
+     *
+     * @param movieAmountPL
+     */
     public void setMovieAmountPL(int movieAmountPL)
     {
         this.movieAmountPL = movieAmountPL;
     }
 
-
+    /**
+     *
+     * @return
+     */
     public ArrayList<Movies> getCategory() {
         return Categorymovies;
     }
 
+    /**
+     *
+     * @param movies
+     */
     public void addMovieToCategory(Movies movies) {
         Categorymovies.add(movies);
     }
 
+    /**
+     *
+     * @param movies
+     */
     public void removeMovieFromCategory(Movies movies) {
         for (Movies movie1 : Categorymovies) {
             if (movie1.equals(movies)) {

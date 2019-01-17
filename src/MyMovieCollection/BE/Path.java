@@ -13,6 +13,10 @@ public class Path
 {
     private String path;
     
+    /**
+     *
+     * @param namepath
+     */
     public Path(String namepath)
     {
         this.path = namepath;

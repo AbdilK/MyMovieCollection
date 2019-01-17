@@ -26,6 +26,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.ImageView;
 
+/**
+ *
+ * @author Hassuni
+ */
 public class BLLManager implements BLLLogicFacade
 {
     
@@ -34,6 +38,10 @@ public class BLLManager implements BLLLogicFacade
     private final CatMovieDAO CategoryMoviesDAO;
     private BLLManager BLM;
 
+    /**
+     *
+     * @throws IOException
+     */
     public BLLManager() throws IOException
     {
         MovieDAO = new MovieDAO();
@@ -42,6 +50,10 @@ public class BLLManager implements BLLLogicFacade
         
     }
 
+    /**
+     *
+     * @param category
+     */
     @Override
     public void createCategory(Category category)
     {
@@ -54,6 +66,10 @@ public class BLLManager implements BLLLogicFacade
         }
     }
 
+    /**
+     *
+     * @param categoryToDelete
+     */
     @Override
     public void deleteCategory(Category categoryToDelete)
     {
@@ -66,6 +82,10 @@ public class BLLManager implements BLLLogicFacade
         }
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public List<Category> getAllCategorys()
     {
@@ -81,6 +101,10 @@ public class BLLManager implements BLLLogicFacade
         return null;
     }
 
+    /**
+     *
+     * @param category
+     */
     @Override
     public void updateCategory(Category category)
     {
@@ -93,6 +117,14 @@ public class BLLManager implements BLLLogicFacade
         }
     }
 
+    /**
+     *
+     * @param movieId
+     * @param title
+     * @param ratingImdb
+     * @param ratingPersonal
+     * @param moviePath
+     */
     @Override
     public void createMovie(int movieId, String title, double ratingImdb, double ratingPersonal, String moviePath)
     {
@@ -105,6 +137,10 @@ public class BLLManager implements BLLLogicFacade
         }
     }
 
+    /**
+     *
+     * @param movie
+     */
     @Override
     public void deleteMovie(Movies movie)
     {
@@ -117,6 +153,10 @@ public class BLLManager implements BLLLogicFacade
         }
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public List<Movies> getAllMovies()
     {
@@ -131,6 +171,10 @@ public class BLLManager implements BLLLogicFacade
         return null;
     }
 
+    /**
+     *
+     * @param movie
+     */
     @Override
     public void updateMovie(Movies movie)
     {
@@ -143,6 +187,11 @@ public class BLLManager implements BLLLogicFacade
         }
     }
 
+    /**
+     *
+     * @param query
+     * @return
+     */
     @Override
     public List<Movies> searchMovie(String query)
     {
@@ -157,6 +206,12 @@ public class BLLManager implements BLLLogicFacade
         return null;
     }
 
+    /**
+     *
+     * @param imageView
+     * @return
+     * @throws BLLException
+     */
     public Movies getMovieData(ImageView imageView) throws BLLException
     {
         Movies movieObject = null;
@@ -173,6 +228,10 @@ public class BLLManager implements BLLLogicFacade
         return movieObject;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public Integer nextAvailableMovieID()
     {
@@ -186,6 +245,10 @@ public class BLLManager implements BLLLogicFacade
         return null;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public Integer nextAvailableCategoryID()
     {
@@ -199,6 +262,11 @@ public class BLLManager implements BLLLogicFacade
         return null;
     }
 
+    /**
+     *
+     * @param category
+     * @return
+     */
     @Override
     public List<Movies> getCategoryMovies(Category category)
     {
@@ -212,6 +280,11 @@ public class BLLManager implements BLLLogicFacade
         return null;
     }
 
+    /**
+     *
+     * @param movie
+     * @param category
+     */
     @Override
     public void addMovieToCategory(Movies movie, Category category)
     {
@@ -224,6 +297,10 @@ public class BLLManager implements BLLLogicFacade
         }
     }
 
+    /**
+     *
+     * @param id
+     */
     @Override
     public void deleteMovieFromCategoryMovies(int id)
     {
@@ -249,6 +326,12 @@ public class BLLManager implements BLLLogicFacade
         }
     }
      */
+
+    /**
+     *
+     * @param id
+     */
+
     @Override
     public void deleteCategoryFromCategoryMovies(int id)
     {
@@ -261,7 +344,10 @@ public class BLLManager implements BLLLogicFacade
         }
     }
 
-    
+    /**
+     *
+     * @return
+     */
     public List<Movies> findDullMovies()
     {
         
@@ -285,8 +371,11 @@ public class BLLManager implements BLLLogicFacade
         return null;
     }
     
-    
-
+    /**
+     *
+     * @param selected
+     * @param replace
+     */
     public void reCreateCategoryMovies(Movies selected, Movies replace)
     {
         try
