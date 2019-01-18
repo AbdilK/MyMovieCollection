@@ -1,6 +1,5 @@
 package MyMovieCollection.GUI.controller;
 
-
 import java.net.URL;
 import java.nio.file.Files;
 import java.io.File;
@@ -9,8 +8,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.application.Platform;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Parent;
@@ -21,7 +18,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
@@ -29,39 +25,31 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import MyMovieCollection.BE.Category;
 import MyMovieCollection.BE.Movies;
 import MyMovieCollection.GUI.model.MovieModel;
 import java.util.ArrayList;
 import java.util.Optional;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 
 /*
  * @author Abdil-K, Bjarne666, Hassuni8, KerimTopci
  */
-
 /**
  *
  * @author Hassuni
  */
-
-
 public class MainWindowController implements Initializable
 {
 
     @FXML
     private TextField textFieldFilterSearch;
     @FXML
-    private Label lblMovieTitle;
-    @FXML
     private TableView<Category> tblViewCategorys;
     @FXML
     private TableView<Movies> tblViewLibrary;
-   @FXML
-    private AnchorPane anchorPane;
     ContextMenu contextMenu;
     MenuItem playMovie;
     MenuItem editData;
@@ -76,7 +64,7 @@ public class MainWindowController implements Initializable
     private Duration movieDuration;
     private ObservableList moviesAsObservable;
     private ObservableList<Category> categorysAsObservable;
-   
+    private Image MediaClose;
 
     private ObservableList searchedMoviesAsObservable;
     @FXML
@@ -87,47 +75,31 @@ public class MainWindowController implements Initializable
     private TableColumn<Movies, String> tblViewLibraryColumnRatingPersonal;
     @FXML
     private TableColumn<Movies, String> tblViewLibraryColumnMoviePath;
-    private ProgressBar progressBar;
     private TableColumn<Category, String> categoryNameCol;
     private TableColumn<Category, Integer> categoryMoviesCol;
     private TableColumn<Category, String> categoryDurationCol;
-    private ProgressBar movieProgress;
-    private Label movieTimeLabel;
-    @FXML
-    private Label currentTimeLabel;
-    private Slider progressSlider;
+
     @FXML
     private AnchorPane grey;
 
     @FXML
     private Button btnDeleteCategorys;
-    @FXML
-    private Label labelCurrentlyPlaying;
-    @FXML
-    private Button btnPlay;
-    @FXML
-    private Button btnReplay;
-    @FXML
-    private Button btnStop;
-    @FXML
-    private Button btnPreviousMovie;
-    @FXML
-    private Button btnNext;
+
     @FXML
     private ListView<Movies> ViewMoviesOnCategory;
-    // This initializes our observables, progressbar, volumenSlider and such.
+
     private List<Movies> dullMovies = new ArrayList();
+    @FXML
+    private Button btnClose;
+
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-
+        setCloseIcon();
         categorysAsObservable = FXCollections.observableArrayList();
         searchedMoviesAsObservable = FXCollections.observableArrayList();
-      
         tm = MovieModel.getInstance();
 
-        
-        
         try
         {
             dblClickPlay();
@@ -137,21 +109,24 @@ public class MainWindowController implements Initializable
         }
         dullMovies = tm.findDullMovies();
         askIfDeleteMovie();
-                setMoviesTable();
+        setMoviesTable();
         setCategoryTable();
     }
-    
-    
-    
-    // The method underneath gets all movies from our database and loads it into our movie library table, with the given string.
 
+    // The method underneath gets all movies from our database and loads it into our movie library table, with the given string.
     /**
      *
      */
-    public void setMoviesTable() 
+    public void setCloseIcon()
+    {
+        MediaClose = new Image(getClass().getResourceAsStream("/MyMovieCollection/icons/MediaClose.png"));
+        btnClose.setGraphic(new ImageView(MediaClose));
+        btnClose.setText("");
+    }
+
+    public void setMoviesTable()
     {
 
-        
         moviesAsObservable = FXCollections.observableArrayList(tm.getMoviesAsObservable());
         tblViewLibraryColumnTitle.setCellValueFactory(new PropertyValueFactory<>("Title"));
         tblViewLibraryColumnRatingImdb.setCellValueFactory(new PropertyValueFactory<>("ratingImdb"));
@@ -160,16 +135,15 @@ public class MainWindowController implements Initializable
         tblViewLibrary.getColumns().clear();
         tblViewLibrary.getColumns().addAll(tblViewLibraryColumnTitle, tblViewLibraryColumnRatingImdb, tblViewLibraryColumnRatingPersonal, tblViewLibraryColumnMoviePath);
         tblViewLibrary.setItems(moviesAsObservable);
-        
 
     }
-    
+
     /**
-     * den her metode gør at den spørger os om vi er sikker på at slette filmen. 
+     * den her metode gør at den spørger os om vi er sikker på at slette filmen.
      */
     public void askIfDeleteMovie()
     {
-        if(!dullMovies.isEmpty())
+        if (!dullMovies.isEmpty())
         {
             Optional<ButtonType> btnType;
             Movies movieBelow = dullMovies.get(0);
@@ -177,26 +151,27 @@ public class MainWindowController implements Initializable
             alert.setHeaderText(movieBelow.getTitle());
             //alert.setContentText(movieBelow.getTitle() + " has 6 or less rating and has been removed");
             btnType = alert.showAndWait();
-            
-            if(btnType.get() == ButtonType.YES)
+
+            if (btnType.get() == ButtonType.YES)
             {
                 dullMovies.remove(movieBelow);
                 tm.deleteMovie(movieBelow);
             }
             askIfDeleteMovie();
-            
-            if(btnType.get() == ButtonType.CLOSE)
+
+            if (btnType.get() == ButtonType.CLOSE)
             {
                 alert.close();
             }
         }
     }
-   // The method underneath gets all categorys from our database and loads it into our category library table, with the given string.
-    private void setCategoryTable() 
+    // The method underneath gets all categorys from our database and loads it into our category library table, with the given string.
+
+    private void setCategoryTable()
     {
-        categoryMoviesCol = new TableColumn<>("ID");    
+        categoryMoviesCol = new TableColumn<>("ID");
         categoryNameCol = new TableColumn<>("Name");
-        
+
         //categoryDurationCol = new TableColumn<>();
         categoryMoviesCol.setCellValueFactory(new PropertyValueFactory<>("CategoryId"));
         categoryNameCol.setCellValueFactory(new PropertyValueFactory<>("CategoryName"));
@@ -204,6 +179,7 @@ public class MainWindowController implements Initializable
         tblViewCategorys.getColumns().addAll(categoryMoviesCol, categoryNameCol);
 
     }
+
     // This removes a movie from a chosen category, but does not delete the movie from our database.
     @FXML
     private void clickRemoveMovieCategory(ActionEvent event)
@@ -222,10 +198,13 @@ public class MainWindowController implements Initializable
             tblViewCategorys.getSelectionModel().select(index);
         }
     }
-/**
- *Denne metode sletter en film fra vores database. Der er tilføjet en alert box hvor man kan trykke Yes eller No
- * @param event eventet der kalder metoden
- */
+
+    /**
+     * Denne metode sletter en film fra vores database. Der er tilføjet en alert
+     * box hvor man kan trykke Yes eller No
+     *
+     * @param event eventet der kalder metoden
+     */
     @FXML
     private void clickDeleteMovie(ActionEvent event)
     {
@@ -259,10 +238,13 @@ public class MainWindowController implements Initializable
             }
         }
     }
-/**
- * Denne metode gør at vi kan slette en specifik kategori fra vores tblViewCategorys
- * @param event eventet der kalder metoden
- */
+
+    /**
+     * Denne metode gør at vi kan slette en specifik kategori fra vores
+     * tblViewCategorys
+     *
+     * @param event eventet der kalder metoden
+     */
     @FXML
     private void clickDeleteCategory(ActionEvent event)
     {
@@ -283,12 +265,7 @@ public class MainWindowController implements Initializable
             }
         }
     }
-
-    
-// This is playing our musicplayer, which gets the movie information from a movies given title and artist.
-   
-    
-
+//Searches for a given keyword in our database movie library.
     private void search()
     {
         String text = textFieldFilterSearch.getText();
@@ -321,7 +298,7 @@ public class MainWindowController implements Initializable
         {
             Movies movie = tblViewLibrary.getSelectionModel().getSelectedItem();
 
-           // moviesAsObservable.add(movie);
+            // moviesAsObservable.add(movie);
             ViewMoviesOnCategory.getItems().clear();
             ViewMoviesOnCategory.getItems().addAll(moviesAsObservable);
 
@@ -344,7 +321,7 @@ public class MainWindowController implements Initializable
             search();
         }
     }
-    
+
     /**
      * den her metode går den refresher tablemovies for os.
      */
@@ -355,38 +332,38 @@ public class MainWindowController implements Initializable
     }
 
     /**
-     * den her metode gør at den resfresher tablecategory for os 
+     * den her metode gør at den resfresher tablecategory for os
      */
     public void refreshTableCategory()
     {
         tblViewCategorys.getItems().clear();
         tblViewCategorys.setItems(tm.getCategorysAsObservable());
     }
-    
-    @FXML
+
     private void dblClickPlay() throws IOException
     {
-            
+
         try
         {
             List<Movies> check = ViewMoviesOnCategory.getItems();
-            ViewMoviesOnCategory.setOnMouseClicked(event ->{
-                if(event.getClickCount() == 2 && !check.isEmpty())
+            ViewMoviesOnCategory.setOnMouseClicked(event ->
+            {
+                if (event.getClickCount() == 2 && !check.isEmpty())
                 {
                     PlayCustomPlayer();
                 }
-            
-        });
+
+            });
             PlayCustomPlayer();
         } catch (Exception ex)
         {
 
         }
-        
+
     }
-    
-     private void PlayCustomPlayer()
-    {           
+
+    private void PlayCustomPlayer()
+    {
         try
         {
             FXMLLoader fxmlLoader;
@@ -404,20 +381,20 @@ public class MainWindowController implements Initializable
             stage.setMinWidth(825);
             stage.setScene(new Scene(root));
             stage.show();
-        }
-
-        catch (IOException ex)
+        } catch (IOException ex)
         {
             Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
 
     /**
-     * Denne metode åbner vores NewMovieWindow, som giver os adgang til at tilføje film til databasen
+     * Denne metode åbner vores NewMovieWindow, som giver os adgang til at
+     * tilføje film til databasen
+     *
      * @param fxmlPath er stien til vores fxml fil
-     * @param id 
-     * @param isEditing Denne boolean tjekker om vi er igang med at edit en film, eller ved at upload en film
+     * @param id
+     * @param isEditing Denne boolean tjekker om vi er igang med at edit en
+     * film, eller ved at upload en film
      */
     public void openMovieWindow(String fxmlPath, int id, boolean isEditing)
     {
@@ -437,16 +414,16 @@ public class MainWindowController implements Initializable
             Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-   
 
     /**
-     * Denne metode åbner vores openCategoryWindow, som giver os adgang til at tilføje nye kategorier til databasen
+     * Denne metode åbner vores openCategoryWindow, som giver os adgang til at
+     * tilføje nye kategorier til databasen
+     *
      * @param fxmlPath er stien til vores fxml fil
      * @param id
-     * @param isEditing Denne boolean tjekker om vi er igang med at edit en film, eller ved at upload en film
+     * @param isEditing Denne boolean tjekker om vi er igang med at edit en
+     * film, eller ved at upload en film
      */
-
     public void openCategoryWindow(String fxmlPath, int id, boolean isEditing)
     {
         try
@@ -465,13 +442,15 @@ public class MainWindowController implements Initializable
             Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-   
 
     /**
-     * Denne metode åbner vores openEditWindow, hvor vi kan redigere redigere i filmens rating
+     * Denne metode åbner vores openEditWindow, hvor vi kan redigere redigere i
+     * filmens rating
+     *
      * @param fxmlPath er stien til vores fxml fil
      * @param id
-     * @param isEditing Denne boolean tjekker om vi er igang med at edit en film, eller ved at upload en film
+     * @param isEditing Denne boolean tjekker om vi er igang med at edit en
+     * film, eller ved at upload en film
      */
     public void openEditWindow(String fxmlPath, int id, boolean isEditing)
     {
@@ -528,7 +507,7 @@ public class MainWindowController implements Initializable
             openEditWindow(fxmlPath, id, isEditing);
         }
     }
-    
+
     @FXML
     private void clickToEditCategory(ActionEvent event)
     {
@@ -543,13 +522,13 @@ public class MainWindowController implements Initializable
         }
     }
 
-
     @FXML
     private void ExitCollection(MouseEvent event)
     {
+        btnClose.setGraphic(new ImageView(MediaClose));
         System.exit(0);
     }
-    
+
     @FXML
     private void clickCategory(MouseEvent event)
     {
@@ -562,19 +541,4 @@ public class MainWindowController implements Initializable
         }
     }
 
-  
-    private String currentDurationCalc(int timeSec)
-    {
-        int minutes = timeSec / 60;
-        int seconds = timeSec % 60;
-        if (seconds < 10)
-        {
-            return minutes + ":0" + seconds;
-        } else
-        {
-            return minutes + ":" + seconds;
-        }
-    }
-    
-    
 }
