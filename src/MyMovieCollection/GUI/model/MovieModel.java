@@ -59,7 +59,7 @@ public class MovieModel {
      */
     public MovieModel() throws IOException {
         AllCategorys = new ArrayList();
-        addNewCategory();
+        
         olMovies = FXCollections.observableArrayList();
         olCategorys = FXCollections.observableArrayList();
         BLLManager = new BLLManager();
@@ -311,30 +311,7 @@ public class MovieModel {
      *
      * @param cat
      */
-    public void addNewCategory(String cat) {
-        AllCategorys.add(cat);
-    }
-
-    private void addNewCategory() {
-        AllCategorys.add("Action");
-        AllCategorys.add("Drama");
-        AllCategorys.add("Comedy");
-        AllCategorys.add("Romance");
-        AllCategorys.add("Crime");
-        AllCategorys.add("Horror");
-        AllCategorys.add("Thriller");
-        AllCategorys.add("Historical");
-        AllCategorys.add("Adventure");
-        AllCategorys.add("Fantasy");
-        AllCategorys.add("Mystery");
-        AllCategorys.add("Satire");
-        AllCategorys.add("Science Fiction");
-        AllCategorys.add("Animation");
-        AllCategorys.add("Live Action");
-        AllCategorys.add("War");
-        AllCategorys.add("Western");
-
-    }
+ 
 
     
     
