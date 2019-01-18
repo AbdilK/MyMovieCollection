@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import javafx.scene.image.ImageView;
 
 
-public class BLLManager implements BLLLogicFacade
+public class BLLManager
 {
     
     private final MovieDAO MovieDAO;
@@ -34,7 +34,7 @@ public class BLLManager implements BLLLogicFacade
      *
      * @throws IOException
      */
-    public BLLManager() throws IOException
+    public BLLManager() throws IOException, BLLException
     {
         MovieDAO = new MovieDAO();
         CategoryDAO = new CategoryDAO();
@@ -46,7 +46,6 @@ public class BLLManager implements BLLLogicFacade
      *
      * @param category
      */
-    @Override
     public void createCategory(Category category)
     {
         try
@@ -62,7 +61,7 @@ public class BLLManager implements BLLLogicFacade
      *
      * @param categoryToDelete
      */
-    @Override
+    
     public void deleteCategory(Category categoryToDelete)
     {
         try
@@ -78,7 +77,7 @@ public class BLLManager implements BLLLogicFacade
      *
      * @return
      */
-    @Override
+    
     public List<Category> getAllCategorys()
     {
         List<Category> categorys;
@@ -97,7 +96,7 @@ public class BLLManager implements BLLLogicFacade
      *
      * @param category
      */
-    @Override
+    
     public void updateCategory(Category category)
     {
         try
@@ -117,7 +116,7 @@ public class BLLManager implements BLLLogicFacade
      * @param ratingPersonal
      * @param moviePath
      */
-    @Override
+    
     public void createMovie(int movieId, String title, double ratingImdb, double ratingPersonal, String moviePath)
     {
         try
@@ -133,7 +132,7 @@ public class BLLManager implements BLLLogicFacade
      *
      * @param movie
      */
-    @Override
+    
     public void deleteMovie(Movies movie)
     {
         try
@@ -149,7 +148,7 @@ public class BLLManager implements BLLLogicFacade
      *
      * @return
      */
-    @Override
+    
     public List<Movies> getAllMovies()
     {
         List<Movies> allmovies;
@@ -167,7 +166,7 @@ public class BLLManager implements BLLLogicFacade
      *
      * @param movie
      */
-    @Override
+    
     public void updateMovie(Movies movie)
     {
         try
@@ -184,7 +183,6 @@ public class BLLManager implements BLLLogicFacade
      * @param query
      * @return
      */
-    @Override
     public List<Movies> searchMovie(String query)
     {
         List<Movies> searchResult;
@@ -224,7 +222,6 @@ public class BLLManager implements BLLLogicFacade
      *
      * @return
      */
-    @Override
     public Integer nextAvailableMovieID()
     {
         try
@@ -241,7 +238,6 @@ public class BLLManager implements BLLLogicFacade
      *
      * @return
      */
-    @Override
     public Integer nextAvailableCategoryID()
     {
         try
@@ -259,7 +255,6 @@ public class BLLManager implements BLLLogicFacade
      * @param category
      * @return
      */
-    @Override
     public List<Movies> getCategoryMovies(Category category)
     {
         try
@@ -277,7 +272,6 @@ public class BLLManager implements BLLLogicFacade
      * @param movie
      * @param category
      */
-    @Override
     public void addMovieToCategory(Movies movie, Category category)
     {
         try
@@ -293,7 +287,6 @@ public class BLLManager implements BLLLogicFacade
      *
      * @param id
      */
-    @Override
     public void deleteMovieFromCategoryMovies(int id)
     {
         try
@@ -306,7 +299,6 @@ public class BLLManager implements BLLLogicFacade
     }
 
   
-    @Override
     public void deleteCategoryFromCategoryMovies(int id)
     {
         try
