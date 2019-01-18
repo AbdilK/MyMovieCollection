@@ -115,7 +115,7 @@ public class MainWindowController implements Initializable
     private Button btnNext;
     @FXML
     private ListView<Movies> ViewMoviesOnCategory;
-    // This initializes our observables, progressbar, volumenSlider and such.
+
     private List<Movies> dullMovies = new ArrayList();
     @Override
     public void initialize(URL url, ResourceBundle rb)
@@ -143,10 +143,10 @@ public class MainWindowController implements Initializable
     
     
     
-    // The method underneath gets all movies from our database and loads it into our movie library table, with the given string.
+    
 
     /**
-     *
+     * Denne metode får alle vores film fra databasen og loader dem ind i vores movie library table
      */
     public void setMoviesTable() 
     {
@@ -165,7 +165,7 @@ public class MainWindowController implements Initializable
     }
     
     /**
-     * den her metode gør at den spørger os om vi er sikker på at slette filmen. 
+     * Denne metode gør at hvis vi har en film med under 6 i rating, så vil den spørge om du vil slette filmen når du starter programmet 
      */
     public void askIfDeleteMovie()
     {
@@ -175,7 +175,7 @@ public class MainWindowController implements Initializable
             Movies movieBelow = dullMovies.get(0);
             Alert alert = new Alert(AlertType.WARNING, movieBelow.getTitle() + " has 6 or less rating and should be removed, please confirm", ButtonType.YES, ButtonType.CLOSE);
             alert.setHeaderText(movieBelow.getTitle());
-            //alert.setContentText(movieBelow.getTitle() + " has 6 or less rating and has been removed");
+            
             btnType = alert.showAndWait();
             
             if(btnType.get() == ButtonType.YES)
@@ -191,20 +191,25 @@ public class MainWindowController implements Initializable
             }
         }
     }
-   // The method underneath gets all categorys from our database and loads it into our category library table, with the given string.
+  /**
+   * Denne metode loader kategorierne fra vores database ind i vores table library 
+   */
     private void setCategoryTable() 
     {
         categoryMoviesCol = new TableColumn<>("ID");    
         categoryNameCol = new TableColumn<>("Name");
         
-        //categoryDurationCol = new TableColumn<>();
+        
         categoryMoviesCol.setCellValueFactory(new PropertyValueFactory<>("CategoryId"));
         categoryNameCol.setCellValueFactory(new PropertyValueFactory<>("CategoryName"));
         tblViewCategorys.setItems(tm.getCategorysAsObservable());
         tblViewCategorys.getColumns().addAll(categoryMoviesCol, categoryNameCol);
 
     }
-    // This removes a movie from a chosen category, but does not delete the movie from our database.
+   /**
+    * Denne metode sletter den valgte film fra en kategori men ikke fra databasen
+    * @param event eventet der kalder metoden
+    */
     @FXML
     private void clickRemoveMovieCategory(ActionEvent event)
     {
@@ -492,7 +497,11 @@ public class MainWindowController implements Initializable
         }
 
     }
-
+    /**
+     * Denne metode gør at når man trykker på New inde i main window under kategorier, så åbner vores CategoryWindow.fxml og du kan derfra lave en ny kategori
+     * @param event eventet der kalder metoden
+     * @throws IOException 
+     */
     @FXML
     private void clickNewCategory(ActionEvent event) throws IOException
     {
@@ -503,7 +512,10 @@ public class MainWindowController implements Initializable
         boolean isEditing = false;
         openCategoryWindow(fxmlPath, id, isEditing);
     }
-
+    /**
+     * Denne metode gør at når man trykker på New inde i main window under movies, så åbner vores NewMovie.fxml, og du kan derfra sætte en ny film ind
+     * @param event eventet der kalder metoden
+     */
     @FXML
     private void clickNewMovie(ActionEvent event)
     {
@@ -514,7 +526,11 @@ public class MainWindowController implements Initializable
         boolean isEditing = false;
         openMovieWindow(fxmlPath, id, isEditing);
     }
-
+    
+    /**
+     * Når du trykker på Edit inde i main window under movies, så åbner EditMovie.fxml og du kan ændre på navn og ratings
+     * @param event eventet der kalder metoden
+     */
     @FXML
     private void clickEditMovies(ActionEvent event)
     {
@@ -528,7 +544,11 @@ public class MainWindowController implements Initializable
             openEditWindow(fxmlPath, id, isEditing);
         }
     }
-    
+   
+    /**
+     * Når du trykker på edit inde i main window under kategorier, så åbner CategoryWindow.fxml hvor du kan ændre på kategoriens navn
+     * @param event eventet der kalder metoden
+     */
     @FXML
     private void clickToEditCategory(ActionEvent event)
     {
@@ -543,13 +563,22 @@ public class MainWindowController implements Initializable
         }
     }
 
-
+    
+    /**
+     * Denne metode gør at programmet lukkker, når du trykker på close
+     * @param event eventet der kalder metoden når du trykker med musen
+     */
     @FXML
     private void ExitCollection(MouseEvent event)
     {
         System.exit(0);
     }
     
+    
+    /**
+     * 
+     * @param event eventet der kalder metoden når du trykker med musen
+     */
     @FXML
     private void clickCategory(MouseEvent event)
     {
