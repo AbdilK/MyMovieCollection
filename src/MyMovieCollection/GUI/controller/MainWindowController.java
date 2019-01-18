@@ -147,21 +147,14 @@ public class MainWindowController implements Initializable
         {
             Optional<ButtonType> btnType;
             Movies movieBelow = dullMovies.get(0);
-            Alert alert = new Alert(AlertType.WARNING, movieBelow.getTitle() + " has 6 or less rating and should be removed, please confirm", ButtonType.YES, ButtonType.CLOSE);
+            Alert alert = new Alert(AlertType.WARNING, movieBelow.getTitle() + " has 6 or less rating.\nDo you wish to delete this movie?", ButtonType.YES, ButtonType.NO);
             alert.setHeaderText(movieBelow.getTitle());
-            //alert.setContentText(movieBelow.getTitle() + " has 6 or less rating and has been removed");
             btnType = alert.showAndWait();
 
             if (btnType.get() == ButtonType.YES)
             {
                 dullMovies.remove(movieBelow);
                 tm.deleteMovie(movieBelow);
-            }
-            askIfDeleteMovie();
-
-            if (btnType.get() == ButtonType.CLOSE)
-            {
-                alert.close();
             }
         }
     }
@@ -298,7 +291,6 @@ public class MainWindowController implements Initializable
         {
             Movies movie = tblViewLibrary.getSelectionModel().getSelectedItem();
 
-            // moviesAsObservable.add(movie);
             ViewMoviesOnCategory.getItems().clear();
             ViewMoviesOnCategory.getItems().addAll(moviesAsObservable);
 

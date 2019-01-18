@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="MovieCollection.jnlp">
+  <information>
+    <title>MovieCollection</title>
+    <vendor>kerimtopcibasic</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="MovieCollection.jar" size="360446689" download="eager" />
+    <jar href="lib\jfoenix.jar" size="2414497" download="eager" />
+    <jar href="lib\sqljdbc42.jar" size="653996" download="eager" />
+    <jar href="lib\tritonus-utils.jar" size="102301" download="eager" />
+  </resources>
+  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="MovieCollection" >
+    <param name="requiredFXVersion" value="8.0+"/>
+  </applet-desc>
+  <jfx:javafx-desc  width="800" height="600" main-class="MyMovieCollection.MyMovieCollection"  name="MovieCollection" />
+  <update check="always"/>
+</jnlp>
