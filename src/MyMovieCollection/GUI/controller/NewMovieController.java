@@ -23,7 +23,7 @@ import MyMovieCollection.GUI.model.MovieModel;
 
 /**
  *
- * @author Hassuni
+ * @author Bjarne666
  */
 public class NewMovieController implements Initializable {
 
@@ -62,7 +62,9 @@ public class NewMovieController implements Initializable {
            
         }
     }
-// denne her metode kan man vækge hvilken film man skal vælge.
+/** 
+ * denne her metode kan man vækge hvilken film man skal vælge.
+ */
     @FXML
     private void clickChooseMovie(ActionEvent event) throws IOException 
     {
@@ -78,14 +80,18 @@ public class NewMovieController implements Initializable {
             MoviePathBox.setText(filePath);
         }
     }
-// denne her metode lukker selve vinduet ned  
+/** 
+ * denne her metode lukker selve vinduet ned  
+ */ 
     @FXML
     private void clickCancelNewMovie(ActionEvent event) 
     {
         isEditing = false;
         ((Node) (event.getSource())).getScene().getWindow().hide();
     }
-// denne her methode gemmer dataen man har puttet ind i editmovie vindue 
+/** 
+ * denne her methode gemmer dataen man har puttet ind i editmovie vindue 
+ */
     
   
     @FXML
