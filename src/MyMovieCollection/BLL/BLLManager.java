@@ -34,7 +34,7 @@ public class BLLManager
      *
      * @throws IOException
      */
-    public BLLManager() throws IOException, BLLException
+    public BLLManager() throws IOException
     {
         MovieDAO = new MovieDAO();
         CategoryDAO = new CategoryDAO();

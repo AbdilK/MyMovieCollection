@@ -56,7 +56,7 @@ public class MovieModel {
      *
      * @throws IOException
      */
-    public MovieModel() throws IOException, BLLException {
+    public MovieModel() throws IOException {
         AllCategorys = new ArrayList();
         
         olMovies = FXCollections.observableArrayList();
@@ -68,7 +68,7 @@ public class MovieModel {
      *
      * @return
      */
-    public static MovieModel getInstance() throws BLLException // IF there is an existing Model we are returning instance of it, otherwise we are creating and returning new one.
+    public static MovieModel getInstance() // IF there is an existing Model we are returning instance of it, otherwise we are creating and returning new one.
     {
         if (instance == null) {
             try {
