@@ -17,13 +17,8 @@ import javax.swing.JFrame;
 import MyMovieCollection.BE.Movies;
 import MyMovieCollection.GUI.model.MovieModel;
 
-/*/*
+/*
  * @author Abdil-K, Bjarne666, Hassuni8, KerimTopci
- */
-
-/**
- *
- * @author Bjarne666
  */
 public class NewMovieController implements Initializable {
 

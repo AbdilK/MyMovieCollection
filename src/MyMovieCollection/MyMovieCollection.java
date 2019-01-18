@@ -6,15 +6,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import MyMovieCollection.BE.Movies;
 
 /*
  * @author Abdil-K, Bjarne666, Hassuni8, KerimTopci
- */
-
-/**
- *
- * @author Hassuni
  */
 
 public class MyMovieCollection extends Application
@@ -26,7 +20,7 @@ public class MyMovieCollection extends Application
         pStage.setTitle("IMDB Movie Collection");
         pStage.centerOnScreen();
         pStage.getIcons().add(new Image("MyMovieCollection/icons/imdbYellow.png"));
-        Parent root = FXMLLoader.load(getClass().getResource("GUI/view/MainWindow.fxml")); //getClassLoader added to avoid NullPointerException
+        Parent root = FXMLLoader.load(getClass().getResource("GUI/view/MainWindow.fxml")); 
         Scene scene = new Scene(root);    
         pStage.setScene(scene);
         pStage.show();

@@ -13,10 +13,7 @@ import java.util.List;
 import MyMovieCollection.BE.Category;
 import MyMovieCollection.BE.Movies;
 
-/**
- *
- * @author Hassuni
- */
+
 public interface BLLLogicFacade
 {
 

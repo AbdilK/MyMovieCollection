@@ -16,12 +16,8 @@ public class Movies
 
     private int movieId;
     private String title;
-    private String genre;
-    private String artist;
-    private String duration;
     private int locationID;
     private String moviePath;
-    private String readDuration;
     private int CategoryUniqueID;
     private double ratingImdb;
     private double imdbR;
@@ -54,14 +50,7 @@ public class Movies
 
     }
 
-    /**
-     *
-     * @return
-     */
-    public String getReadDuration()
-    {
-        return readDuration;
-    }
+ 
 
     /**
      *

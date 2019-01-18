@@ -36,10 +36,7 @@ import javafx.stage.Modality;
 /*
  * @author Abdil-K, Bjarne666, Hassuni8, KerimTopci
  */
-/**
- *
- * @author Hassuni
- */
+
 public class MainWindowController implements Initializable
 {
 

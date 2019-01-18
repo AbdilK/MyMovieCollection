@@ -21,10 +21,7 @@ import MyMovieCollection.DAL.CatMovieDAO;
 import java.util.ArrayList;
 import javafx.scene.image.ImageView;
 
-/**
- *
- * @author Hassuni
- */
+
 public class BLLManager implements BLLLogicFacade
 {
     

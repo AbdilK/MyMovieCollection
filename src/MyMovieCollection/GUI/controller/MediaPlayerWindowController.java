@@ -22,10 +22,8 @@ import javafx.stage.Stage;
 import MyMovieCollection.GUI.model.MovieModel;
 import javafx.scene.control.Button;
 
-/**
- * FXML Controller class
- *
- * @author Abdil-K
+/*
+ * @author Abdil-K, Bjarne666, Hassuni8, KerimTopci
  */
 public class MediaPlayerWindowController implements Initializable
 {

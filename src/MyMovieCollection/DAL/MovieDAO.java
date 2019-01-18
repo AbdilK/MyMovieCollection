@@ -18,10 +18,6 @@ import java.util.logging.Logger;
 import MyMovieCollection.BE.Movies;
 import MyMovieCollection.DAL.exception.DALException;
 
-/**
- *
- * @author Hassuni
- */
 public class MovieDAO
 {
     private final DBConnectionProvider db;

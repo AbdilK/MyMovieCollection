@@ -18,16 +18,13 @@ import MyMovieCollection.BE.Category;
  * @author Abdil-K, Bjarne666, Hassuni8, KerimTopci
  */
 
-/**
- *
- * @author Hassuni
- */
+
 
 
 public class CategoryDAO
 {
     private DBConnectionProvider db;
-    private final CatMovieDAO DankCategory;
+    private final CatMovieDAO ImdbCategory;
 
     /**
      *
@@ -36,7 +33,7 @@ public class CategoryDAO
     public CategoryDAO() throws IOException
     {
         db = new DBConnectionProvider();
-        DankCategory = new CatMovieDAO();
+        ImdbCategory = new CatMovieDAO();
     }
 
 

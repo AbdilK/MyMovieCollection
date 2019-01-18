@@ -12,13 +12,10 @@ import java.util.ArrayList;
  * @author Abdil-K, Bjarne666, Hassuni8, KerimTopci
  */
 public class Category {
-
-   
-
+    
     private int CategoryId;
     private String CategoryName;
     private int movieAmountPL;
-    
     
     private ArrayList<Movies> Categorymovies;
 
