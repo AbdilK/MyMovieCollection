@@ -13,7 +13,7 @@
    <children>
       <Pane layoutY="1.0" prefHeight="239.0" prefWidth="433.0">
          <children>
-            <Line endX="1.0" layoutX="400.0" layoutY="71.0" startX="-400.0" />
+            <Line endX="33.0" layoutX="400.0" layoutY="71.0" startX="-400.0" />
             <Label layoutX="6.0" layoutY="27.0" styleClass="CreateMovieText" stylesheets="@style.css" text="Create new category or rename existing category">
                <font>
                   <Font size="18.0" />

@@ -104,10 +104,9 @@ public class CategoryDAO
         }
         return p;
     }
-// This method allows us to update our playlist and stores the new and updated information in the database
 
     /**
-     * Denne metode gør at vi kan opdatere vores playlist og gemme de nye informationer i vores database
+     * Denne metode gør at vi kan opdatere vores kategori og gemme de nye informationer i vores database
      * @param cat kategorien der er opdateret
      * @throws SQLException
      */
@@ -126,10 +125,10 @@ public class CategoryDAO
             Logger.getLogger(MovieDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-// This method finds the next available ID and gives it to the playlist
+
 
     /**
-     * Denne metode finder den næste ledige ID og giver den til playlisten
+     * Denne metode finder den næste ledige ID og giver den til kategorien
      * @return returnerer id + 1 således, at den får en større værdi end den forrige
      * @throws SQLException
      */
