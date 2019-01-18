@@ -2,7 +2,7 @@
 
 <ClassDiagram name="MyMovieCollection">
   <ClassDiagramComponents>
-    <Class name="BLLManager" package="MyMovieCollection.BLL" visibility="public" xPosition="13.0" yPosition="659.0">
+    <Class name="BLLManager" package="MyMovieCollection.BLL" visibility="public" xPosition="684.0" yPosition="573.0">
       <Fields/>
       <Constructors/>
       <Methods>
@@ -51,11 +51,16 @@
         <Method name="deleteCategoryFromCategoryMovies" returnType="void" visibility="public">
           <Argument type="int" name="id"/>
         </Method>
+        <Method name="findDullMovies" returnType="List&lt;Movies&gt;" visibility="public"/>
       </Methods>
     </Class>
-    <Class name="CategoryDAO" package="MyMovieCollection.DAL" visibility="public" xPosition="13.0" yPosition="277.0">
-      <Fields/>
-      <Constructors/>
+    <Class name="CategoryDAO" package="MyMovieCollection.DAL" visibility="public" xPosition="1800.0" yPosition="1005.0">
+      <Fields>
+        <Field name="db" type="DBConnectionProvider" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
       <Methods>
         <Method name="createCategory" returnType="void" visibility="public">
           <Argument type="Category" name="cat"/>
@@ -70,9 +75,13 @@
         <Method name="nextAvailableCategoryID" returnType="Integer" visibility="public"/>
       </Methods>
     </Class>
-    <Class name="CatMovieDAO" package="MyMovieCollection.DAL" visibility="public" xPosition="13.0" yPosition="497.0">
-      <Fields/>
-      <Constructors/>
+    <Class name="CatMovieDAO" package="MyMovieCollection.DAL" visibility="public" xPosition="1385.0" yPosition="1015.0">
+      <Fields>
+        <Field name="db" type="DBConnectionProvider" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
       <Methods>
         <Method name="getCategoryMovies" returnType="List&lt;Movies&gt;" visibility="public">
           <Argument type="Category" name="CatMovie"/>
@@ -89,9 +98,28 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="MovieDAO" package="MyMovieCollection.DAL" visibility="public" xPosition="1.0" yPosition="13.0">
-      <Fields/>
-      <Constructors/>
+    <Class name="DBConnectionProvider" package="MyMovieCollection.DAL" visibility="public" xPosition="1371.0" yPosition="630.0">
+      <Fields>
+        <Field name="SERVER_NAME" type="String" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="DATABASE_NAME" type="String" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="USER" type="String" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="PASSWORD" type="String" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="db" type="SQLServerDataSource" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="getConnection" returnType="Connection" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="MovieDAO" package="MyMovieCollection.DAL" visibility="public" xPosition="740.0" yPosition="1015.0">
+      <Fields>
+        <Field name="db" type="DBConnectionProvider" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
       <Methods>
         <Method name="createMovie" returnType="Movies" visibility="public">
           <Argument type="int" name="movieId"/>
@@ -121,7 +149,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="CategoryWindowController" package="MyMovieCollection.GUI.controller" visibility="public" xPosition="571.0" yPosition="881.0">
+    <Class name="CategoryWindowController" package="MyMovieCollection.GUI.controller" visibility="public" xPosition="1660.0" yPosition="46.0">
       <Fields>
         <Field name="isEditing" type="boolean" visibility="private"/>
         <Field name="CategoryNewID" type="int" visibility="private"/>
@@ -141,8 +169,12 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="EditMovieController" package="MyMovieCollection.GUI.controller" visibility="public" xPosition="1160.0" yPosition="227.0">
-      <Fields/>
+    <Class name="EditMovieController" package="MyMovieCollection.GUI.controller" visibility="public" xPosition="1188.0" yPosition="303.0">
+      <Fields>
+        <Field name="isEditing" type="boolean" visibility="private"/>
+        <Field name="MovieNewID" type="int" visibility="private"/>
+        <Field name="movie" type="Movies" visibility="private"/>
+      </Fields>
       <Constructors/>
       <Methods>
         <Method name="clickChooseMovie" returnType="void" visibility="private">
@@ -154,22 +186,29 @@
         <Method name="clickSaveEditsMovie" returnType="void" visibility="private">
           <Argument type="ActionEvent" name="event"/>
         </Method>
+        <Method name="setController" returnType="void" visibility="public">
+          <Argument type="MainWindowController" name="controller"/>
+          <Argument type="boolean" name="isEditing"/>
+          <Argument type="int" name="movieID"/>
+        </Method>
         <Method name="ClickCancelEditMovie" returnType="void" visibility="private">
           <Argument type="ActionEvent" name="event"/>
         </Method>
       </Methods>
     </Class>
-    <Class name="MainWindowController" package="MyMovieCollection.GUI.controller" visibility="public" xPosition="1160.0" yPosition="407.0">
+    <Class name="MainWindowController" package="MyMovieCollection.GUI.controller" visibility="public" xPosition="684.0" yPosition="56.0">
       <Fields>
+        <Field name="textFieldFilterSearch" type="TextField" visibility="private"/>
+        <Field name="moviePath" type="String" visibility="private"/>
+        <Field name="Length" type="int" visibility="private"/>
+        <Field name="moviesAsObservable" type="ObservableList" visibility="private"/>
+        <Field name="categorysAsObservable" type="ObservableList&lt;Category&gt;" visibility="private"/>
         <Field name="searchedMoviesAsObservable" type="ObservableList" visibility="private"/>
         <Field name="ViewMoviesOnCategory" type="ListView&lt;Movies&gt;" visibility="private"/>
         <Field name="dullMovies" type="List&lt;Movies&gt;" visibility="private"/>
       </Fields>
       <Constructors/>
       <Methods>
-        <Method name="setMoviesTable" returnType="void" visibility="public"/>
-        <Method name="askIfDeleteMovie" returnType="void" visibility="public"/>
-        <Method name="setCategoryTable" returnType="void" visibility="private"/>
         <Method name="clickRemoveMovieCategory" returnType="void" visibility="private">
           <Argument type="ActionEvent" name="event"/>
         </Method>
@@ -186,35 +225,32 @@
         <Method name="clickPushMovieToCategory" returnType="void" visibility="private">
           <Argument type="ActionEvent" name="event"/>
         </Method>
-        <Method name="refreshTableMovies" returnType="void" visibility="public"/>
-        <Method name="refreshTableCategory" returnType="void" visibility="public"/>
+        <Method name="HitEnterSearch" returnType="void" visibility="private">
+          <Argument type="KeyEvent" name="event"/>
+        </Method>
         <Method name="dblClickPlay" returnType="void" visibility="private"/>
         <Method name="PlayCustomPlayer" returnType="void" visibility="private"/>
-        <Method name="openMovieWindow" returnType="void" visibility="public">
-          <Argument type="String" name="fxmlPath"/>
-          <Argument type="int" name="id"/>
-          <Argument type="boolean" name="isEditing"/>
+        <Method name="clickNewCategory" returnType="void" visibility="private">
+          <Argument type="ActionEvent" name="event"/>
         </Method>
-        <Method name="openCategoryWindow" returnType="void" visibility="public">
-          <Argument type="String" name="fxmlPath"/>
-          <Argument type="int" name="id"/>
-          <Argument type="boolean" name="isEditing"/>
+        <Method name="clickNewMovie" returnType="void" visibility="private">
+          <Argument type="ActionEvent" name="event"/>
         </Method>
-        <Method name="openEditWindow" returnType="void" visibility="public">
-          <Argument type="String" name="fxmlPath"/>
-          <Argument type="int" name="id"/>
-          <Argument type="boolean" name="isEditing"/>
+        <Method name="clickEditMovies" returnType="void" visibility="private">
+          <Argument type="ActionEvent" name="event"/>
+        </Method>
+        <Method name="clickToEditCategory" returnType="void" visibility="private">
+          <Argument type="ActionEvent" name="event"/>
+        </Method>
+        <Method name="clickCategory" returnType="void" visibility="private">
+          <Argument type="MouseEvent" name="event"/>
         </Method>
       </Methods>
     </Class>
-    <Class name="MediaPlayerWindowController" package="MyMovieCollection.GUI.controller" visibility="public" xPosition="1160.0" yPosition="13.0">
+    <Class name="MediaPlayerWindowController" package="MyMovieCollection.GUI.controller" visibility="public" xPosition="1715.0" yPosition="258.0">
       <Fields/>
       <Constructors/>
       <Methods>
-        <Method name="MediaSetup" returnType="void" visibility="public">
-          <Argument type="MovieModel" name="cm"/>
-          <Argument type="String" name="moviePath"/>
-        </Method>
         <Method name="setIcon" returnType="void" visibility="private"/>
         <Method name="playPauseMovie" returnType="void" visibility="private">
           <Argument type="ActionEvent" name="event"/>
@@ -230,8 +266,13 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="NewMovieController" package="MyMovieCollection.GUI.controller" visibility="public" xPosition="1160.0" yPosition="875.0">
-      <Fields/>
+    <Class name="NewMovieController" package="MyMovieCollection.GUI.controller" visibility="public" xPosition="1188.0" yPosition="36.0">
+      <Fields>
+        <Field name="isEditing" type="boolean" visibility="private"/>
+        <Field name="MovieNewID" type="int" visibility="private"/>
+        <Field name="AllGenres" type="List&lt;String&gt;" visibility="private"/>
+        <Field name="movie" type="Movies" visibility="private"/>
+      </Fields>
       <Constructors/>
       <Methods>
         <Method name="clickChooseMovie" returnType="void" visibility="private">
@@ -243,12 +284,18 @@
         <Method name="clickSaveMovie" returnType="void" visibility="private">
           <Argument type="ActionEvent" name="event"/>
         </Method>
+        <Method name="setController" returnType="void" visibility="public">
+          <Argument type="MainWindowController" name="controller"/>
+          <Argument type="boolean" name="isEditing"/>
+          <Argument type="int" name="movieID"/>
+        </Method>
       </Methods>
     </Class>
-    <Class name="MovieModel" package="MyMovieCollection.GUI.model" visibility="public" xPosition="571.0" yPosition="321.0">
+    <Class name="MovieModel" package="MyMovieCollection.GUI.model" visibility="public" xPosition="1715.0" yPosition="466.0">
       <Fields/>
       <Constructors/>
       <Methods>
+        <Method name="findDullMovies" returnType="List&lt;Movies&gt;" visibility="public"/>
         <Method name="searchMovie" returnType="List&lt;Movies&gt;" visibility="public">
           <Argument type="String" name="query"/>
         </Method>
@@ -272,15 +319,15 @@
         <Method name="deleteMovie" returnType="void" visibility="public">
           <Argument type="Movies" name="movie"/>
         </Method>
+        <Method name="getMovieData" returnType="Movies" visibility="public">
+          <Argument type="ImageView" name="view"/>
+        </Method>
         <Method name="getAllMovies" returnType="List&lt;Movies&gt;" visibility="public"/>
         <Method name="updateMovie" returnType="void" visibility="public">
           <Argument type="Movies" name="movie"/>
         </Method>
         <Method name="nextAvailableMovieID" returnType="Integer" visibility="public"/>
         <Method name="nextAvailableCategoryID" returnType="Integer" visibility="public"/>
-        <Method name="getCategoryMovies" returnType="List&lt;Movies&gt;" visibility="public">
-          <Argument type="Category" name="category"/>
-        </Method>
         <Method name="addMovieToCategory" returnType="void" visibility="public">
           <Argument type="Movies" name="movie"/>
           <Argument type="Category" name="category"/>
@@ -291,82 +338,40 @@
         <Method name="deleteCategoryFromCategoryMovies" returnType="void" visibility="public">
           <Argument type="int" name="id"/>
         </Method>
+        <Method name="getCategory" returnType="Category" visibility="public"/>
         <Method name="setCategory" returnType="void" visibility="public">
           <Argument type="Category" name="category"/>
         </Method>
+        <Method name="getMovie" returnType="Movies" visibility="public"/>
         <Method name="setMovie" returnType="void" visibility="public">
           <Argument type="Movies" name="movie"/>
         </Method>
-        <Method name="addNewCategory" returnType="void" visibility="public">
-          <Argument type="String" name="cat"/>
-        </Method>
+        <Method name="getCategorys" returnType="List&lt;String&gt;" visibility="public"/>
       </Methods>
     </Class>
-    <Interface name="BLLLogicFacade" package="MyMovieCollection.BLL" visibility="public" xPosition="571.0" yPosition="13.0">
-      <Methods>
-        <Method name="createCategory" returnType="void" visibility="public">
-          <Argument type="Category" name="p"/>
-        </Method>
-        <Method name="deleteCategory" returnType="void" visibility="public">
-          <Argument type="Category" name="CategoryToDelete"/>
-        </Method>
-        <Method name="getAllCategorys" returnType="List&lt;Category&gt;" visibility="public"/>
-        <Method name="updateCategory" returnType="void" visibility="public">
-          <Argument type="Category" name="p"/>
-        </Method>
-        <Method name="createMovie" returnType="void" visibility="public">
-          <Argument type="int" name="movieId"/>
-          <Argument type="String" name="title"/>
-          <Argument type="double" name="ratingImdb"/>
-          <Argument type="double" name="ratingPersonal"/>
-          <Argument type="String" name="moviepath"/>
-        </Method>
-        <Method name="findDullMovies" returnType="List&lt;Movies&gt;" visibility="public"/>
-        <Method name="getAllMovies" returnType="List&lt;Movies&gt;" visibility="public"/>
-        <Method name="updateMovie" returnType="void" visibility="public">
-          <Argument type="Movies" name="movie"/>
-        </Method>
-        <Method name="searchMovie" returnType="List&lt;Movies&gt;" visibility="public">
-          <Argument type="String" name="query"/>
-        </Method>
-        <Method name="nextAvailableMovieID" returnType="Integer" visibility="public"/>
-        <Method name="getCategoryMovies" returnType="List&lt;Movies&gt;" visibility="public">
-          <Argument type="Category" name="c"/>
-        </Method>
-        <Method name="addMovieToCategory" returnType="void" visibility="public">
-          <Argument type="Movies" name="s"/>
-          <Argument type="Category" name="c"/>
-        </Method>
-        <Method name="deleteMovieFromCategoryMovies" returnType="void" visibility="public">
-          <Argument type="int" name="id"/>
-        </Method>
-        <Method name="deleteCategoryFromCategoryMovies" returnType="void" visibility="public">
-          <Argument type="int" name="id"/>
-        </Method>
-      </Methods>
-    </Interface>
   </ClassDiagramComponents>
   <ClassDiagramRelations>
-    <HasRelation name="CategoryDAO" source="MyMovieCollection.BLL.BLLManager" target="MyMovieCollection.DAL.CategoryDAO" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
     <HasRelation name="MainWController" source="MyMovieCollection.GUI.controller.NewMovieController" target="MyMovieCollection.GUI.controller.MainWindowController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="DankCategory" source="MyMovieCollection.DAL.CategoryDAO" target="MyMovieCollection.DAL.CatMovieDAO" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="mm" source="MyMovieCollection.GUI.controller.NewMovieController" target="MyMovieCollection.GUI.model.MovieModel" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="cm" source="MyMovieCollection.GUI.controller.CategoryWindowController" target="MyMovieCollection.GUI.model.MovieModel" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="db" source="MyMovieCollection.DAL.MovieDAO" target="MyMovieCollection.DAL.DBConnectionProvider" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
     <HasRelation name="MovieDAO" source="MyMovieCollection.BLL.BLLManager" target="MyMovieCollection.DAL.MovieDAO" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="MyMovieCollection.GUI.controller.MediaPlayerWindowController" target="MyMovieCollection.GUI.model.MovieModel" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="MyMovieCollection.GUI.model.MovieModel" target="MyMovieCollection.GUI.model.MovieModel" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="BLM" source="MyMovieCollection.BLL.BLLManager" target="MyMovieCollection.BLL.BLLManager" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="MainWController" source="MyMovieCollection.GUI.controller.EditMovieController" target="MyMovieCollection.GUI.controller.MainWindowController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="BLLManager" source="MyMovieCollection.GUI.model.MovieModel" target="MyMovieCollection.BLL.BLLLogicFacade" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="tm" source="MyMovieCollection.GUI.controller.EditMovieController" target="MyMovieCollection.GUI.model.MovieModel" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="MainWController" source="MyMovieCollection.GUI.controller.CategoryWindowController" target="MyMovieCollection.GUI.controller.MainWindowController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="MyMovieCollection.BLL.BLLManager" target="MyMovieCollection.BLL.BLLLogicFacade"/>
-    <HasRelation name="instance" source="MyMovieCollection.GUI.model.MovieModel" target="MyMovieCollection.GUI.model.MovieModel" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="MyMovieCollection.GUI.controller.EditMovieController" target="MyMovieCollection.GUI.controller.MainWindowController" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="MyMovieCollection.GUI.controller.NewMovieController" target="MyMovieCollection.GUI.controller.MainWindowController" sourceCardinality="1..1" targetCardinality="1..1"/>
     <HasRelation name="tm" source="MyMovieCollection.GUI.controller.MainWindowController" target="MyMovieCollection.GUI.model.MovieModel" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="MyMovieCollection.GUI.controller.CategoryWindowController" target="MyMovieCollection.GUI.controller.MainWindowController" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="tm" source="MyMovieCollection.GUI.controller.EditMovieController" target="MyMovieCollection.GUI.model.MovieModel" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="MainWController" source="MyMovieCollection.GUI.controller.EditMovieController" target="MyMovieCollection.GUI.controller.MainWindowController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="MyMovieCollection.GUI.controller.MediaPlayerWindowController" target="MyMovieCollection.GUI.model.MovieModel" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="MyMovieCollection.GUI.controller.EditMovieController" target="MyMovieCollection.GUI.controller.MainWindowController" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="db" source="MyMovieCollection.DAL.CatMovieDAO" target="MyMovieCollection.DAL.DBConnectionProvider" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="CategoryDAO" source="MyMovieCollection.BLL.BLLManager" target="MyMovieCollection.DAL.CategoryDAO" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
     <HasRelation name="BLM" source="MyMovieCollection.GUI.model.MovieModel" target="MyMovieCollection.BLL.BLLManager" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="ImdbCategory" source="MyMovieCollection.DAL.CategoryDAO" target="MyMovieCollection.DAL.CatMovieDAO" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
     <HasRelation name="CategoryMoviesDAO" source="MyMovieCollection.BLL.BLLManager" target="MyMovieCollection.DAL.CatMovieDAO" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="MyMovieCollection.GUI.controller.NewMovieController" target="MyMovieCollection.GUI.controller.MainWindowController" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="MyMovieCollection.GUI.model.MovieModel" target="MyMovieCollection.GUI.model.MovieModel" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="MyMovieCollection.GUI.controller.CategoryWindowController" target="MyMovieCollection.GUI.controller.MainWindowController" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="BLM" source="MyMovieCollection.BLL.BLLManager" target="MyMovieCollection.BLL.BLLManager" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="mm" source="MyMovieCollection.GUI.controller.NewMovieController" target="MyMovieCollection.GUI.model.MovieModel" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="db" source="MyMovieCollection.DAL.CategoryDAO" target="MyMovieCollection.DAL.DBConnectionProvider" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="instance" source="MyMovieCollection.GUI.model.MovieModel" target="MyMovieCollection.GUI.model.MovieModel" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="MainWController" source="MyMovieCollection.GUI.controller.CategoryWindowController" target="MyMovieCollection.GUI.controller.MainWindowController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="cm" source="MyMovieCollection.GUI.controller.CategoryWindowController" target="MyMovieCollection.GUI.model.MovieModel" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
   </ClassDiagramRelations>
 </ClassDiagram>
